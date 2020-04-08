@@ -96,14 +96,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36838afd88db2b44786e098ed914afd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePoint: {fileID: 4930773443688452526}
-  currentTarget: {fileID: 0}
   purchaseCost: 100
   sellCost: 50
   repairCost: 25
-  turretProjectile: {fileID: 0}
-  fireSpeed: 10
-  fireRange: 2
+  upgradeCost: 75
+  fireRate: 2
+  fireRange: 1.5
+  turretProjectile: {fileID: 8575892767575457776, guid: c8a081459bd7bb64e8d4b6316f1205ec,
+    type: 3}
+  firePoint: {fileID: 4930773443688452526}
 --- !u!1 &5150737523191084310
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,13 +160,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6353910113348365791}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 2.8876459e-15, y: 0.13068199, z: -0.009961835}
   m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_Children: []
   m_Father: {fileID: 3228965615794466584}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &5348694687061187407
 MeshFilter:
   m_ObjectHideFlags: 0
