@@ -4,29 +4,29 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    public Transform firePoint;
-    public GameObject currentTarget;
-
+    [Header("Costs")]
     public int purchaseCost;
     public int sellCost;
     public int repairCost;
+    public int upgradeCost;
 
-    public GameObject turretProjectile;
-
+    [Header("Properties")]
     public float fireRate;
     public float fireRange;
 
-    private float turnRate = 10f;
+    [Header("Misc")]
+    public GameObject turretProjectile;
+    public Transform firePoint;
+
+    private GameObject currentTarget;
+    private readonly float turnRate = 10f;
     private float timer;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         timer = 0.0f;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (currentTarget == null)
@@ -42,7 +42,6 @@ public class Turret : MonoBehaviour
                 FireProjectile();
                 timer = 0.0f;
             }
-
         }
     }
 
@@ -63,7 +62,6 @@ public class Turret : MonoBehaviour
                 closestGameObjectInRange = enemy;
             }
         }
-
         currentTarget = closestGameObjectInRange;
     }
 
@@ -89,7 +87,6 @@ public class Turret : MonoBehaviour
 
     void FireProjectile()
     {
-
         if (currentTarget != null)
         {
             GameObject projectile = Instantiate(turretProjectile, firePoint.position, firePoint.rotation);

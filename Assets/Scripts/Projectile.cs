@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    GameObject target;
+    private GameObject target;
 
+    [Header("Properties")]
     public float travelSpeed;
-    public float damage;
+    public float projectileDamage;
 
-
-    // Update is called once per frame
     void Update()
     {
         if (target == null)
@@ -48,7 +47,8 @@ public class Projectile : MonoBehaviour
 
     private void HurtTarget()
     {
-        Debug.Log("THIS WILL DAMAGE TARGET");
+        EnemyTesterScript e = target.GetComponent<EnemyTesterScript>();
+        e.TakeDamage(projectileDamage); //The damage command of on the enemy object
         DestroyProjectile();
     }
 }
