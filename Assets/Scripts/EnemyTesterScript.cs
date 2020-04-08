@@ -12,4 +12,8 @@ public class EnemyTesterScript : MonoBehaviour
         float step = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(0f, 0f, 15f), step);
     }
+
+    public void TakeDamage(float damage) {
+        Destroy(this.gameObject);
+    }
 }
