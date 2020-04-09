@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
@@ -22,13 +20,14 @@ public class Turret : MonoBehaviour
     private readonly float turnRate = 10f;
     private float timer;
 
-    void Start()
+    private void Start()
     {
         timer = 0.0f;
     }
 
-    void Update()
+    private void Update()
     {
+        /* If there is no target, search for one, else track the target and coundown to shoot */
         if (currentTarget == null)
         {
             CheckForTargets();
@@ -45,7 +44,8 @@ public class Turret : MonoBehaviour
         }
     }
 
-    void CheckForTargets()
+    /* Searches through all gameobjects with the tage 'enemy' and sets the current target to the closest one within range */
+    private void CheckForTargets()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
@@ -65,11 +65,12 @@ public class Turret : MonoBehaviour
         currentTarget = closestGameObjectInRange;
     }
 
-    void TrackTarget()
+    /* Points the turret at the currentTarget */
+    private void TrackTarget()
     {
         if (currentTarget != null)
         {
-            //Case where enemy walks out of turret range
+            /* If the current target goes out of range */
             if (Vector3.Distance(transform.position, currentTarget.transform.position) > fireRange)
             {
                 currentTarget = null;
@@ -80,12 +81,13 @@ public class Turret : MonoBehaviour
             Quaternion qRotation = Quaternion.LookRotation(direction);
             Vector3 rotation = Quaternion.Lerp(transform.rotation, qRotation, Time.deltaTime * turnRate).eulerAngles;
 
+            /* Rotates the turret about the y axis*/
             transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
         }
     }
 
-
-    void FireProjectile()
+    /* Instantiates a projectile at the firepoint and sets the target of the projectile to the currentTarget */
+    private void FireProjectile()
     {
         if (currentTarget != null)
         {
@@ -98,7 +100,7 @@ public class Turret : MonoBehaviour
     }
 
     /* When clicking on the turret in the scene, it will show the fireRange of the turret */
-    void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, fireRange);
