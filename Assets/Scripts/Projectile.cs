@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
@@ -10,8 +8,10 @@ public class Projectile : MonoBehaviour
     public float travelSpeed;
     public float projectileDamage;
 
-    void Update()
+
+    private void Update()
     {
+        /* If the target already died, then Destroy, else follow the target */
         if (target == null)
         {
             DestroyProjectile();
@@ -22,9 +22,10 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    /* Moves the projectile in the direction of the target */
     private void FollowTarget()
     {
-
+        /* If the projectile gets close enough to the target, then deal damage to the target and destroy projectile */
         if (Vector3.Distance(transform.position, target.transform.position) < 0.1f)
         {
             HurtTarget();
@@ -35,20 +36,23 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    /* Setter for the target gameobject */
     public void SetTarget(GameObject target)
     {
         this.target = target;
     }
 
+    /* Performs the necessary steps the destroy the projectile*/
     private void DestroyProjectile()
     {
         Destroy(this.gameObject);
     }
 
+    /* Deals damage to the enemy and destroys the projectile */
     private void HurtTarget()
     {
         EnemyTesterScript e = target.GetComponent<EnemyTesterScript>();
-        e.TakeDamage(projectileDamage); //The damage command of on the enemy object
+        e.TakeDamage(projectileDamage); // This will be the damage function on the enemy
         DestroyProjectile();
     }
 }
