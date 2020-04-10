@@ -51,8 +51,8 @@ public class Projectile : MonoBehaviour
     /* Deals damage to the enemy and destroys the projectile */
     private void HurtTarget()
     {
-        EnemyTesterScript e = target.GetComponent<EnemyTesterScript>();
-        e.TakeDamage(projectileDamage); // This will be the damage function on the enemy
+        IDamageable damageable = target.GetComponent<IDamageable>();
+        damageable.TakeDamage(projectileDamage); // This will be the damage function on the enemy
         DestroyProjectile();
     }
 }
