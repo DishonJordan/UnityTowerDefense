@@ -20,7 +20,6 @@ public class CameraController : MonoBehaviour {
 
         if(!movementAllowed)
             return;
-        print(transform.position);
 
         if(transform.position.x >= maxForward && (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBorderThickness))
         {
