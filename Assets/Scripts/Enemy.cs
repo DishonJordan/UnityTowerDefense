@@ -12,8 +12,13 @@ public class Enemy : MonoBehaviour, IDamageable
     public float speed;
 
     [Tooltip("Current waypoint this enemy should move towards")]
-    public Transform targetWaypoint;
+    private Transform targetWaypoint;
+    private int waypointIndex;
+    public GameObject waypoints;
 
+    private void Start(){
+        targetWaypoint = waypoints.GetComponent<Waypoints>().waypoints[0];
+    }
 
     // Update is called once per frame
     private void Update()
@@ -38,11 +43,14 @@ public class Enemy : MonoBehaviour, IDamageable
                 transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, distanceTraveledThisFrame);
             }
         }
+        else{
+            Die();
+        }
     }
 
     private void GetNextWaypoint()
     {
-        return;
+        targetWaypoint = waypoints.GetComponent<Waypoints>().GetNextWaypoint(++waypointIndex);
     }
 
     private void Die()
