@@ -24,7 +24,6 @@ public class CameraController : MonoBehaviour {
         if(transform.position.x >= maxForward && (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBorderThickness))
         {
             transform.Translate(Vector3.left * panSpeed * Time.deltaTime, Space.World);
-            print(transform.position.y);
         }
         if(transform.position.x <= maxBack && (Input.GetKey("s") ||  Input.mousePosition.y <= panBorderThickness))
         {

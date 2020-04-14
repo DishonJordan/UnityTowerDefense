@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8908784340240177455}
   - component: {fileID: 502532438188827417}
   - component: {fileID: 6180579144104992736}
+  - component: {fileID: 44361369442576131}
+  - component: {fileID: 442995665}
   m_Layer: 0
   m_Name: tile
   m_TagString: Untagged
@@ -80,3 +82,30 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &44361369442576131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5618528542548749116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21bf69ea0cf921a48ab2568f81ef94b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turretToBuild: {fileID: 1915383092528798987, guid: c8eb199faa4d0e64c932c343b464b4c4,
+    type: 3}
+--- !u!65 &442995665
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5618528542548749116}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.99999994, y: 0.19999999, z: 0.99999994}
+  m_Center: {x: 0, y: 0.099999994, z: 0}
