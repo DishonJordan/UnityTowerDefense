@@ -6,7 +6,7 @@ public class Spawner : MonoBehaviour
 {
     private List <List <int>> waves;
     public GameObject[] enemies; 
-    public GameObject waypoints;
+    public Waypoints waypoints;
     public int timeBetweenWaves;
     public int timeBetweenSpawns;
     private float timer;
@@ -23,7 +23,7 @@ public class Spawner : MonoBehaviour
         List<int> wave1 = new List<int>{0,0,0};
         List<int> wave2 = new List<int>{0,0,0,0,0};
         List<int> wave3 = new List<int>{0,0};
-        List<int> wave4 = new List<int>{0,0,0,0,0};
+        List<int> wave4 = new List<int>{0,0,0,0,0,0,0};
         waves = new List<List<int>>{wave1, wave2, wave3, wave4};
     }
 
