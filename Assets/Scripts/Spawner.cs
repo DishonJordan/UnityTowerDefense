@@ -4,16 +4,30 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    
     private List <List <int>> waves;
+
+    [Header("Spawner properties")]
     public GameObject[] enemies; 
-    public Waypoints waypoints;
     public int timeBetweenWaves;
     public int timeBetweenSpawns;
     private float timer;
 
+    [Header("Enemy dependencies")]
+    public Waypoints waypoints;
+    public Bank bank;
+
     private bool spawningWave;
     private int waveIndex;
     private int enemyIndex;
+
+    private void Awake()
+    {
+        if (waypoints == null)
+            Debug.LogError("Spawner needs Waypoints!", this);
+        if (bank == null)
+            Debug.LogError("Spawner needs Bank!", this);
+    }
 
     private void Start(){
         timer = timeBetweenWaves;
@@ -38,8 +52,14 @@ public class Spawner : MonoBehaviour
         else{
             if(timer >= timeBetweenSpawns){
                 if(waveIndex < waves.Count){
+
                     GameObject newEnemy = Instantiate(enemies[waves[waveIndex][enemyIndex]], transform.position, transform.rotation);
-                    newEnemy.GetComponent<Enemy>().waypoints = waypoints;
+
+                    // Inject scene dependencies into enemy
+                    Enemy e = newEnemy.GetComponent<Enemy>();
+                    e.waypoints = waypoints;
+                    e.bank = bank;
+
                     if(++enemyIndex == waves[waveIndex].Count){
                         enemyIndex = 0;
                         waveIndex++;
