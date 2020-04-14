@@ -2,6 +2,8 @@
 
 public class Enemy : MonoBehaviour, IDamageable
 {
+    public Bank bank;
+
     [Tooltip("Money paid to the player when this enemy dies")]
     public int money;
 
@@ -56,7 +58,6 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void Die()
     {
-        Debug.Log(this.gameObject.name + " died");
         Destroy(this.gameObject);
     }
 
@@ -65,6 +66,7 @@ public class Enemy : MonoBehaviour, IDamageable
         health -= damage;
         if(health <= 0)
         {
+            bank.money += money;
             Die();
         }
     }
