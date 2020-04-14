@@ -56,6 +56,9 @@ public class Enemy : MonoBehaviour, IDamageable
         health -= damage;
         if(health <= 0)
         {
+            // Since the enemy died by player kill, we reward the player with money
+            Bank.instance.money += money;
+
             Die();
         }
     }
