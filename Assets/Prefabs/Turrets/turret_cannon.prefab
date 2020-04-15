@@ -100,8 +100,8 @@ MonoBehaviour:
   sellCost: 50
   repairCost: 25
   upgradeCost: 75
-  fireRate: 2
-  fireRange: 1.5
+  fireRate: 0.5
+  fireRange: 2
   turretProjectile: {fileID: 8575892767575457776, guid: c8a081459bd7bb64e8d4b6316f1205ec,
     type: 3}
   firePoint: {fileID: 4930773443688452526}
