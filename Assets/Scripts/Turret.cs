@@ -9,7 +9,9 @@ public class Turret : MonoBehaviour
     public int upgradeCost;
 
     [Header("Properties")]
+    [Tooltip("After how many seconds does the turret shoots")]
     public float fireRate;
+    [Tooltip("This range can be seen in the unity editor by clicking on the turet object")]
     public float fireRange;
 
     [Header("Misc")]

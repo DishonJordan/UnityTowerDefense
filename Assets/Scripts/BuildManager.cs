@@ -3,20 +3,19 @@ using UnityEngine.EventSystems;
 
 public class BuildManager : MonoBehaviour
 {
+    /* Ensures only one TileUI is active at once */
     public static bool shopUIActive;
 
-    [Header("UI GameObjects")]
+    [Header("UI Elements")]
     public GameObject turretShopUI;
-    public GameObject upgradeUI; // To be implemented
 
-    [Header("Material")]
+    [Header("Materials")]
     public Material highlightColor;
 
     private GameObject turretOnTile;
     private Color originalColor;
     private Renderer myRenderer;
     private Vector3 offset = new Vector3(0f, 0.2f, 0f);
-
 
     private void Start()
     {
@@ -55,9 +54,9 @@ public class BuildManager : MonoBehaviour
     /* This is called by the onclick event of the turretShopUI turret button */
     public void BuildTurret(GameObject turret)
     {
-        if (turret != null && turretOnTile == null)
-        { // Need to also check money
-            turretOnTile = (GameObject)Instantiate(turret, transform.position + offset, transform.rotation);
+        if (turret != null && turretOnTile == null) 
+        {// Need to integrate banking features
+            turretOnTile = Instantiate(turret, transform.position + offset, transform.rotation);
             turretShopUI.SetActive(false);
             shopUIActive = false;
         }
