@@ -66,7 +66,7 @@ public class Enemy : MonoBehaviour, IDamageable
         health -= damage;
         if(health <= 0)
         {
-            bank.money += money;
+            bank.DepositMoney(money);
             Die();
         }
     }
