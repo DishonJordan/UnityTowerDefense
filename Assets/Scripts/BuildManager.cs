@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class BuildManager : MonoBehaviour
 {
@@ -59,7 +60,7 @@ public class BuildManager : MonoBehaviour
     {
         Turret t = turret.GetComponent<Turret>();
 
-        if (turret != null && turretOnTile == null && bank.WithdrawMoney(t.purchaseCost)) 
+        if (turret != null && turretOnTile == null && bank.WithdrawMoney(t.purchaseCost))
         {
             turretOnTile = Instantiate(turret, transform.position + offset, transform.rotation);
             turretShopUI.SetActive(false);
@@ -80,5 +81,9 @@ public class BuildManager : MonoBehaviour
     {
         turretShopUI.SetActive(false);
         shopUIActive = turretShopUI.activeSelf;
+    }
+
+    public Bank GetBank() {
+        return bank;
     }
 }
