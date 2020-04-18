@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class BuildManager : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class BuildManager : MonoBehaviour
 
     [Header("Materials")]
     public Material highlightColor;
+
+    [Header("Bank")]
+    public Bank bank;
 
     private GameObject turretOnTile;
     private Color originalColor;
@@ -54,8 +58,10 @@ public class BuildManager : MonoBehaviour
     /* This is called by the onclick event of the turretShopUI turret button */
     public void BuildTurret(GameObject turret)
     {
-        if (turret != null && turretOnTile == null) 
-        {// Need to integrate banking features
+        Turret t = turret.GetComponent<Turret>();
+
+        if (turret != null && turretOnTile == null && bank.WithdrawMoney(t.purchaseCost))
+        {
             turretOnTile = Instantiate(turret, transform.position + offset, transform.rotation);
             turretShopUI.SetActive(false);
             shopUIActive = false;
@@ -75,5 +81,9 @@ public class BuildManager : MonoBehaviour
     {
         turretShopUI.SetActive(false);
         shopUIActive = turretShopUI.activeSelf;
+    }
+
+    public Bank GetBank() {
+        return bank;
     }
 }

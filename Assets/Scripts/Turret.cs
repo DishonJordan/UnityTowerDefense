@@ -19,7 +19,7 @@ public class Turret : MonoBehaviour
     public Transform firePoint;
 
     private GameObject currentTarget;
-    private readonly float turnRate = 10f;
+    private readonly float turnRate = 6f;
     private float timer;
 
     private void Start()
