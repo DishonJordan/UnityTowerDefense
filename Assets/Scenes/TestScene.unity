@@ -2755,11 +2755,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 619092045}
     m_Modifications:
-    - target: {fileID: 44361369442576131, guid: b8d9107ba31b83742b92e682d8dd5853,
-        type: 3}
-      propertyPath: bankObject
+    - target: {fileID: 435354291, guid: b8d9107ba31b83742b92e682d8dd5853, type: 3}
+      propertyPath: mainCamera
       value: 
-      objectReference: {fileID: 1107814697}
+      objectReference: {fileID: 963194225}
     - target: {fileID: 44361369442576131, guid: b8d9107ba31b83742b92e682d8dd5853,
         type: 3}
       propertyPath: bank
