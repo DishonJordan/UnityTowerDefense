@@ -24,7 +24,7 @@ public class Spawner : MonoBehaviour
     public Bank bank;
     public GameManager gm;
     private bool spawningWave;
-    private int waveIndex;
+    public int waveIndex;
     private int enemyIndex;
 
     private void Awake()
