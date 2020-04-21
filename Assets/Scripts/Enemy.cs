@@ -2,6 +2,7 @@
 
 public class Enemy : MonoBehaviour, IDamageable
 {
+    public GameManager gm;
     public Bank bank;
 
     [Tooltip("Money paid to the player when this enemy dies")]
@@ -17,10 +18,12 @@ public class Enemy : MonoBehaviour, IDamageable
     private Transform targetWaypoint;
     private int waypointIndex;
     public Waypoints waypoints;
+    bool reachedEnd;
 
     private void Start(){
         waypointIndex = 0;
         targetWaypoint = waypoints.waypoints[waypointIndex];
+        reachedEnd = false;
     }
 
     // Update is called once per frame
@@ -47,6 +50,7 @@ public class Enemy : MonoBehaviour, IDamageable
             }
         }
         else{
+            reachedEnd = true;
             Die();
         }
     }
@@ -58,6 +62,9 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void Die()
     {
+        if(reachedEnd){
+            gm.DecrementBy(1);
+        }
         Destroy(this.gameObject);
     }
 

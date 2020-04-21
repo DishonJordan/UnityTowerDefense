@@ -95,7 +95,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61aff4dba3c94b48ab822188a442eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gm: {fileID: 0}
+  bank: {fileID: 0}
   money: 20
   health: 100
-  speed: 1
-  targetWaypoint: {fileID: 0}
+  speed: 10
+  waypoints: {fileID: 0}
