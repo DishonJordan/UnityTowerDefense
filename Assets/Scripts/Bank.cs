@@ -19,6 +19,28 @@ public class Bank : MonoBehaviour
 
 	public Action<int> OnMoneyChanged = delegate { };
 
+	#region Singleton Pattern
+
+	public static Bank instance
+	{
+		get; private set;
+	}
+
+	private void Awake()
+	{
+		if(instance == null)
+		{
+			instance = this;
+			DontDestroyOnLoad(gameObject);
+		}
+		else
+		{
+			Destroy(this);
+		}
+	}
+
+	#endregion
+
 	public bool CanDepositMoney(int amount) => !(amount < 0);
 	public bool CanWithdrawMoney(int amount) => !(amount < 0 || amount > money);
 
