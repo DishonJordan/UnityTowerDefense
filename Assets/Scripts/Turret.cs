@@ -2,6 +2,8 @@
 
 public class Turret : MonoBehaviour
 {
+    public static bool turretUIActive;
+
     [Header("Costs")]
     public int purchaseCost;
     public int sellCost;
@@ -25,14 +27,19 @@ public class Turret : MonoBehaviour
     private readonly float turnRate = 6f;
     private float timer;
 
+    /* Initializations that occur when the object is instantiated */
     private void Start()
     {
         timer = 0.0f;
     }
 
+    /* Handles when the user clicks on a turret */
     private void OnMouseDown()
     {
-        EnableTurretUI();
+        if (!turretUIActive)
+        {
+            EnableTurretUI();
+        }
     }
 
     private void Update()
@@ -109,22 +116,29 @@ public class Turret : MonoBehaviour
 
     }
 
+    /* Opens the turret UI */
     public void EnableTurretUI() {
         turretUI.SetActive(true);
+        turretUIActive = turretUI.activeSelf;
     }
 
+    /* Closes the turret UI */
     public void DisableTurretUI() {
         turretUI.SetActive(false);
+        turretUIActive = turretUI.activeSelf;
     }
 
+    /* Destroys the turrent, and refunds the player */
     public void SellTurret() {
         Debug.Log("TODO: IMPLEMENT SELL");
     }
 
+    /* Upgrades the stats of the turret */
     public void UpgradeTurret() {
         Debug.Log("TODO: IMPLEMENT UPGRADE");
     }
 
+    /* Repairs health of the turret */
     public void RepairTurret()
     {
         Debug.Log("TODO: IMPLEMENT REPAIR");
