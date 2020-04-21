@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     public void DecrementBy(int amount){
         Health -= amount;
+        if(Health < 0){ Health = 0;}
     }
 
     void GameEnded(){

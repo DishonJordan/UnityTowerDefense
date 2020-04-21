@@ -99,5 +99,5 @@ MonoBehaviour:
   bank: {fileID: 0}
   money: 20
   health: 100
-  speed: 10
+  speed: 1
   waypoints: {fileID: 0}
