@@ -1,22 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Spawner : MonoBehaviour
 {
-    
-    private List <List <int>> waves;
+    [Serializable]
+    public struct ListWrapper
+    {
+        public List <int> wave;
+    }
 
-    [Header("Spawner properties")]
+    public List <ListWrapper> waves;
+
+    //[Header("Spawner properties")]
     public GameObject[] enemies; 
     public int timeBetweenWaves;
     public int timeBetweenSpawns;
     private float timer;
 
-    [Header("Enemy dependencies")]
+    //[Header("Enemy dependencies")]
     public Waypoints waypoints;
     public Bank bank;
-
+    public GameManager gm;
     private bool spawningWave;
     private int waveIndex;
     private int enemyIndex;
@@ -27,6 +33,8 @@ public class Spawner : MonoBehaviour
             Debug.LogError("Spawner needs Waypoints!", this);
         if (bank == null)
             Debug.LogError("Spawner needs Bank!", this);
+        if (gm == null)
+            Debug.LogError("Spawner needs GameManager!", this);
     }
 
     private void Start(){
@@ -34,11 +42,6 @@ public class Spawner : MonoBehaviour
         spawningWave = false;
         waveIndex = 0;
         enemyIndex = 0;
-        List<int> wave1 = new List<int>{0,0,0};
-        List<int> wave2 = new List<int>{0,0,0,0,0};
-        List<int> wave3 = new List<int>{0,0};
-        List<int> wave4 = new List<int>{0,0,0,0,0,0,0};
-        waves = new List<List<int>>{wave1, wave2, wave3, wave4};
     }
 
     private void Update()
@@ -52,15 +55,15 @@ public class Spawner : MonoBehaviour
         else{
             if(timer >= timeBetweenSpawns){
                 if(waveIndex < waves.Count){
-
-                    GameObject newEnemy = Instantiate(enemies[waves[waveIndex][enemyIndex]], transform.position, transform.rotation);
+                    GameObject newEnemy = Instantiate(enemies[waves[waveIndex].wave[enemyIndex]], transform.position, transform.rotation);
 
                     // Inject scene dependencies into enemy
                     Enemy e = newEnemy.GetComponent<Enemy>();
                     e.waypoints = waypoints;
                     e.bank = bank;
+                    e.gm = gm;
 
-                    if(++enemyIndex == waves[waveIndex].Count){
+                    if(++enemyIndex == waves[waveIndex].wave.Count){
                         enemyIndex = 0;
                         waveIndex++;
                         spawningWave = false;

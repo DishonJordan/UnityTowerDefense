@@ -2,6 +2,7 @@
 
 public class Enemy : MonoBehaviour, IDamageable
 {
+    public GameManager gm;
     public Bank bank;
 
     [Tooltip("Money paid to the player when this enemy dies")]
@@ -47,6 +48,7 @@ public class Enemy : MonoBehaviour, IDamageable
             }
         }
         else{
+            gm.DecrementBy(1);
             Die();
         }
     }
