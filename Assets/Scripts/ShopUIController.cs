@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class ShopUIController : MonoBehaviour
@@ -15,7 +13,6 @@ public class ShopUIController : MonoBehaviour
     public Sprite canPurchaseSprite;
     public Sprite cannotPurchaseSprite;
 
-    private Bank bank;
     private Turret[] turretScripts;
     private int[] prices;
 
@@ -31,23 +28,13 @@ public class ShopUIController : MonoBehaviour
             prices[i] = turretScripts[i].purchaseCost;
             priceTexts[i].GetComponent<Text>().text = "$" + prices[i];
         }
-
-        bank = tile.GetComponent<BuildManager>().GetBank();
     }
 
     private void Update()
     {
         for (int i = 0; i < buttons.Length; i++)
         {
-            if (prices[i] > bank.Money)
-            {
-                buttons[i].GetComponent<Image>().sprite = cannotPurchaseSprite;
-            }
-            else
-            {
-                buttons[i].GetComponent<Image>().sprite = canPurchaseSprite;
-            }
+            buttons[i].GetComponent<Image>().sprite = Bank.instance.CanWithdrawMoney(prices[i]) ? canPurchaseSprite : cannotPurchaseSprite;
         }
-
     }
 }

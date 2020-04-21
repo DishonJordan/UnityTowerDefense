@@ -12,7 +12,6 @@ public class SpawnerGUI : Editor
     SerializedProperty waypoints;
     SerializedProperty bank;
     SerializedProperty gm;
-    SpawnerWindow window;
     
     void OnEnable()
     {
