@@ -3,7 +3,7 @@
 public class PointTowardsCamera : MonoBehaviour
 {
     public static GameObject mainCamera;
-    private readonly float turnRate = 9f;
+    private readonly float turnRate = 20f;
 
     private void Start()
     {

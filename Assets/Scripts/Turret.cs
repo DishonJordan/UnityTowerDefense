@@ -14,6 +14,9 @@ public class Turret : MonoBehaviour
     [Tooltip("This range can be seen in the unity editor by clicking on the turet object")]
     public float fireRange;
 
+    [Header("UI")]
+    public GameObject turretUI;
+
     [Header("Misc")]
     public GameObject turretProjectile;
     public Transform firePoint;
@@ -25,6 +28,11 @@ public class Turret : MonoBehaviour
     private void Start()
     {
         timer = 0.0f;
+    }
+
+    private void OnMouseDown()
+    {
+        EnableTurretUI();
     }
 
     private void Update()
@@ -99,6 +107,27 @@ public class Turret : MonoBehaviour
             p.SetTarget(currentTarget);
         }
 
+    }
+
+    public void EnableTurretUI() {
+        turretUI.SetActive(true);
+    }
+
+    public void DisableTurretUI() {
+        turretUI.SetActive(false);
+    }
+
+    public void SellTurret() {
+        Debug.Log("TODO: IMPLEMENT SELL");
+    }
+
+    public void UpgradeTurret() {
+        Debug.Log("TODO: IMPLEMENT UPGRADE");
+    }
+
+    public void RepairTurret()
+    {
+        Debug.Log("TODO: IMPLEMENT REPAIR");
     }
 
     /* When clicking on the turret in the scene, it will show the fireRange of the turret */
