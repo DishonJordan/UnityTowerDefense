@@ -4,15 +4,27 @@ using UnityEngine.UI;
 public class WaveText : MonoBehaviour
 {
     public Text text;
-    // TODO: Add dependency to Spawner to obtain current wave index
+    private Spawner spawner;
 
     private void Start()
     {
-        
+        spawner = FindObjectOfType<Spawner>();
+        if(spawner == null)
+        {
+            Debug.LogError("WaveText could not find Spawner!");
+        }
     }
 
     private void Update()
     {
-        text.text = "No Wave";
+        if(spawner != null)
+        {
+            int waveCount = spawner.waves.Count;
+            text.text = Mathf.Clamp(spawner.waveIndex + 1, 1, waveCount).ToString() + " / " + waveCount.ToString();
+        }
+        else
+        {
+            text.text = "No Wave";
+        }
     }
 }
