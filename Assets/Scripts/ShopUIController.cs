@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class ShopUIController : MonoBehaviour
@@ -7,7 +8,7 @@ public class ShopUIController : MonoBehaviour
     public GameObject tile;
     public GameObject[] turrets; //Will all be the same price because all turrets are referencing the first one
     public GameObject[] buttons;
-    public GameObject[] priceTexts;
+    public TextMeshProUGUI[] priceTexts;
 
     [Header("Sprites")]
     public Sprite canPurchaseSprite;
@@ -26,7 +27,7 @@ public class ShopUIController : MonoBehaviour
         {
             turretScripts[i] = turrets[i].GetComponent<Turret>();
             prices[i] = turretScripts[i].purchaseCost;
-            priceTexts[i].GetComponent<Text>().text = "$" + prices[i];
+            priceTexts[i].SetText("$" + prices[i]);
         }
     }
 
