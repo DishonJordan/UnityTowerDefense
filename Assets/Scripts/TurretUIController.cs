@@ -28,7 +28,8 @@ public class TurretUIController : MonoBehaviour
             prices[1] = turretScript.upgradeCost;
             prices[2] = turretScript.repairCost;
 
-            for (int i = 0; i < texts.Length; i++) {
+            for (int i = 0; i < texts.Length; i++)
+            {
                 if (i == 0)
                 {
                     texts[i].SetText("-$" + prices[i]);
