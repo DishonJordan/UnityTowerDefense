@@ -60,6 +60,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void Die()
     {
+        Spawner.enemiesAlive--;
         Destroy(this.gameObject);
     }
 

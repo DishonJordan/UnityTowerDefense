@@ -5,6 +5,7 @@ using System;
 
 public class Spawner : MonoBehaviour
 {
+    public static int enemiesAlive = 0;
     [Serializable]
     public struct ListWrapper
     {
@@ -25,6 +26,7 @@ public class Spawner : MonoBehaviour
     public GameManager gm;
     private bool spawningWave;
     public int waveIndex;
+    public static int wavesSurvived;
     private int enemyIndex;
 
     private void Awake()
@@ -41,11 +43,16 @@ public class Spawner : MonoBehaviour
         timer = timeBetweenWaves;
         spawningWave = false;
         waveIndex = 0;
+        wavesSurvived = 0;
         enemyIndex = 0;
     }
 
     private void Update()
     {
+        if(waveIndex == waves.Count && enemiesAlive == 0)
+        {
+            gm.GameWon();
+        }
         if(!spawningWave){
             if(timer >= timeBetweenWaves){
                 timer = timeBetweenSpawns;
@@ -62,10 +69,11 @@ public class Spawner : MonoBehaviour
                     e.waypoints = waypoints;
                     e.bank = bank;
                     e.gm = gm;
-
+                    enemiesAlive++;
                     if(++enemyIndex == waves[waveIndex].wave.Count){
                         enemyIndex = 0;
                         waveIndex++;
+                        wavesSurvived++;
                         spawningWave = false;
                     }
                 }
