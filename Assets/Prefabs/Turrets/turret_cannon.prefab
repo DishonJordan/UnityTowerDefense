@@ -144,7 +144,7 @@ MonoBehaviour:
   turretProjectile: {fileID: 8575892767575457776, guid: c8a081459bd7bb64e8d4b6316f1205ec,
     type: 3}
   firePoint: {fileID: 4930773443688452526}
-  nextUpgrade: {fileID: 8981070560710598192, guid: aa4910a2211b3c245a6455e9ee8b1cbc,
+  nextUpgrade: {fileID: 8474309858589926544, guid: d3bfbd3a18925504fbbd73e85f2b69a1,
     type: 3}
 --- !u!65 &1406018255
 BoxCollider:
