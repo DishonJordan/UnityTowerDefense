@@ -45,7 +45,7 @@ public class BuildManager : MonoBehaviour
     /* Activates the shop UI */
     private void OnMouseDown()
     {
-        if (turretOnTile == null && !EventSystem.current.IsPointerOverGameObject() && !shopUIActive)
+        if (turretOnTile == null && !EventSystem.current.IsPointerOverGameObject() && !shopUIActive && !Turret.turretUIActive)
         {
             EnableShopUI();
         }

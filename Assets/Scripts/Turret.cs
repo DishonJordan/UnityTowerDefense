@@ -36,7 +36,7 @@ public class Turret : MonoBehaviour
     /* Handles when the user clicks on a turret */
     private void OnMouseDown()
     {
-        if (!turretUIActive)
+        if (!turretUIActive && !BuildManager.shopUIActive)
         {
             EnableTurretUI();
         }
