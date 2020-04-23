@@ -5,7 +5,7 @@ using System;
 
 public class Spawner : MonoBehaviour
 {
-    public static int enemiesAlive = 0;
+    public static int enemiesAlive;
     [Serializable]
     public struct ListWrapper
     {
@@ -45,6 +45,7 @@ public class Spawner : MonoBehaviour
         waveIndex = 0;
         wavesSurvived = 0;
         enemyIndex = 0;
+        enemiesAlive = 0;
     }
 
     private void Update()
