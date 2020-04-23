@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1978735776171860849}
   - component: {fileID: 8287773255554755561}
   - component: {fileID: 4079913365723930847}
-  - component: {fileID: 8537972038166714853}
   - component: {fileID: 9041547053150126645}
   m_Layer: 0
   m_Name: Panel
@@ -75,18 +74,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8537972038166714853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 635881062037270797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a04536f5428ba24abfdf9833425acce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &9041547053150126645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,7 +117,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8537972038166714853}
+      - m_Target: {fileID: 0}
         m_MethodName: DeselecUI
         m_Mode: 1
         m_Arguments:
@@ -1163,7 +1150,6 @@ GameObject:
   - component: {fileID: 8035122932798421626}
   - component: {fileID: 2345303997467274080}
   - component: {fileID: 3982536854217925651}
-  - component: {fileID: 7336057323836719798}
   - component: {fileID: 496695529662717440}
   m_Layer: 0
   m_Name: Panel (1)
@@ -1227,18 +1213,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7336057323836719798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4883420805939211856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a04536f5428ba24abfdf9833425acce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &496695529662717440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1282,7 +1256,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7336057323836719798}
+      - m_Target: {fileID: 0}
         m_MethodName: DeselecUI
         m_Mode: 1
         m_Arguments:
