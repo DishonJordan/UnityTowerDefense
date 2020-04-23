@@ -45,7 +45,7 @@ public class BuildManager : MonoBehaviour
     /* Activates the shop UI */
     private void OnMouseDown()
     {
-        if (turretOnTile == null && !EventSystem.current.IsPointerOverGameObject() && !shopUIActive)
+        if (turretOnTile == null && !EventSystem.current.IsPointerOverGameObject() && !shopUIActive && !Turret.turretUIActive)
         {
             EnableShopUI();
         }
@@ -59,6 +59,25 @@ public class BuildManager : MonoBehaviour
         if (turret != null && turretOnTile == null && Bank.instance.WithdrawMoney(t.purchaseCost))
         {
             turretOnTile = Instantiate(turret, transform.position + offset, transform.rotation);
+
+            Turret turretScript = turretOnTile.GetComponent<Turret>();
+            turretScript.SetBuildManager(this);
+              
+            turretShopUI.SetActive(false);
+            shopUIActive = false;
+        }
+    }
+
+    public void ReplaceTurret(GameObject turret) {
+
+        if (turret != null) {
+
+            turretOnTile = null;
+
+            turretOnTile = Instantiate(turret, transform.position + offset, transform.rotation);
+            Turret turretScript = turretOnTile.GetComponent<Turret>();
+            turretScript.SetBuildManager(this);
+
             turretShopUI.SetActive(false);
             shopUIActive = false;
         }

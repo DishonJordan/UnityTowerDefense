@@ -22,10 +22,12 @@ public class Turret : MonoBehaviour
     [Header("Misc")]
     public GameObject turretProjectile;
     public Transform firePoint;
+    public GameObject nextUpgrade;
 
     private GameObject currentTarget;
     private readonly float turnRate = 6f;
     private float timer;
+    private BuildManager myTileBuildManager;
 
     /* Initializations that occur when the object is instantiated */
     private void Start()
@@ -36,7 +38,7 @@ public class Turret : MonoBehaviour
     /* Handles when the user clicks on a turret */
     private void OnMouseDown()
     {
-        if (!turretUIActive)
+        if (!turretUIActive && !BuildManager.shopUIActive)
         {
             EnableTurretUI();
         }
@@ -135,13 +137,32 @@ public class Turret : MonoBehaviour
 
     /* Upgrades the stats of the turret */
     public void UpgradeTurret() {
-        Debug.Log("TODO: IMPLEMENT UPGRADE");
+        if (nextUpgrade != null && Bank.instance.WithdrawMoney(upgradeCost)) {
+
+            /* Ensures that any open UI is removed */
+            if (turretUI.activeSelf) {
+                DisableTurretUI();
+            }
+            /* Replaced turret on tile with the upgraded one */
+            myTileBuildManager.ReplaceTurret(nextUpgrade);
+            DestroyTurret();
+        }
     }
 
     /* Repairs health of the turret */
     public void RepairTurret()
     {
         Debug.Log("TODO: IMPLEMENT REPAIR");
+    }
+
+    /* Destroys the Current Turret */
+    public void DestroyTurret() {
+        Destroy(this.gameObject);
+    }
+
+    /* Sets the BuildManager for the tile that this turret is on */
+    public void SetBuildManager(BuildManager buildManager) {
+        myTileBuildManager = buildManager;
     }
 
     /* When clicking on the turret in the scene, it will show the fireRange of the turret */
