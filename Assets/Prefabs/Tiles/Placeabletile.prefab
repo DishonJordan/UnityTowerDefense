@@ -190,6 +190,21 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 12.3936
       objectReference: {fileID: 0}
+    - target: {fileID: 496695529662717440, guid: 6924a56346bee0644a59a1ffde02a240,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 44361369442576131}
+    - target: {fileID: 496695529662717440, guid: 6924a56346bee0644a59a1ffde02a240,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DisableShopUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 635881062037270797, guid: 6924a56346bee0644a59a1ffde02a240,
+        type: 3}
+      propertyPath: m_Name
+      value: TopClickableRegion
+      objectReference: {fileID: 0}
     - target: {fileID: 880296509826741141, guid: 6924a56346bee0644a59a1ffde02a240,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -629,6 +644,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 60.8716
       objectReference: {fileID: 0}
+    - target: {fileID: 1202534301172158730, guid: 6924a56346bee0644a59a1ffde02a240,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1202534301203459405, guid: 6924a56346bee0644a59a1ffde02a240,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -780,6 +800,26 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 12.3936
       objectReference: {fileID: 0}
+    - target: {fileID: 3982536854217925651, guid: 6924a56346bee0644a59a1ffde02a240,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4079913365723930847, guid: 6924a56346bee0644a59a1ffde02a240,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4079913365723930847, guid: 6924a56346bee0644a59a1ffde02a240,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883420805939211856, guid: 6924a56346bee0644a59a1ffde02a240,
+        type: 3}
+      propertyPath: m_Name
+      value: BottomClickableRegion
+      objectReference: {fileID: 0}
     - target: {fileID: 6077724704454831393, guid: 6924a56346bee0644a59a1ffde02a240,
         type: 3}
       propertyPath: m_Name
@@ -831,6 +871,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Turret2
       objectReference: {fileID: 0}
+    - target: {fileID: 8035122932798421626, guid: 6924a56346bee0644a59a1ffde02a240,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.026176924
+      objectReference: {fileID: 0}
+    - target: {fileID: 8035122932798421626, guid: 6924a56346bee0644a59a1ffde02a240,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99965733
+      objectReference: {fileID: 0}
+    - target: {fileID: 8035122932798421626, guid: 6924a56346bee0644a59a1ffde02a240,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.217
+      objectReference: {fileID: 0}
+    - target: {fileID: 8035122932798421626, guid: 6924a56346bee0644a59a1ffde02a240,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8035122932798421626, guid: 6924a56346bee0644a59a1ffde02a240,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -140.6
+      objectReference: {fileID: 0}
     - target: {fileID: 8210181428161168345, guid: 6924a56346bee0644a59a1ffde02a240,
         type: 3}
       propertyPath: m_Name
@@ -876,6 +941,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041547053150126645, guid: 6924a56346bee0644a59a1ffde02a240,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 44361369442576131}
+    - target: {fileID: 9041547053150126645, guid: 6924a56346bee0644a59a1ffde02a240,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DisableShopUI
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5538658083812617283, guid: 6924a56346bee0644a59a1ffde02a240, type: 3}
