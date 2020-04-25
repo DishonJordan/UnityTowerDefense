@@ -50,7 +50,7 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        if(waveIndex == waves.Count && enemiesAlive == 0)
+        if(waveIndex == waves.Count && enemiesAlive == 0 && !GameManager.gameIsOver)
         {
             gm.GameWon();
         }

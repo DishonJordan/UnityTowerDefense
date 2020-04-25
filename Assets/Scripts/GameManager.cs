@@ -13,12 +13,6 @@ public class GameManager : MonoBehaviour
     {
         gameIsOver = false;
     }
-    void Update ()
-    {
-        if(gameIsOver){
-            return;
-        }
-    }
     public int Health
 	{
 		get => baseHealth;
