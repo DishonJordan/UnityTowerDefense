@@ -1256,6 +1256,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7512705394564267497}
+  - component: {fileID: 2235711621121998275}
+  - component: {fileID: 7224165697000874630}
   m_Layer: 0
   m_Name: TurretUI
   m_TagString: Untagged
@@ -1278,6 +1280,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2235711621121998275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7512705394564267498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc813d2c3618d264e8a42eeba8577639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7224165697000874630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7512705394564267498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32fd5ea4f2ba78648bc64cfc4627d7df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turret: {fileID: 0}
+  sellButton: {fileID: 7512705394683218940}
+  upgradeButton: {fileID: 6632770872014225855}
+  repairButton: {fileID: 5825735099175931715}
+  exitButton: {fileID: 7512705395929622115}
+  canPurchaseSprite: {fileID: 21300000, guid: 18d4d2abb271843448b9d3d1a811a42d, type: 3}
+  cannotPurchaseSprite: {fileID: 21300000, guid: b1d3965aa429bf648a0e002ad10437d9,
+    type: 3}
+  images: []
 --- !u!1 &7512705394683218943
 GameObject:
   m_ObjectHideFlags: 0
