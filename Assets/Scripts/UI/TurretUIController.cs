@@ -8,7 +8,7 @@ using UnityEngine.Assertions;
 public class TurretUIController : MonoBehaviour
 {
     [Header("Turret")]
-    public Turret turret;       // If null, script will find it in parent
+    private Turret turret;
 
     [Header("Buttons")]
     public Button sellButton;
@@ -27,12 +27,7 @@ public class TurretUIController : MonoBehaviour
 
     private void Start()
     {
-        // Automatically find Turret gameobject in parent
-        if(turret == null)
-        {
-            turret = GetComponentInParent<Turret>();
-        }
-
+        turret = GetComponentInParent<Turret>();
         Assert.IsNotNull(turret, "Turret UI could not find turret.");
 
         buttons = new List<Button> { sellButton, upgradeButton, repairButton };
