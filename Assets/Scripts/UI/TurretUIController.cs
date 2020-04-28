@@ -14,7 +14,7 @@ public class TurretUIController : MonoBehaviour
     public Button sellButton;
     public Button upgradeButton;
     public Button repairButton;
-    public Button exitButton;
+    public List<Button> exitButtons;
 
     [Header("Sprites")]
     public Sprite canPurchaseSprite;
@@ -45,13 +45,13 @@ public class TurretUIController : MonoBehaviour
         sellButton.onClick.RemoveAllListeners();
         upgradeButton.onClick.RemoveAllListeners();
         repairButton.onClick.RemoveAllListeners();
-        exitButton.onClick.RemoveAllListeners();
+        exitButtons.ForEach(button => button.onClick.RemoveAllListeners());
 
         // Add new listeners
         sellButton.onClick.AddListener(turret.SellTurret);
         upgradeButton.onClick.AddListener(turret.UpgradeTurret);
         repairButton.onClick.AddListener(turret.RepairTurret);
-        exitButton.onClick.AddListener(turret.DisableTurretUI);
+        exitButtons.ForEach(button => button.onClick.AddListener(turret.DisableTurretUI));
     }
 
     private void SetButtonPriceText()
