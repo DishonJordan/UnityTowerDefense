@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Assertions;
+using System;
 
 public class TurretUIController : MonoBehaviour
 {
@@ -20,10 +21,16 @@ public class TurretUIController : MonoBehaviour
     public Sprite canPurchaseSprite;
     public Sprite cannotPurchaseSprite;
 
+    [Header("Stats Panel")]
+    public TextMeshProUGUI turretNameText;
+    public TextMeshProUGUI statDamageText;
+    public TextMeshProUGUI statSpeedText;
+    public TextMeshProUGUI statRangeText;
+
     private List<int> prices;
     private List<Button> buttons;
     private List<TextMeshProUGUI> texts;
-    public List<Image> images;
+    private List<Image> images;
 
     private void Start()
     {
@@ -36,7 +43,16 @@ public class TurretUIController : MonoBehaviour
         images = buttons.Select(button => button.GetComponent<Image>()).ToList();
 
         SetButtonPriceText();
+        SetStatsPanelText();
         LinkButtonsToTurret();
+    }
+
+    private void SetStatsPanelText()
+    {
+        turretNameText.text = "[Turret Name]";
+        statDamageText.text = "DMG: " + turret.turretProjectile.GetComponent<Projectile>().projectileDamage;
+        statSpeedText.text = "SPD: " + turret.fireRate;
+        statRangeText.text = "RNG: " + turret.fireRange;
     }
 
     private void LinkButtonsToTurret()
