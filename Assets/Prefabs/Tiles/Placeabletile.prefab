@@ -25,10 +25,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turrets:
-  - {fileID: 1915383092528798987, guid: c8eb199faa4d0e64c932c343b464b4c4, type: 3}
-  - {fileID: 1915383092528798987, guid: c8eb199faa4d0e64c932c343b464b4c4, type: 3}
-  - {fileID: 1915383092528798987, guid: c8eb199faa4d0e64c932c343b464b4c4, type: 3}
-  - {fileID: 1915383092528798987, guid: c8eb199faa4d0e64c932c343b464b4c4, type: 3}
+  - {fileID: 204461884348909035, guid: 7d9451ccf78e6b84a81618c5c1d62358, type: 3}
+  - {fileID: 204461884348909035, guid: 7d9451ccf78e6b84a81618c5c1d62358, type: 3}
+  - {fileID: 204461884348909035, guid: 7d9451ccf78e6b84a81618c5c1d62358, type: 3}
+  - {fileID: 204461884348909035, guid: 7d9451ccf78e6b84a81618c5c1d62358, type: 3}
   turretButtons:
   - {fileID: 1202534300603983118}
   - {fileID: 6161632971766838336}
@@ -298,7 +298,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 1915383092528798987, guid: c8eb199faa4d0e64c932c343b464b4c4,
+      objectReference: {fileID: 204461884348909035, guid: 7d9451ccf78e6b84a81618c5c1d62358,
         type: 3}
     - target: {fileID: 1202534300047503664, guid: 6924a56346bee0644a59a1ffde02a240,
         type: 3}
@@ -752,7 +752,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 1915383092528798987, guid: c8eb199faa4d0e64c932c343b464b4c4,
+      objectReference: {fileID: 204461884348909035, guid: 7d9451ccf78e6b84a81618c5c1d62358,
         type: 3}
     - target: {fileID: 2341063083336873287, guid: 6924a56346bee0644a59a1ffde02a240,
         type: 3}
@@ -848,7 +848,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 1915383092528798987, guid: c8eb199faa4d0e64c932c343b464b4c4,
+      objectReference: {fileID: 204461884348909035, guid: 7d9451ccf78e6b84a81618c5c1d62358,
         type: 3}
     - target: {fileID: 6161632972336845212, guid: 6924a56346bee0644a59a1ffde02a240,
         type: 3}
@@ -929,7 +929,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 1915383092528798987, guid: c8eb199faa4d0e64c932c343b464b4c4,
+      objectReference: {fileID: 204461884348909035, guid: 7d9451ccf78e6b84a81618c5c1d62358,
         type: 3}
     - target: {fileID: 8689330820842135359, guid: 6924a56346bee0644a59a1ffde02a240,
         type: 3}

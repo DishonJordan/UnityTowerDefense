@@ -155,7 +155,7 @@ public class Turret : MonoBehaviour
     /* Destroys the Current Turret */
     public void DestroyTurret() {
         DisableTurretUI();
-        Destroy(this.gameObject);
+        Destroy(this.transform.parent.gameObject);
     }
 
     /* Sets the BuildManager for the tile that this turret is on */

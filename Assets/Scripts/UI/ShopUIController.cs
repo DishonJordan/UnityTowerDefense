@@ -26,7 +26,7 @@ public class ShopUIController : MonoBehaviour
         /* Sets the prices in the Shop UI */
         for (int i = 0; i < turrets.Length; i++)
         {
-            turretScripts[i] = turrets[i].GetComponent<Turret>();
+            turretScripts[i] = turrets[i].GetComponentInChildren<Turret>();
             prices[i] = turretScripts[i].purchaseCost;
             turretPriceTexts[i].SetText("$" + prices[i]);
         }

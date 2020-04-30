@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
 
 public class BuildManager : MonoBehaviour
@@ -54,13 +55,14 @@ public class BuildManager : MonoBehaviour
     /* This is called by the onclick event of the turretShopUI turret button */
     public void BuildTurret(GameObject turret)
     {
-        Turret t = turret.GetComponent<Turret>();
+        Turret t = turret.GetComponentInChildren<Turret>();
+        Assert.IsNotNull(turret, "Build Manager Could Not Find Turret");
 
         if (turret != null && turretOnTile == null && Bank.instance.WithdrawMoney(t.purchaseCost))
         {
             turretOnTile = Instantiate(turret, transform.position + offset, transform.rotation);
 
-            Turret turretScript = turretOnTile.GetComponent<Turret>();
+            Turret turretScript = turretOnTile.GetComponentInChildren<Turret>();
             turretScript.SetBuildManager(this);
               
             turretShopUI.SetActive(false);
@@ -75,7 +77,7 @@ public class BuildManager : MonoBehaviour
             turretOnTile = null;
 
             turretOnTile = Instantiate(turret, transform.position + offset, transform.rotation);
-            Turret turretScript = turretOnTile.GetComponent<Turret>();
+            Turret turretScript = turretOnTile.GetComponentInChildren<Turret>();
             turretScript.SetBuildManager(this);
 
             turretShopUI.SetActive(false);
