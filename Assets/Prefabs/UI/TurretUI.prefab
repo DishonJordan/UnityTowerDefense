@@ -2132,7 +2132,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7512705394564267498}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.685692, y: 2.149, z: -6.6331496}
+  m_LocalPosition: {x: 0, y: 0, z: -6.6331496}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7512705395960912427}
@@ -2163,6 +2163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32fd5ea4f2ba78648bc64cfc4627d7df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turret: {fileID: 0}
   sellButton: {fileID: 7512705394683218940}
   upgradeButton: {fileID: 6632770872014225855}
   repairButton: {fileID: 5825735099175931715}
