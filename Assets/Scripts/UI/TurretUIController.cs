@@ -35,7 +35,7 @@ public class TurretUIController : MonoBehaviour
 
     private void Start()
     {
-        _turret = turret.GetComponentInParent<Turret>();
+        _turret = turret.GetComponent<Turret>();
         Assert.IsNotNull(turret, "Turret UI could not find turret.");
 
         buttons = new List<Button> { sellButton, upgradeButton, repairButton };
