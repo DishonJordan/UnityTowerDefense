@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Assertions;
-using System;
 
 public class TurretUIController : MonoBehaviour
 {
@@ -101,12 +100,15 @@ public class TurretUIController : MonoBehaviour
     {
         for (int i = 1; i < buttons.Count; i++)
         {
-            switch (i) {
+            switch (i)
+            {
                 case 1:
-                    if (_turret.nextUpgrade == null){
+                    if (_turret.nextUpgrade == null)
+                    {
                         images[i].sprite = cannotPurchaseSprite;
                     }
-                    else {
+                    else
+                    {
                         images[i].sprite = Bank.instance.CanWithdrawMoney(prices[i]) ? canPurchaseSprite : cannotPurchaseSprite;
                     }
                     break;

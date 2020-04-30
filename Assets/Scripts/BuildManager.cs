@@ -64,15 +64,17 @@ public class BuildManager : MonoBehaviour
 
             Turret turretScript = turretOnTile.GetComponentInChildren<Turret>();
             turretScript.SetBuildManager(this);
-              
+
             turretShopUI.SetActive(false);
             shopUIActive = false;
         }
     }
 
-    public void ReplaceTurret(GameObject turret) {
+    public void ReplaceTurret(GameObject turret)
+    {
 
-        if (turret != null) {
+        if (turret != null)
+        {
 
             turretOnTile = null;
 
