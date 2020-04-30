@@ -3,6 +3,8 @@
 public class Turret : MonoBehaviour
 {
     public static bool turretUIActive;
+    [Header("Name")]
+    public string turretName;
 
     [Header("Costs")]
     public int purchaseCost;

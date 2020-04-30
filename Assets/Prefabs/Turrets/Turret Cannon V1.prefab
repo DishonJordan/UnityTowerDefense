@@ -25,6 +25,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36838afd88db2b44786e098ed914afd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turretName: Cannon Turret v1
   purchaseCost: 100
   sellCost: 50
   repairCost: 25

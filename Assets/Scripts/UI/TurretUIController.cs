@@ -50,7 +50,7 @@ public class TurretUIController : MonoBehaviour
 
     private void SetStatsPanelText()
     {
-        turretNameText.text = "[Turret Name]";
+        turretNameText.text = _turret.turretName;
         statDamageText.text = "DMG: " + _turret.turretProjectile.GetComponent<Projectile>().projectileDamage;
         statSpeedText.text = "SPD: " + _turret.fireRate;
         statRangeText.text = "RNG: " + _turret.fireRange;

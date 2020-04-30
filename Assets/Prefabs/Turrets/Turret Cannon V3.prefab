@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7288780166513712925}
   m_Layer: 0
-  m_Name: Turret Cannon V3.1
+  m_Name: Turret Cannon V3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,6 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36838afd88db2b44786e098ed914afd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turretName: Cannon Turret v3
   purchaseCost: 100
   sellCost: 100
   repairCost: 25
