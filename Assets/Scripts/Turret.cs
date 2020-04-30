@@ -121,28 +121,25 @@ public class Turret : MonoBehaviour
     /* Opens the turret UI */
     public void EnableTurretUI() {
         turretUI.SetActive(true);
-        turretUIActive = turretUI.activeSelf;
+        turretUIActive = true;
     }
 
     /* Closes the turret UI */
     public void DisableTurretUI() {
         turretUI.SetActive(false);
-        turretUIActive = turretUI.activeSelf;
+        turretUIActive = false;
     }
 
     /* Destroys the turrent, and refunds the player */
     public void SellTurret() {
-        Debug.Log("TODO: IMPLEMENT SELL");
+        Bank.instance.DepositMoney(sellCost);
+        DestroyTurret();
     }
 
     /* Upgrades the stats of the turret */
     public void UpgradeTurret() {
         if (nextUpgrade != null && Bank.instance.WithdrawMoney(upgradeCost)) {
 
-            /* Ensures that any open UI is removed */
-            if (turretUI.activeSelf) {
-                DisableTurretUI();
-            }
             /* Replaced turret on tile with the upgraded one */
             myTileBuildManager.ReplaceTurret(nextUpgrade);
             DestroyTurret();
@@ -157,6 +154,7 @@ public class Turret : MonoBehaviour
 
     /* Destroys the Current Turret */
     public void DestroyTurret() {
+        DisableTurretUI();
         Destroy(this.gameObject);
     }
 
