@@ -117,7 +117,6 @@ public class Turret : MonoBehaviour
 
             p.SetTarget(currentTarget);
         }
-
     }
 
     /* Opens the turret UI */
@@ -146,7 +145,6 @@ public class Turret : MonoBehaviour
     {
         if (nextUpgrade != null && Bank.instance.WithdrawMoney(upgradeCost))
         {
-
             /* Replaced turret on tile with the upgraded one */
             myTileBuildManager.ReplaceTurret(nextUpgrade);
             DestroyTurret();
