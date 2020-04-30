@@ -74,22 +74,45 @@ public class TurretUIController : MonoBehaviour
     {
         for (int i = 0; i < texts.Count; i++)
         {
-            if (i == 0)
+            switch (i)
             {
-                texts[i].SetText("-$" + prices[i]);
-            }
-            else
-            {
-                texts[i].SetText("$" + prices[i]);
+                case 0: // Sell Case
+                    texts[i].SetText("-$" + prices[i]);
+                    break;
+                case 1: // Upgrade Case
+                    if (turret.nextUpgrade == null)
+                    {
+                        texts[i].SetText("MAX");
+                    }
+                    else
+                    {
+                        texts[i].SetText("$" + prices[i]);
+                    }
+                    break;
+                default:
+                    texts[i].SetText("$" + prices[i]);
+                    break;
             }
         }
     }
 
-	private void Update()
-	{
-		for (int i = 1; i < buttons.Count; i++)
-		{
-			images[i].sprite = Bank.instance.CanWithdrawMoney(prices[i]) ? canPurchaseSprite : cannotPurchaseSprite;
-		}
-	}
+    private void Update()
+    {
+        for (int i = 1; i < buttons.Count; i++)
+        {
+            switch (i) {
+                case 1:
+                    if (turret.nextUpgrade == null){
+                        images[i].sprite = cannotPurchaseSprite;
+                    }
+                    else {
+                        images[i].sprite = Bank.instance.CanWithdrawMoney(prices[i]) ? canPurchaseSprite : cannotPurchaseSprite;
+                    }
+                    break;
+                default:
+                    images[i].sprite = Bank.instance.CanWithdrawMoney(prices[i]) ? canPurchaseSprite : cannotPurchaseSprite;
+                    break;
+            }
+        }
+    }
 }

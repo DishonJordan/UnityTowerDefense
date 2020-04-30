@@ -4,11 +4,12 @@ using UnityEngine.UI;
 
 public class ShopUIController : MonoBehaviour
 {
-    [Header("GameObjects")]
-    public GameObject tile;
-    public GameObject[] turrets; //Will all be the same price because all turrets are referencing the first one
-    public GameObject[] buttons;
-    public TextMeshProUGUI[] priceTexts;
+    [Header("Turrets")]
+    public GameObject[] turrets;
+
+    [Header("Buttons")]
+    public Button[] turretButtons;
+    public TextMeshProUGUI[] turretPriceTexts;
 
     [Header("Sprites")]
     public Sprite canPurchaseSprite;
@@ -27,15 +28,15 @@ public class ShopUIController : MonoBehaviour
         {
             turretScripts[i] = turrets[i].GetComponent<Turret>();
             prices[i] = turretScripts[i].purchaseCost;
-            priceTexts[i].SetText("$" + prices[i]);
+            turretPriceTexts[i].SetText("$" + prices[i]);
         }
     }
 
     private void Update()
     {
-        for (int i = 0; i < buttons.Length; i++)
+        for (int i = 0; i < turretButtons.Length; i++)
         {
-            buttons[i].GetComponent<Image>().sprite = Bank.instance.CanWithdrawMoney(prices[i]) ? canPurchaseSprite : cannotPurchaseSprite;
+            turretButtons[i].GetComponent<Image>().sprite = Bank.instance.CanWithdrawMoney(prices[i]) ? canPurchaseSprite : cannotPurchaseSprite;
         }
     }
 }
