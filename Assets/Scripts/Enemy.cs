@@ -19,9 +19,12 @@ public class Enemy : MonoBehaviour, IDamageable
     private int waypointIndex;
     public Waypoints waypoints;
 
+    private bool hasDied;
+
     private void Start(){
         waypointIndex = 0;
         targetWaypoint = waypoints.waypoints[waypointIndex];
+        hasDied = false;
     }
 
     // Update is called once per frame
@@ -60,8 +63,12 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void Die()
     {
-        Spawner.enemiesAlive--;
-        Destroy(this.gameObject);
+        if (!hasDied)
+        {
+            hasDied = true;
+            Spawner.enemiesAlive--;
+            Destroy(this.gameObject);
+        }
     }
 
     public void TakeDamage(float damage)
