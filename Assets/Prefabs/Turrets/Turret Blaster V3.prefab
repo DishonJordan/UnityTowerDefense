@@ -1888,7 +1888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bed362b5809b1264f94a761d6e5118a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turretName: Blaster Turret V2
+  turretName: Blaster Turret V3
   purchaseCost: 0
   sellCost: 100
   repairCost: 30
