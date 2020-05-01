@@ -20,7 +20,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4445923720908954019}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36838afd88db2b44786e098ed914afd7, type: 3}
   m_Name: 
@@ -36,6 +36,30 @@ MonoBehaviour:
   turretProjectile: {fileID: 4051307295019225049, guid: 10d3541f0b7c2c6499ba4665ebd18b0b,
     type: 3}
   firePoint: {fileID: 8410845656010937534}
+  nextUpgrade: {fileID: 0}
+--- !u!114 &6353116925553793151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4445923720908954019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69946a1c1061f514dbadabe57572278d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turretName: Ballista Turret V1
+  purchaseCost: 175
+  sellCost: 100
+  repairCost: 45
+  upgradeCost: 125
+  fireRate: 1
+  fireRange: 4
+  turretUI: {fileID: 2246615784935083256}
+  turretProjectile: {fileID: 4051307295019225049, guid: 10d3541f0b7c2c6499ba4665ebd18b0b,
+    type: 3}
+  firePoint: {fileID: 6522241146926549628}
   nextUpgrade: {fileID: 0}
 --- !u!1 &5661857095008062631
 GameObject:
@@ -153,6 +177,12 @@ Transform:
 --- !u!4 &8410845656010937534 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4191626982291067924, guid: b55066cd07cb3934d9945d6930ba776d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5661857096221425834}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6522241146926549628 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -7777344081055462698, guid: b55066cd07cb3934d9945d6930ba776d,
     type: 3}
   m_PrefabInstance: {fileID: 5661857096221425834}
   m_PrefabAsset: {fileID: 0}
