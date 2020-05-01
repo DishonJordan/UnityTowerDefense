@@ -2,7 +2,7 @@
 
 public class Projectile : MonoBehaviour
 {
-    private GameObject target;
+    protected GameObject target;
 
     [Header("Properties")]
     public float travelSpeed;
@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour
     }
 
     /* Moves the projectile in the direction of the target */
-    private void FollowTarget()
+    protected virtual void FollowTarget()
     {
         /* If the projectile gets close enough to the target, then deal damage to the target and destroy projectile */
         if (Vector3.Distance(transform.position, target.transform.position) < 0.1f)
@@ -49,7 +49,7 @@ public class Projectile : MonoBehaviour
     }
 
     /* Deals damage to the enemy and destroys the projectile */
-    private void HurtTarget()
+    protected void HurtTarget()
     {
         IDamageable damageable = target.GetComponent<IDamageable>();
         damageable.TakeDamage(projectileDamage);
