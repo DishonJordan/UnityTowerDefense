@@ -37,7 +37,7 @@ public class Projectile : MonoBehaviour
     }
 
     /* Setter for the target gameobject */
-    public void SetTarget(GameObject target)
+    public virtual void SetTarget(GameObject target)
     {
         this.target = target;
     }
