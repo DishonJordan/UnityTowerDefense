@@ -33,6 +33,8 @@ public class Projectile : MonoBehaviour
         else
         {
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, travelSpeed * Time.deltaTime);
+            Vector3 newDirection = Vector3.RotateTowards(transform.forward, target.transform.position - transform.position, travelSpeed * Time.deltaTime, 0.0f);
+            transform.rotation = Quaternion.LookRotation(newDirection);
         }
     }
 
