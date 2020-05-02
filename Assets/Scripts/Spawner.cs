@@ -4,29 +4,31 @@ using UnityEngine;
 using System;
 
 public class Spawner : MonoBehaviour
-{
-    public static int enemiesAlive;
+{    
     [Serializable]
     public struct ListWrapper
     {
-        public List <int> wave;
+        //wave[0] is enemy index
+        //wave[1] is time gap between this enemy and the next
+        public List <Vector2> wave;
+        public float waveDelay;
     }
 
-    public List <ListWrapper> waves;
-
     //[Header("Spawner properties")]
-    public GameObject[] enemies; 
-    public int timeBetweenWaves;
-    public int timeBetweenSpawns;
+    public GameObject[] enemies;
+    public List <ListWrapper> waves;
+    public bool waveEnded;
     private float timer;
+    private float currentDelay;
 
     //[Header("Enemy dependencies")]
     public Waypoints waypoints;
     public Bank bank;
     public GameManager gm;
-    private bool spawningWave;
+
     public int waveIndex;
     public static int wavesSurvived;
+    public static int enemiesAlive;
     private int enemyIndex;
 
     private void Awake()
@@ -40,11 +42,7 @@ public class Spawner : MonoBehaviour
     }
 
     private void Start(){
-        timer = timeBetweenWaves;
-        spawningWave = false;
-        waveIndex = 0;
         wavesSurvived = 0;
-        enemyIndex = 0;
         enemiesAlive = 0;
     }
 
@@ -54,33 +52,42 @@ public class Spawner : MonoBehaviour
         {
             gm.GameWon();
         }
-        if(!spawningWave){
-            if(timer >= timeBetweenWaves){
-                timer = timeBetweenSpawns;
-                spawningWave = true;
-            }
-        }
-        else{
-            if(timer >= timeBetweenSpawns){
-                if(waveIndex < waves.Count){
-                    GameObject newEnemy = Instantiate(enemies[waves[waveIndex].wave[enemyIndex]], transform.position, transform.rotation);
-
-                    // Inject scene dependencies into enemy
-                    Enemy e = newEnemy.GetComponent<Enemy>();
-                    e.waypoints = waypoints;
-                    e.bank = bank;
-                    e.gm = gm;
-                    enemiesAlive++;
-                    if(++enemyIndex == waves[waveIndex].wave.Count){
-                        enemyIndex = 0;
-                        waveIndex++;
-                        wavesSurvived++;
-                        spawningWave = false;
-                    }
+        if(!waveEnded){
+            if(timer >= currentDelay){
+                if(enemyIndex >= waves[waveIndex].wave.Count){
+                    EndWave();
+                    return;
                 }
+                GameObject newEnemy = Instantiate(enemies[(int)waves[waveIndex].wave[enemyIndex][0]], transform.position, transform.rotation);
+
+                // Inject scene dependencies into enemy
+                Enemy e = newEnemy.GetComponent<Enemy>();
+                e.waypoints = waypoints;
+                e.bank = bank;
+                e.gm = gm;
+
+                currentDelay = waves[waveIndex].wave[enemyIndex][1];
+                enemyIndex++;
+                enemiesAlive++;
                 timer = 0;
             }
         }
         timer += Time.deltaTime;
+    }
+
+    public void BeginWave(int waveNumber){
+        waveIndex = waveNumber - 1;
+        if(waveIndex < waves.Count){
+            waveEnded = false;
+            enemyIndex = 0;
+            currentDelay = waves[waveIndex].waveDelay;
+            timer = 0;
+        }
+    }
+
+    private void EndWave(){
+        waveEnded = true;
+        wavesSurvived++;
+        gm.WaveEnded();
     }
 }

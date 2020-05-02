@@ -4,12 +4,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Assertions;
-using System;
 
 public class TurretUIController : MonoBehaviour
 {
     [Header("Turret")]
-    private Turret turret;
+    public GameObject turret;
 
     [Header("Buttons")]
     public Button sellButton;
@@ -27,6 +26,7 @@ public class TurretUIController : MonoBehaviour
     public TextMeshProUGUI statSpeedText;
     public TextMeshProUGUI statRangeText;
 
+    private Turret _turret;
     private List<int> prices;
     private List<Button> buttons;
     private List<TextMeshProUGUI> texts;
@@ -34,11 +34,11 @@ public class TurretUIController : MonoBehaviour
 
     private void Start()
     {
-        turret = GetComponentInParent<Turret>();
+        _turret = turret.GetComponent<Turret>();
         Assert.IsNotNull(turret, "Turret UI could not find turret.");
 
         buttons = new List<Button> { sellButton, upgradeButton, repairButton };
-        prices = new List<int> { turret.sellCost, turret.upgradeCost, turret.repairCost };
+        prices = new List<int> { _turret.sellCost, _turret.upgradeCost, _turret.repairCost };
         texts = buttons.Select(button => button.GetComponentInChildren<TextMeshProUGUI>(true)).ToList();
         images = buttons.Select(button => button.GetComponent<Image>()).ToList();
 
@@ -49,10 +49,10 @@ public class TurretUIController : MonoBehaviour
 
     private void SetStatsPanelText()
     {
-        turretNameText.text = "[Turret Name]";
-        statDamageText.text = "DMG: " + turret.turretProjectile.GetComponent<Projectile>().projectileDamage;
-        statSpeedText.text = "SPD: " + turret.fireRate;
-        statRangeText.text = "RNG: " + turret.fireRange;
+        turretNameText.text = _turret.turretName;
+        statDamageText.text = "DMG: " + _turret.turretProjectile.GetComponent<Projectile>().projectileDamage;
+        statSpeedText.text = "SPD: " + _turret.fireRate;
+        statRangeText.text = "RNG: " + _turret.fireRange;
     }
 
     private void LinkButtonsToTurret()
@@ -64,32 +64,58 @@ public class TurretUIController : MonoBehaviour
         exitButtons.ForEach(button => button.onClick.RemoveAllListeners());
 
         // Add new listeners
-        sellButton.onClick.AddListener(turret.SellTurret);
-        upgradeButton.onClick.AddListener(turret.UpgradeTurret);
-        repairButton.onClick.AddListener(turret.RepairTurret);
-        exitButtons.ForEach(button => button.onClick.AddListener(turret.DisableTurretUI));
+        sellButton.onClick.AddListener(_turret.SellTurret);
+        upgradeButton.onClick.AddListener(_turret.UpgradeTurret);
+        repairButton.onClick.AddListener(_turret.RepairTurret);
+        exitButtons.ForEach(button => button.onClick.AddListener(_turret.DisableTurretUI));
     }
 
     private void SetButtonPriceText()
     {
         for (int i = 0; i < texts.Count; i++)
         {
-            if (i == 0)
+            switch (i)
             {
-                texts[i].SetText("-$" + prices[i]);
-            }
-            else
-            {
-                texts[i].SetText("$" + prices[i]);
+                case 0: // Sell Case
+                    texts[i].SetText("-$" + prices[i]);
+                    break;
+                case 1: // Upgrade Case
+                    if (_turret.nextUpgrade == null)
+                    {
+                        texts[i].SetText("MAX");
+                    }
+                    else
+                    {
+                        texts[i].SetText("$" + prices[i]);
+                    }
+                    break;
+                default:
+                    texts[i].SetText("$" + prices[i]);
+                    break;
             }
         }
     }
 
-	private void Update()
-	{
-		for (int i = 1; i < buttons.Count; i++)
-		{
-			images[i].sprite = Bank.instance.CanWithdrawMoney(prices[i]) ? canPurchaseSprite : cannotPurchaseSprite;
-		}
-	}
+    private void Update()
+    {
+        for (int i = 1; i < buttons.Count; i++)
+        {
+            switch (i)
+            {
+                case 1:
+                    if (_turret.nextUpgrade == null)
+                    {
+                        images[i].sprite = cannotPurchaseSprite;
+                    }
+                    else
+                    {
+                        images[i].sprite = Bank.instance.CanWithdrawMoney(prices[i]) ? canPurchaseSprite : cannotPurchaseSprite;
+                    }
+                    break;
+                default:
+                    images[i].sprite = Bank.instance.CanWithdrawMoney(prices[i]) ? canPurchaseSprite : cannotPurchaseSprite;
+                    break;
+            }
+        }
+    }
 }

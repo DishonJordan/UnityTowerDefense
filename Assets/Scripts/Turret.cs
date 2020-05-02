@@ -3,6 +3,8 @@
 public class Turret : MonoBehaviour
 {
     public static bool turretUIActive;
+    [Header("Name")]
+    public string turretName;
 
     [Header("Costs")]
     public int purchaseCost;
@@ -115,34 +117,34 @@ public class Turret : MonoBehaviour
 
             p.SetTarget(currentTarget);
         }
-
     }
 
     /* Opens the turret UI */
-    public void EnableTurretUI() {
+    public void EnableTurretUI()
+    {
         turretUI.SetActive(true);
-        turretUIActive = turretUI.activeSelf;
+        turretUIActive = true;
     }
 
     /* Closes the turret UI */
-    public void DisableTurretUI() {
+    public void DisableTurretUI()
+    {
         turretUI.SetActive(false);
-        turretUIActive = turretUI.activeSelf;
+        turretUIActive = false;
     }
 
     /* Destroys the turrent, and refunds the player */
-    public void SellTurret() {
-        Debug.Log("TODO: IMPLEMENT SELL");
+    public void SellTurret()
+    {
+        Bank.instance.DepositMoney(sellCost);
+        DestroyTurret();
     }
 
     /* Upgrades the stats of the turret */
-    public void UpgradeTurret() {
-        if (nextUpgrade != null && Bank.instance.WithdrawMoney(upgradeCost)) {
-
-            /* Ensures that any open UI is removed */
-            if (turretUI.activeSelf) {
-                DisableTurretUI();
-            }
+    public void UpgradeTurret()
+    {
+        if (nextUpgrade != null && Bank.instance.WithdrawMoney(upgradeCost))
+        {
             /* Replaced turret on tile with the upgraded one */
             myTileBuildManager.ReplaceTurret(nextUpgrade);
             DestroyTurret();
@@ -156,12 +158,15 @@ public class Turret : MonoBehaviour
     }
 
     /* Destroys the Current Turret */
-    public void DestroyTurret() {
-        Destroy(this.gameObject);
+    public void DestroyTurret()
+    {
+        DisableTurretUI();
+        Destroy(this.transform.parent.gameObject);
     }
 
     /* Sets the BuildManager for the tile that this turret is on */
-    public void SetBuildManager(BuildManager buildManager) {
+    public void SetBuildManager(BuildManager buildManager)
+    {
         myTileBuildManager = buildManager;
     }
 

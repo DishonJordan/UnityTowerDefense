@@ -7,21 +7,19 @@ public class SpawnerGUI : Editor
 {
     public SerializedProperty waves;
     SerializedProperty enemies;
-    SerializedProperty timeBetweenWaves;
-    SerializedProperty timeBetweenSpawns;
     SerializedProperty waypoints;
     SerializedProperty bank;
     SerializedProperty gm;
+    bool[] dropdown;
     
     void OnEnable()
     {
         waves = serializedObject.FindProperty("waves");
         enemies = serializedObject.FindProperty("enemies");
-        timeBetweenWaves = serializedObject.FindProperty("timeBetweenWaves");
-        timeBetweenSpawns = serializedObject.FindProperty("timeBetweenSpawns");
         waypoints = serializedObject.FindProperty("waypoints");
         bank = serializedObject.FindProperty("bank");
         gm = serializedObject.FindProperty("gm");
+        dropdown = new bool[waves.arraySize];
     }
 
     public override void OnInspectorGUI()
@@ -30,8 +28,6 @@ public class SpawnerGUI : Editor
         EditorGUILayout.LabelField("Spawner Properties:", EditorStyles.boldLabel);
         //EditorGUILayout.HelpBox("This is helpful message!", MessageType.Info);
         EditorGUILayout.PropertyField(enemies);
-        EditorGUILayout.PropertyField(timeBetweenWaves);
-        EditorGUILayout.PropertyField(timeBetweenSpawns);
         EditorGUILayout.Space();
 
         EditorGUILayout.LabelField("Wave Properties:", EditorStyles.boldLabel);
@@ -39,7 +35,33 @@ public class SpawnerGUI : Editor
         for(int i = 0; i < waves.arraySize; i++){
             var x = waves.GetArrayElementAtIndex(i).GetEnumerator();
             x.MoveNext();
-            EditorGUILayout.PropertyField(x.Current as SerializedProperty, new GUIContent("Wave " + i.ToString()));
+
+            //Dropdown for wave element
+            dropdown[i] = EditorGUILayout.Foldout(dropdown[i], "Wave " + i.ToString(), true);
+            if(dropdown[i]){
+                EditorGUILayout.BeginVertical();
+                x.MoveNext();
+                var y = x.Current as SerializedProperty;
+                EditorGUILayout.PropertyField(y);
+                int enemies = y.intValue;
+                for(int j = 0; j < enemies; j++){
+                    x.MoveNext();
+                    EditorGUILayout.BeginHorizontal();
+                    x.MoveNext();
+                    y = x.Current as SerializedProperty;
+                    EditorGUIUtility.labelWidth = 60;
+                    EditorGUILayout.PropertyField(y, new GUIContent("Enemy " + j.ToString()));
+                    x.MoveNext();
+                    y = x.Current as SerializedProperty;
+                    EditorGUILayout.PropertyField(y, new GUIContent("Delay"), GUILayout.MinWidth(0));
+                    EditorGUILayout.EndHorizontal();
+                }
+                x.MoveNext();
+                y = x.Current as SerializedProperty;
+                EditorGUIUtility.labelWidth = 0;
+                EditorGUILayout.PropertyField(y, new GUIContent("Wave Delay"));
+                EditorGUILayout.EndVertical();
+            }
         }
         EditorGUILayout.Space();
 
