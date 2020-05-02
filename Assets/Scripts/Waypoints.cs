@@ -29,6 +29,10 @@ public class Waypoints : MonoBehaviour
             }
         }
 
+        if(newWaypoints.Count == 0){
+            Debug.LogError("No Start waypoint found!");
+            return;
+        }
         if(hasStarted){
             Debug.LogError("No End waypoint found!");
             return;
@@ -50,6 +54,7 @@ public class Waypoints : MonoBehaviour
             // Gizmos.DrawLine(waypoints[i + 1].position, waypoints[i + 1].position + y);
         }
         Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(waypoints[0].position, 0.5f);
         Gizmos.DrawWireSphere(waypoints[waypoints.Count - 1].position, 0.5f);
     }
 
