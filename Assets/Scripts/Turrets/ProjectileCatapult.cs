@@ -2,12 +2,15 @@
 
 public class ProjectileCatapult : Projectile
 {
+    //WIP
     private Vector3 startPosition;
+    private Vector3 targetPostion;
     public float arcHeight = 1;
 
     private void Start()
     {
         startPosition = transform.position;
+
     }
 
     protected override void FollowTarget()
@@ -19,15 +22,13 @@ public class ProjectileCatapult : Projectile
         }
         else
         {
-            float x0 = startPosition.x;
-            float x1 = target.transform.position.x;
-            float dist = x1 - x0;
-            float nextX = Mathf.MoveTowards(transform.position.x, x1, travelSpeed * Time.deltaTime);
-            float baseY = Mathf.Lerp(startPosition.y, target.transform.position.y, (nextX - x0) / dist);
-            float arc = arcHeight * (nextX - x0) * (nextX - x1) / (-0.25f * dist * dist);
-            Vector3 nextPos = new Vector3(nextX, baseY + arc, transform.position.z);
-
-            transform.position = nextPos;
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, travelSpeed * Time.deltaTime);
         }
+    }
+
+    public override void SetTarget(GameObject target)
+    {
+        this.target = target;
+        targetPostion = target.transform.position;
     }
 }
