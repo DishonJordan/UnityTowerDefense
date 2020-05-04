@@ -26,7 +26,7 @@ public class Turret : MonoBehaviour
     public Transform firePoint;
     public GameObject nextUpgrade;
 
-    private GameObject currentTarget;
+    protected GameObject currentTarget;
     private readonly float turnRate = 6f;
     private float timer;
     private BuildManager myTileBuildManager;
@@ -108,7 +108,7 @@ public class Turret : MonoBehaviour
     }
 
     /* Instantiates a projectile at the firepoint and sets the target of the projectile to the currentTarget */
-    private void FireProjectile()
+    protected virtual void FireProjectile()
     {
         if (currentTarget != null)
         {

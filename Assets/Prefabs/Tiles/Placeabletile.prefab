@@ -26,9 +26,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turrets:
   - {fileID: 204461884348909035, guid: 7d9451ccf78e6b84a81618c5c1d62358, type: 3}
-  - {fileID: 204461884348909035, guid: 7d9451ccf78e6b84a81618c5c1d62358, type: 3}
-  - {fileID: 204461884348909035, guid: 7d9451ccf78e6b84a81618c5c1d62358, type: 3}
-  - {fileID: 204461884348909035, guid: 7d9451ccf78e6b84a81618c5c1d62358, type: 3}
+  - {fileID: 1650973046920653915, guid: 4ec2e2a8a30be4c4985c9ec0a9dd83bd, type: 3}
+  - {fileID: 6326121457324208747, guid: 29d5c55f3adfdb047b79f0c7131d2f98, type: 3}
+  - {fileID: 5661857095008062631, guid: 3cf41521e3131d847b775ca4207c9cfa, type: 3}
   canPurchaseSprite: {fileID: 21300000, guid: 18d4d2abb271843448b9d3d1a811a42d, type: 3}
   cannotPurchaseSprite: {fileID: 21300000, guid: b1d3965aa429bf648a0e002ad10437d9,
     type: 3}
@@ -257,7 +257,7 @@ PrefabInstance:
     - target: {fileID: 1202534300033925330, guid: 6924a56346bee0644a59a1ffde02a240,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1202534300033925330, guid: 6924a56346bee0644a59a1ffde02a240,
         type: 3}
@@ -721,7 +721,7 @@ PrefabInstance:
     - target: {fileID: 2341063083336873287, guid: 6924a56346bee0644a59a1ffde02a240,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2341063083336873287, guid: 6924a56346bee0644a59a1ffde02a240,
         type: 3}
@@ -817,7 +817,7 @@ PrefabInstance:
     - target: {fileID: 6161632972336845212, guid: 6924a56346bee0644a59a1ffde02a240,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6161632972336845212, guid: 6924a56346bee0644a59a1ffde02a240,
         type: 3}
@@ -898,7 +898,7 @@ PrefabInstance:
     - target: {fileID: 8689330820842135359, guid: 6924a56346bee0644a59a1ffde02a240,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8689330820842135359, guid: 6924a56346bee0644a59a1ffde02a240,
         type: 3}
