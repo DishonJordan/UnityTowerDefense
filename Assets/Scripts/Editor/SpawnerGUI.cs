@@ -10,6 +10,8 @@ public class SpawnerGUI : Editor
     SerializedProperty waypoints;
     SerializedProperty bank;
     SerializedProperty gm;
+    SerializedProperty ended;
+    SerializedProperty index;
     bool[] dropdown;
     
     void OnEnable()
@@ -19,6 +21,8 @@ public class SpawnerGUI : Editor
         waypoints = serializedObject.FindProperty("waypoints");
         bank = serializedObject.FindProperty("bank");
         gm = serializedObject.FindProperty("gm");
+        ended = serializedObject.FindProperty("waveEnded");
+        index = serializedObject.FindProperty("waveIndex");
         dropdown = new bool[waves.arraySize];
     }
 
@@ -63,6 +67,9 @@ public class SpawnerGUI : Editor
                 EditorGUILayout.EndVertical();
             }
         }
+        EditorGUILayout.Space();
+        EditorGUILayout.PropertyField(index);
+        EditorGUILayout.PropertyField(ended);
         EditorGUILayout.Space();
 
         EditorGUILayout.LabelField("Enemy Properties:", EditorStyles.boldLabel);

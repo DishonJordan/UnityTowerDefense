@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Turret : MonoBehaviour
+public class Turret : MonoBehaviour, IDamageable
 {
     public static bool turretUIActive;
     [Header("Name")]
@@ -15,8 +15,10 @@ public class Turret : MonoBehaviour
     [Header("Properties")]
     [Tooltip("After how many seconds does the turret shoots")]
     public float fireRate;
-    [Tooltip("This range can be seen in the unity editor by clicking on the turet object")]
+    [Tooltip("This range can be seen in the unity editor by clicking on the turret object")]
     public float fireRange;
+    [Tooltip("The initial health of this turret")]
+    public float health;
 
     [Header("UI")]
     public GameObject turretUI;
@@ -113,9 +115,19 @@ public class Turret : MonoBehaviour
         if (currentTarget != null)
         {
             GameObject projectile = Instantiate(turretProjectile, firePoint.position, firePoint.rotation);
-            Projectile p = projectile.GetComponent<Projectile>();
+            Projectile p = projectile.GetComponentInChildren<Projectile>();
 
             p.SetTarget(currentTarget);
+        }
+    }
+
+    /* Interface for taking projectile damage from an enemy */
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        if(health <= 0)
+        {
+            health = 0;
         }
     }
 

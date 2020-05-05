@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2938409210836820224}
   m_Layer: 0
   m_Name: Turret Ballista V3
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,6 +64,7 @@ MonoBehaviour:
   upgradeCost: 175
   fireRate: 0.55
   fireRange: 8
+  health: 400
   turretUI: {fileID: 8752802755850428752}
   turretProjectile: {fileID: 4051307295019225049, guid: 10d3541f0b7c2c6499ba4665ebd18b0b,
     type: 3}

@@ -32,6 +32,7 @@ MonoBehaviour:
   upgradeCost: 150
   fireRate: 0.75
   fireRange: 6
+  health: 200
   turretUI: {fileID: 3324966827699785418}
   turretProjectile: {fileID: 4051307295019225049, guid: 10d3541f0b7c2c6499ba4665ebd18b0b,
     type: 3}
@@ -49,7 +50,7 @@ GameObject:
   - component: {fileID: 9195162511604485786}
   m_Layer: 0
   m_Name: Turret Ballista V2
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
