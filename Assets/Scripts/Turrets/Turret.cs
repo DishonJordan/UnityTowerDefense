@@ -26,6 +26,10 @@ public class Turret : MonoBehaviour
     public Transform firePoint;
     public GameObject nextUpgrade;
 
+    [Header("Sounds")]
+    public AudioSource audioSource;
+    public AudioClip shootSound;
+
     protected GameObject currentTarget;
     private readonly float turnRate = 6f;
     private float timer;
@@ -59,6 +63,10 @@ public class Turret : MonoBehaviour
             timer += Time.deltaTime;
             if (timer > fireRate)
             {
+                if (audioSource != null && shootSound != null)
+                {
+                    audioSource.PlayOneShot(shootSound);
+                }
                 FireProjectile();
                 timer = 0.0f;
             }
