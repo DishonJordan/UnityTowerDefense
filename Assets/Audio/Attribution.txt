@@ -13,6 +13,9 @@ Bow and Arrow Shot - Dorkster
 DST-TowerDefenseTheme.mp3
 	https://opengameart.org/content/tower-defense-theme
 
+Matthew Pablo - Lively Meadow
+	https://opengameart.org/content/lively-meadow-victory-fanfare-and-song
+
 Michel Baradari - 4 Projectile Launches
 	https://opengameart.org/content/4-projectile-launches
 
