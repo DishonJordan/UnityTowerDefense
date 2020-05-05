@@ -228,6 +228,8 @@ MonoBehaviour:
   upgradeCost: 200
   fireRate: 1
   fireRange: 7
+  maxHealth: 400
+  health: 400
   turretUI: {fileID: 2193879155639108841}
   turretProjectile: {fileID: 1117559512134814601, guid: 4a63e8a031037c14e820afd66afe6294,
     type: 3}
@@ -373,7 +375,7 @@ GameObject:
   - component: {fileID: 8516382448890513475}
   m_Layer: 0
   m_Name: Turret Catapult V3
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

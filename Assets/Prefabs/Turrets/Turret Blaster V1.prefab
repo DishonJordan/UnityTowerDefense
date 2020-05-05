@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 3678624939929806516}
   m_Layer: 0
   m_Name: Turret Blaster V1
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -220,6 +220,8 @@ MonoBehaviour:
   upgradeCost: 100
   fireRate: 0.5
   fireRange: 2
+  maxHealth: 100
+  health: 100
   turretUI: {fileID: 7156241007744603314}
   turretProjectile: {fileID: 7466829905744824705, guid: 63af93614d62a4648b3f3964741f7edb,
     type: 3}

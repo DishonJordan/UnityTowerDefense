@@ -53,7 +53,7 @@ public class Projectile : MonoBehaviour
     /* Deals damage to the enemy and destroys the projectile */
     protected void HurtTarget()
     {
-        IDamageable damageable = target.GetComponent<IDamageable>();
+        IDamageable damageable = target.GetComponentInChildren<IDamageable>();
         damageable.TakeDamage(projectileDamage);
         DestroyProjectile();
     }

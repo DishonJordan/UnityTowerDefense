@@ -2242,16 +2242,16 @@ MonoBehaviour:
   - {fileID: 2251657060077033380, guid: b0a670e31db5a0e4f9c69691edd979c2, type: 3}
   - {fileID: 6083536873277876409, guid: b632eadc259dc4045a8b966bdf0542ae, type: 3}
   - {fileID: 2967336627788032440, guid: 12d1c44f26890aa478283b20d2a958ec, type: 3}
-  - {fileID: 9029617528785186514, guid: 7b9a4dc142f108f44a304d245a435a4a, type: 3}
-  - {fileID: 3457909500686339842, guid: d6d45523c7390e44fba447ca19be4b01, type: 3}
+  - {fileID: 8613617212349986208, guid: ece76762cd57c9045876c3c589cf5548, type: 3}
+  - {fileID: 8613617212349986208, guid: ece76762cd57c9045876c3c589cf5548, type: 3}
   waves:
   - wave:
+    - {x: 3, y: 10}
     - {x: 0, y: 1}
     - {x: 0, y: 1}
     - {x: 0, y: 1}
-    - {x: 0, y: 1}
-    - {x: 0, y: 1}
-    waveDelay: 1
+    - {x: 0, y: 2.5}
+    waveDelay: 0
   - wave:
     - {x: 1, y: 1}
     - {x: 1, y: 1}
@@ -2260,7 +2260,7 @@ MonoBehaviour:
     - {x: 2, y: 1}
     - {x: 2, y: 1}
     - {x: 2, y: 1}
-    waveDelay: 1
+    waveDelay: 0
   waveEnded: 0
   waypoints: {fileID: 313300509}
   bank: {fileID: 1107814698}

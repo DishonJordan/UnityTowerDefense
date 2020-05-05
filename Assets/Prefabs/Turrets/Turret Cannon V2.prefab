@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 6703880565423190149}
   m_Layer: 0
   m_Name: Turret Cannon V2
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -190,6 +190,8 @@ MonoBehaviour:
   upgradeCost: 150
   fireRate: 0.5
   fireRange: 4
+  maxHealth: 200
+  health: 200
   turretUI: {fileID: 3840033484389114304}
   turretProjectile: {fileID: 8575892767575457776, guid: c8a081459bd7bb64e8d4b6316f1205ec,
     type: 3}
