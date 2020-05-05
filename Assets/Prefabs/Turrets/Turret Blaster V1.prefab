@@ -226,7 +226,7 @@ MonoBehaviour:
   turretProjectile: {fileID: 7466829905744824705, guid: 63af93614d62a4648b3f3964741f7edb,
     type: 3}
   firePoint: {fileID: 566460001971440034}
-  nextUpgrade: {fileID: 8927263604576278169, guid: adf990986a961c64197c5fe309f3b9b5,
+  nextUpgrade: {fileID: 1675918432926733551, guid: 98a4f39507447cc41998ceedde7d3145,
     type: 3}
   audioSource: {fileID: 3352371068801788604}
   shootSound: {fileID: 8300000, guid: 48f4d5b9404c3c2419dcbe9f9cb01e3c, type: 3}
