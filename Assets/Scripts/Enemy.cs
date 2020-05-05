@@ -15,11 +15,11 @@ public class Enemy : MonoBehaviour, IDamageable
     public float speed;
 
     [Tooltip("Current waypoint this enemy should move towards")]
-    protected Transform targetWaypoint;
-    protected int waypointIndex;
+    private Transform targetWaypoint;
+    private int waypointIndex;
     public Waypoints waypoints;
 
-    protected bool hasDied;
+    private bool hasDied;
 
     private void Start(){
         waypointIndex = 0;
@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour, IDamageable
         Move();
     }
 
-    protected void Move()
+    private void Move()
     {
         if(targetWaypoint != null)
         {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyShooter : Enemy
+public class EnemyShooter : MonoBehaviour
 {
     private GameObject currentTarget;
     private float timer;
@@ -10,21 +10,19 @@ public class EnemyShooter : Enemy
     public float fireRange;
     private readonly float turnRate = 6f;
     public GameObject turretProjectile;
-    public Transform firePoint;
+    public Transform firePoint1;
+    public Transform firePoint2;
+    private bool firedFirst;
 
     void Start()
     {
-        waypointIndex = 0;
-        targetWaypoint = waypoints.waypoints[waypointIndex];
-        hasDied = false;
+        timer = 0.0f;
+        firedFirst = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Move to waypoint
-        Move();
-
         //Check for or fire at nearby turrets
         if (currentTarget == null)
         {
@@ -34,10 +32,16 @@ public class EnemyShooter : Enemy
         {
             TrackTarget();
             timer += Time.deltaTime;
-            if (timer > fireRate)
+            if (timer > fireRate && !firedFirst)
             {
-                FireProjectile();
+                FireProjectile(0);
                 timer = 0.0f;
+                firedFirst = true;
+            }
+            else if(timer > 0.1667f && firedFirst){
+                FireProjectile(1);
+                timer = 0.0f;
+                firedFirst = false;
             }
         }
     }
@@ -85,11 +89,18 @@ public class EnemyShooter : Enemy
     }
 
     /* Instantiates a projectile at the firepoint and sets the target of the projectile to the currentTarget */
-    private void FireProjectile()
+    private void FireProjectile(int firepoint)
     {
         if (currentTarget != null)
         {
-            GameObject projectile = Instantiate(turretProjectile, firePoint.position, firePoint.rotation);
+            GameObject projectile;
+            if(firepoint == 0){
+                projectile = Instantiate(turretProjectile, firePoint1.position, firePoint1.rotation);
+            }
+            else{
+                projectile = Instantiate(turretProjectile, firePoint2.position, firePoint2.rotation);
+            }
+            
             Projectile p = projectile.GetComponentInChildren<Projectile>();
 
             p.SetTarget(currentTarget);

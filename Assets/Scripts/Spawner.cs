@@ -61,7 +61,7 @@ public class Spawner : MonoBehaviour
                 GameObject newEnemy = Instantiate(enemies[(int)waves[waveIndex].wave[enemyIndex][0]], transform.position, transform.rotation);
 
                 // Inject scene dependencies into enemy
-                Enemy e = newEnemy.GetComponent<Enemy>();
+                Enemy e = newEnemy.GetComponentInChildren<Enemy>();
                 e.waypoints = waypoints;
                 e.bank = bank;
                 e.gm = gm;
