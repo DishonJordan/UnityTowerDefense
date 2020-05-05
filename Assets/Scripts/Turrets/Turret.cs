@@ -17,7 +17,9 @@ public class Turret : MonoBehaviour, IDamageable
     public float fireRate;
     [Tooltip("This range can be seen in the unity editor by clicking on the turret object")]
     public float fireRange;
-    [Tooltip("The initial health of this turret")]
+    [Tooltip("The maximum health of this turret")]
+    public float maxHealth;
+    [Tooltip("The current health of this turret")]
     public float health;
 
     [Header("UI")]
@@ -166,7 +168,13 @@ public class Turret : MonoBehaviour, IDamageable
     /* Repairs health of the turret */
     public void RepairTurret()
     {
-        Debug.Log("TODO: IMPLEMENT REPAIR");
+        if(Bank.instance.WithdrawMoney(repairCost)){
+            health += 25;
+            if(health > maxHealth)
+            {
+                health = maxHealth;
+            }
+        }
     }
 
     /* Destroys the Current Turret */

@@ -2585,6 +2585,7 @@ MonoBehaviour:
   upgradeCost: 125
   fireRate: 0.5
   fireRange: 5
+  maxHealth: 200
   health: 200
   turretUI: {fileID: 8573111450109284561}
   turretProjectile: {fileID: 7466829905744824705, guid: 63af93614d62a4648b3f3964741f7edb,
@@ -2814,6 +2815,7 @@ MonoBehaviour:
   statDamageText: {fileID: 8460720437819251222}
   statSpeedText: {fileID: 4432697139261459864}
   statRangeText: {fileID: 1878642416106966891}
+  statHealthText: {fileID: 0}
 --- !u!1 &8595358419273007621
 GameObject:
   m_ObjectHideFlags: 0

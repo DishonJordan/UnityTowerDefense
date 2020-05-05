@@ -32,6 +32,7 @@ MonoBehaviour:
   upgradeCost: 150
   fireRate: 0.75
   fireRange: 6
+  maxHealth: 200
   health: 200
   turretUI: {fileID: 3324966827699785418}
   turretProjectile: {fileID: 4051307295019225049, guid: 10d3541f0b7c2c6499ba4665ebd18b0b,
