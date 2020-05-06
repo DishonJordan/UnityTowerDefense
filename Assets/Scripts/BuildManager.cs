@@ -35,12 +35,19 @@ public class BuildManager : MonoBehaviour
         taskInProgress = false;
     }
 
+    private void Update()
+    {
+        if (taskInProgress) {
+            myRenderer.materials[1].color = pendingColor.color;
+        }
+    }
+
     /* Changes the color of tile to show it is clickable */
     private void OnMouseEnter()
     {
-        if (!shopUIActive && turretOnTile == null)
+        if (!shopUIActive && turretOnTile == null && !taskInProgress)
         {
-            myRenderer.materials[1].color = (taskInProgress) ? pendingColor.color : highlightColor.color;
+            myRenderer.materials[1].color = highlightColor.color;
         }
     }
 
@@ -91,7 +98,9 @@ public class BuildManager : MonoBehaviour
 
         turretShopUI.SetActive(false);
         shopUIActive = false;
+
         taskInProgress = false;
+        myRenderer.materials[1].color = originalColor;
     }
 
     public void ReplaceTurret(GameObject turret)
