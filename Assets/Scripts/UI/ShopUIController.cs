@@ -32,7 +32,7 @@ public class ShopUIController : MonoBehaviour
             turretPriceTexts[count] = b.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
             b.onClick.RemoveAllListeners();
             GameObject t = turrets[count];
-            b.onClick.AddListener(() => buildManager.BuildTurret(t));
+            b.onClick.AddListener(() => buildManager.RequestBuild(t));
             count++;
         }
 

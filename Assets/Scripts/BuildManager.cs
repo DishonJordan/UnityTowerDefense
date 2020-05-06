@@ -59,6 +59,15 @@ public class BuildManager : MonoBehaviour
         }
     }
 
+    /* Requests that the Mechanic Manager builds the tower */
+    public void RequestBuild(GameObject turret) {
+        Task t = new Task(this.transform.position,Task.Type.Build,this, turret);
+        MechanicManager.instance.AddTask(t);
+
+        turretShopUI.SetActive(false);
+        shopUIActive = false;
+    }
+
     /* This is called by the onclick event of the turretShopUI turret button */
     public void BuildTurret(GameObject turret)
     {
