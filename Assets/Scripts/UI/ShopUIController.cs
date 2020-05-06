@@ -52,4 +52,12 @@ public class ShopUIController : MonoBehaviour
             turretButtons[i].GetComponent<Image>().sprite = Bank.instance.CanWithdrawMoney(prices[i]) ? canPurchaseSprite : cannotPurchaseSprite;
         }
     }
+
+    public void ChangeButtonInteractivity(bool status)
+    {
+        foreach (Button b in turretButtons)
+        {
+            b.interactable = status;
+        }
+    }
 }

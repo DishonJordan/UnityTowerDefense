@@ -39,18 +39,20 @@ public class Turret : MonoBehaviour, IDamageable
     private float timer;
     private BuildManager myTileBuildManager;
     private bool taskInProgress;
+    private TurretUIController controller;
 
     /* Initializations that occur when the object is instantiated */
     private void Start()
     {
         timer = 0.0f;
         taskInProgress = false;
+        controller = turretUI.GetComponent<TurretUIController>();
     }
 
     /* Handles when the user clicks on a turret */
     private void OnMouseDown()
     {
-        if (!turretUIActive && !BuildManager.shopUIActive && !taskInProgress)
+        if (!turretUIActive && !BuildManager.shopUIActive)
         {
             EnableTurretUI();
         }
@@ -180,10 +182,12 @@ public class Turret : MonoBehaviour, IDamageable
         {
             health = maxHealth;
         }
+
         taskInProgress = false;
+        controller.ChangeButtonInteractivity(true);
     }
 
-    /* Requests that the Mechanic Manager builds the tower */
+    /* Requests that the Mechanic Manager modifies the tower */
     public void RequestModification(Task.Type type)
     {
         switch (type)
@@ -192,6 +196,7 @@ public class Turret : MonoBehaviour, IDamageable
                 MechanicManager.instance.AddTask(new Task(transform.position, type, this, null));
                 taskInProgress = true;
                 DisableTurretUI();
+                controller.ChangeButtonInteractivity(false);
                 break;
             case Task.Type.Upgrade:
                 if (nextUpgrade != null && Bank.instance.WithdrawMoney(upgradeCost))
@@ -199,6 +204,7 @@ public class Turret : MonoBehaviour, IDamageable
                     MechanicManager.instance.AddTask(new Task(transform.position, type, this, null));
                     taskInProgress = true;
                     DisableTurretUI();
+                    controller.ChangeButtonInteractivity(false);
                 }
                 break;
             case Task.Type.Repair:
@@ -207,6 +213,7 @@ public class Turret : MonoBehaviour, IDamageable
                     MechanicManager.instance.AddTask(new Task(transform.position, type, this, null));
                     taskInProgress = true;
                     DisableTurretUI();
+                    controller.ChangeButtonInteractivity(false);
                 }
                 break;
             default:

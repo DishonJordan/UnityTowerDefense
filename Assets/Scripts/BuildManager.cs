@@ -26,6 +26,7 @@ public class BuildManager : MonoBehaviour
     private Renderer myRenderer;
     private Vector3 offset = new Vector3(0f, 0.2f, 0f);
     private bool taskInProgress;
+    private ShopUIController controller;
 
     private void Start()
     {
@@ -33,6 +34,7 @@ public class BuildManager : MonoBehaviour
         myRenderer = GetComponent<Renderer>();
         originalColor = myRenderer.materials[1].color;
         taskInProgress = false;
+        controller = transform.GetChild(0).GetComponentInChildren<ShopUIController>();
     }
 
     private void Update()
@@ -64,7 +66,7 @@ public class BuildManager : MonoBehaviour
     private void OnMouseDown()
     {
         if (turretOnTile == null && !EventSystem.current.IsPointerOverGameObject()
-            && !shopUIActive && !Turret.turretUIActive && !taskInProgress)
+            && !shopUIActive && !Turret.turretUIActive)
         {
             EnableShopUI();
         }
@@ -84,6 +86,7 @@ public class BuildManager : MonoBehaviour
             turretShopUI.SetActive(false);
             shopUIActive = false;
             taskInProgress = true;
+            controller.ChangeButtonInteractivity(false);
         }
     }
 
@@ -100,9 +103,11 @@ public class BuildManager : MonoBehaviour
         shopUIActive = false;
 
         taskInProgress = false;
+        controller.ChangeButtonInteractivity(true);
         myRenderer.materials[1].color = originalColor;
     }
 
+    /* Replaces the turret on the tile with a new one */
     public void ReplaceTurret(GameObject turret)
     {
         if (turret != null)

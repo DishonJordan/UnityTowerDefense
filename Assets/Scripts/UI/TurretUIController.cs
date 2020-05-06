@@ -121,4 +121,11 @@ public class TurretUIController : MonoBehaviour
         }
         statHealthText.text = "HP: " + _turret.health + "/" + _turret.maxHealth;
     }
+
+    public void ChangeButtonInteractivity(bool status)
+    {
+        sellButton.interactable = status;
+        upgradeButton.interactable = status;
+        repairButton.interactable = status;
+    }
 }

@@ -40,7 +40,6 @@ public class Mechanic : MonoBehaviour
                 if (task != null)
                 {
                     state = State.MoveToTask;
-                    task.status = Task.Status.InProgress;
                 }
                 break;
             case State.MoveToTask:
@@ -57,7 +56,6 @@ public class Mechanic : MonoBehaviour
                 }
                 break;
             case State.Finished:
-                task.UpdateStatus(Task.Status.Finished);
                 //mManager.RemoveTask();
                 task = null;
                 RequestTask();

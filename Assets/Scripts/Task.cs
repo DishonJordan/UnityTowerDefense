@@ -2,13 +2,6 @@
 
 public class Task
 {
-    public enum Status
-    {
-        Waiting,
-        InProgress,
-        Finished
-    }
-
     public enum Type
     {
         Build,
@@ -18,7 +11,6 @@ public class Task
     }
 
     public Vector3 taskLocation;
-    public Status status;
     private Type type;
     private MonoBehaviour script;
     private GameObject turretToBuild;
@@ -30,12 +22,6 @@ public class Task
         type = t;
         script = s;
         turretToBuild = tb;
-        status = Status.Waiting;
-    }
-
-    public void UpdateStatus(Status s)
-    {
-        status = s;
     }
 
     public void PerformTask()
