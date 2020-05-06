@@ -18,12 +18,12 @@ public class Task
     }
 
     public Vector3 taskLocation;
-    public GameObject mechanic;
     public Status status;
     private Type type;
     private MonoBehaviour script;
     private GameObject turretToBuild;
 
+    /* Location of task, Type of task, Script to execute task, optional gameobject to be used as a parameter for task execution */
     public Task(Vector3 loc, Type t, MonoBehaviour s, GameObject tb)
     {
         taskLocation = loc;
@@ -38,30 +38,21 @@ public class Task
         status = s;
     }
 
-    public void AssignMechanic(GameObject m)
-    {
-        mechanic = m;
-    }
-
     public void PerformTask()
     {
         switch (type)
         {
             case Type.Build:
-                BuildManager buildManager = (BuildManager)script;
-                buildManager.BuildTurret(turretToBuild);
+                ((BuildManager)script).BuildTurret(turretToBuild);
                 break;
             case Type.Sell:
-                Turret t1 = (Turret)script;
-                t1.SellTurret();
+                ((Turret)script).SellTurret();
                 break;
             case Type.Upgrade:
-                Turret t2 = (Turret)script;
-                t2.SellTurret();
+                ((Turret)script).UpgradeTurret();
                 break;
             case Type.Repair:
-                Turret t3 = (Turret)script;
-                t3.SellTurret();
+                ((Turret)script).RepairTurret();
                 break;
             default:
                 break;
