@@ -12,6 +12,7 @@ public class BuildManager : MonoBehaviour
 
     [Header("Materials")]
     public Material highlightColor;
+    public Material pendingColor;
 
     [Header("Audio")]
     public AudioSource audioSource;
@@ -39,7 +40,7 @@ public class BuildManager : MonoBehaviour
     {
         if (!shopUIActive && turretOnTile == null)
         {
-            myRenderer.materials[1].color = highlightColor.color;
+            myRenderer.materials[1].color = (taskInProgress) ? pendingColor.color : highlightColor.color;
         }
     }
 
@@ -55,7 +56,7 @@ public class BuildManager : MonoBehaviour
     /* Activates the shop UI */
     private void OnMouseDown()
     {
-        if (turretOnTile == null && !EventSystem.current.IsPointerOverGameObject() 
+        if (turretOnTile == null && !EventSystem.current.IsPointerOverGameObject()
             && !shopUIActive && !Turret.turretUIActive && !taskInProgress)
         {
             EnableShopUI();
