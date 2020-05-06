@@ -24,20 +24,21 @@ public class MechanicManager : MonoBehaviour
 
     #endregion
 
-    GameObject mechanic;
-
-    public Queue<Task> tasks;
+    private GameObject mechanic;
+    private LinkedList<Task> tasks;
 
     private void Start()
     {
-        tasks = new Queue<Task>();
+        tasks = new LinkedList<Task>();
     }
 
     public Task GetTask()
     {
         if (tasks.Count > 0)
         {
-            return tasks.Dequeue();
+            Task t = tasks.First.Value;
+            tasks.RemoveFirst();
+            return t;
         }
         else
         {
@@ -47,6 +48,6 @@ public class MechanicManager : MonoBehaviour
 
     public void AddTask(Task t)
     {
-        tasks.Enqueue(t);
+        tasks.AddLast(t);
     }
 }
