@@ -13,6 +13,13 @@ public class BuildManager : MonoBehaviour
     [Header("Materials")]
     public Material highlightColor;
 
+    [Header("Audio")]
+    public AudioSource audioSource; 
+    public AudioClip openSound;
+    public AudioClip closeSound;
+    public AudioClip buildSound;
+    public AudioClip upgradeSound;
+
     private GameObject turretOnTile;
     private Color originalColor;
     private Renderer myRenderer;
@@ -60,6 +67,7 @@ public class BuildManager : MonoBehaviour
 
         if (turret != null && turretOnTile == null && Bank.instance.WithdrawMoney(t.purchaseCost))
         {
+            audioSource.PlayOneShot(buildSound);
             turretOnTile = Instantiate(turret, transform.position + offset, transform.rotation);
 
             Turret turretScript = turretOnTile.GetComponentInChildren<Turret>();
@@ -75,7 +83,7 @@ public class BuildManager : MonoBehaviour
 
         if (turret != null)
         {
-
+            audioSource.PlayOneShot(upgradeSound);
             turretOnTile = null;
 
             turretOnTile = Instantiate(turret, transform.position + offset, transform.rotation);
@@ -90,6 +98,7 @@ public class BuildManager : MonoBehaviour
     /* Enables the shop UI */
     public void EnableShopUI()
     {
+        audioSource.PlayOneShot(openSound);
         turretShopUI.SetActive(true);
         shopUIActive = turretShopUI.activeSelf;
         myRenderer.materials[1].color = originalColor;
@@ -98,6 +107,7 @@ public class BuildManager : MonoBehaviour
     /* Disables the shop UI */
     public void DisableShopUI()
     {
+        audioSource.PlayOneShot(closeSound);
         turretShopUI.SetActive(false);
         shopUIActive = turretShopUI.activeSelf;
     }
