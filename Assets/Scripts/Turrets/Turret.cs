@@ -38,17 +38,19 @@ public class Turret : MonoBehaviour, IDamageable
     private readonly float turnRate = 6f;
     private float timer;
     private BuildManager myTileBuildManager;
+    private bool taskInProgress;
 
     /* Initializations that occur when the object is instantiated */
     private void Start()
     {
         timer = 0.0f;
+        taskInProgress = false;
     }
 
     /* Handles when the user clicks on a turret */
     private void OnMouseDown()
     {
-        if (!turretUIActive && !BuildManager.shopUIActive)
+        if (!turretUIActive && !BuildManager.shopUIActive && !taskInProgress)
         {
             EnableTurretUI();
         }
@@ -135,7 +137,7 @@ public class Turret : MonoBehaviour, IDamageable
     public void TakeDamage(float damage)
     {
         health -= damage;
-        if(health <= 0)
+        if (health <= 0)
         {
             health = 0;
         }
@@ -165,23 +167,50 @@ public class Turret : MonoBehaviour, IDamageable
     /* Upgrades the stats of the turret */
     public void UpgradeTurret()
     {
-        if (nextUpgrade != null && Bank.instance.WithdrawMoney(upgradeCost))
-        {
-            /* Replaced turret on tile with the upgraded one */
-            myTileBuildManager.ReplaceTurret(nextUpgrade);
-            DestroyTurret();
-        }
+        /* Replaced turret on tile with the upgraded one */
+        myTileBuildManager.ReplaceTurret(nextUpgrade);
+        DestroyTurret();
     }
 
     /* Repairs health of the turret */
     public void RepairTurret()
     {
-        if(Bank.instance.WithdrawMoney(repairCost)){
-            health += 25;
-            if(health > maxHealth)
-            {
-                health = maxHealth;
-            }
+        health += 25;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+        taskInProgress = false;
+    }
+
+    /* Requests that the Mechanic Manager builds the tower */
+    public void RequestModification(Task.Type type)
+    {
+        switch (type)
+        {
+            case Task.Type.Sell:
+                MechanicManager.instance.AddTask(new Task(transform.position, type, this, null));
+                taskInProgress = true;
+                DisableTurretUI();
+                break;
+            case Task.Type.Upgrade:
+                if (nextUpgrade != null && Bank.instance.WithdrawMoney(upgradeCost))
+                {
+                    MechanicManager.instance.AddTask(new Task(transform.position, type, this, null));
+                    taskInProgress = true;
+                    DisableTurretUI();
+                }
+                break;
+            case Task.Type.Repair:
+                if (Bank.instance.WithdrawMoney(repairCost))
+                {
+                    MechanicManager.instance.AddTask(new Task(transform.position, type, this, null));
+                    taskInProgress = true;
+                    DisableTurretUI();
+                }
+                break;
+            default:
+                break;
         }
     }
 

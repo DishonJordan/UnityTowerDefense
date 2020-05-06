@@ -14,7 +14,7 @@ public class BuildManager : MonoBehaviour
     public Material highlightColor;
 
     [Header("Audio")]
-    public AudioSource audioSource; 
+    public AudioSource audioSource;
     public AudioClip openSound;
     public AudioClip closeSound;
     public AudioClip buildSound;
@@ -24,12 +24,14 @@ public class BuildManager : MonoBehaviour
     private Color originalColor;
     private Renderer myRenderer;
     private Vector3 offset = new Vector3(0f, 0.2f, 0f);
+    private bool taskInProgress;
 
     private void Start()
     {
         shopUIActive = false;
         myRenderer = GetComponent<Renderer>();
         originalColor = myRenderer.materials[1].color;
+        taskInProgress = false;
     }
 
     /* Changes the color of tile to show it is clickable */
@@ -53,43 +55,46 @@ public class BuildManager : MonoBehaviour
     /* Activates the shop UI */
     private void OnMouseDown()
     {
-        if (turretOnTile == null && !EventSystem.current.IsPointerOverGameObject() && !shopUIActive && !Turret.turretUIActive)
+        if (turretOnTile == null && !EventSystem.current.IsPointerOverGameObject() 
+            && !shopUIActive && !Turret.turretUIActive && !taskInProgress)
         {
             EnableShopUI();
         }
     }
 
     /* Requests that the Mechanic Manager builds the tower */
-    public void RequestBuild(GameObject turret) {
-        Task t = new Task(this.transform.position,Task.Type.Build,this, turret);
-        MechanicManager.instance.AddTask(t);
-
-        turretShopUI.SetActive(false);
-        shopUIActive = false;
-    }
-
-    /* This is called by the onclick event of the turretShopUI turret button */
-    public void BuildTurret(GameObject turret)
+    public void RequestBuild(GameObject turret)
     {
         Turret t = turret.GetComponentInChildren<Turret>();
         Assert.IsNotNull(turret, "Build Manager Could Not Find Turret");
 
         if (turret != null && turretOnTile == null && Bank.instance.WithdrawMoney(t.purchaseCost))
         {
-            audioSource.PlayOneShot(buildSound);
-            turretOnTile = Instantiate(turret, transform.position + offset, transform.rotation);
-
-            Turret turretScript = turretOnTile.GetComponentInChildren<Turret>();
-            turretScript.SetBuildManager(this);
+            Task task = new Task(this.transform.position, Task.Type.Build, this, turret);
+            MechanicManager.instance.AddTask(task);
 
             turretShopUI.SetActive(false);
             shopUIActive = false;
+            taskInProgress = true;
         }
+    }
+
+    /* This is called by the onclick event of the turretShopUI turret button */
+    public void BuildTurret(GameObject turret)
+    {
+        audioSource.PlayOneShot(buildSound);
+        turretOnTile = Instantiate(turret, transform.position + offset, transform.rotation);
+
+        Turret turretScript = turretOnTile.GetComponentInChildren<Turret>();
+        turretScript.SetBuildManager(this);
+
+        turretShopUI.SetActive(false);
+        shopUIActive = false;
+        taskInProgress = false;
     }
 
     public void ReplaceTurret(GameObject turret)
     {
-
         if (turret != null)
         {
             audioSource.PlayOneShot(upgradeSound);
