@@ -11,9 +11,6 @@ public class Mechanic : MonoBehaviour
         Finished
     }
 
-    [Header("Home")]
-    public Vector3 homePosition;
-
     [Header("Properties")]
     public float movementSpeed;
     public float taskSpeed;
@@ -21,7 +18,8 @@ public class Mechanic : MonoBehaviour
     [HideInInspector]
     public Task task;
 
-    public State state;
+    private Vector3 homePosition;
+    private State state;
     private float timer;
     private MechanicManager mManager;
 
