@@ -24,6 +24,7 @@ public class Mechanic : MonoBehaviour
     private MechanicManager mManager;
     private float turnSpeed;
     private Animator anim;
+    private float heightOfMap = 0.254f;
 
     private void Start()
     {
@@ -47,7 +48,7 @@ public class Mechanic : MonoBehaviour
                 }
                 break;
             case State.MoveToTask:
-                if (Vector3.Distance(transform.position, task.taskLocation) < 0.6f)
+                if (Vector3.Distance(transform.position, task.taskLocation) < 0.8f)
                 {
                     state = State.Working;
                 }
@@ -73,7 +74,7 @@ public class Mechanic : MonoBehaviour
                 }
                 break;
             case State.MoveToHome:
-                if (Vector3.Distance(transform.position, homePosition) < 0.3f)
+                if (Vector3.Distance(transform.position, homePosition) < 0.1f)
                 {
                     state = State.Home;
                 }
@@ -118,7 +119,7 @@ public class Mechanic : MonoBehaviour
     private void MoveTowardsTarget(Vector3 target)
     {
         anim.SetBool("Move", true);
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(target.x, transform.position.y, target.z), movementSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, new Vector3(target.x, heightOfMap, target.z), movementSpeed * Time.deltaTime);
     }
 
     private void TurnTowardsTarget(Vector3 target)
