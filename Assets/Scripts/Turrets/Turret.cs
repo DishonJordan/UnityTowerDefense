@@ -38,14 +38,12 @@ public class Turret : MonoBehaviour, IDamageable
     private readonly float turnRate = 6f;
     private float timer;
     private BuildManager myTileBuildManager;
-    private bool taskInProgress;
     private TurretUIController controller;
 
     /* Initializations that occur when the object is instantiated */
     private void Start()
     {
         timer = 0.0f;
-        taskInProgress = false;
         controller = turretUI.GetComponent<TurretUIController>();
     }
 
@@ -183,7 +181,6 @@ public class Turret : MonoBehaviour, IDamageable
             health = maxHealth;
         }
 
-        taskInProgress = false;
         controller.ChangeButtonInteractivity(true);
     }
 
@@ -194,7 +191,6 @@ public class Turret : MonoBehaviour, IDamageable
         {
             case Task.Type.Sell:
                 MechanicManager.instance.AddTask(new Task(transform.position, type, this, null));
-                taskInProgress = true;
                 DisableTurretUI();
                 controller.ChangeButtonInteractivity(false);
                 break;
@@ -202,7 +198,6 @@ public class Turret : MonoBehaviour, IDamageable
                 if (nextUpgrade != null && Bank.instance.WithdrawMoney(upgradeCost))
                 {
                     MechanicManager.instance.AddTask(new Task(transform.position, type, this, null));
-                    taskInProgress = true;
                     DisableTurretUI();
                     controller.ChangeButtonInteractivity(false);
                 }
@@ -211,7 +206,6 @@ public class Turret : MonoBehaviour, IDamageable
                 if (Bank.instance.WithdrawMoney(repairCost))
                 {
                     MechanicManager.instance.AddTask(new Task(transform.position, type, this, null));
-                    taskInProgress = true;
                     DisableTurretUI();
                     controller.ChangeButtonInteractivity(false);
                 }
