@@ -37,13 +37,6 @@ public class BuildManager : MonoBehaviour
         controller = transform.GetChild(0).GetComponentInChildren<ShopUIController>();
     }
 
-    private void Update()
-    {
-        if (taskInProgress) {
-            myRenderer.materials[1].color = pendingColor.color;
-        }
-    }
-
     /* Changes the color of tile to show it is clickable */
     private void OnMouseEnter()
     {
@@ -86,6 +79,7 @@ public class BuildManager : MonoBehaviour
             turretShopUI.SetActive(false);
             shopUIActive = false;
             taskInProgress = true;
+            SetPendingTileColor(true);
             controller.ChangeButtonInteractivity(false);
         }
     }
@@ -104,7 +98,7 @@ public class BuildManager : MonoBehaviour
 
         taskInProgress = false;
         controller.ChangeButtonInteractivity(true);
-        myRenderer.materials[1].color = originalColor;
+        SetPendingTileColor(false);
     }
 
     /* Replaces the turret on the tile with a new one */
@@ -139,5 +133,9 @@ public class BuildManager : MonoBehaviour
         audioSource.PlayOneShot(closeSound);
         turretShopUI.SetActive(false);
         shopUIActive = turretShopUI.activeSelf;
+    }
+
+    public void SetPendingTileColor(bool b) {
+        myRenderer.materials[1].color = (b)?pendingColor.color :originalColor;
     }
 }

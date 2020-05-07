@@ -19,15 +19,16 @@ public class Mechanic : MonoBehaviour
     public float taskSpeed;
 
     [HideInInspector]
-    public Task task;
+    private Task task;
 
     private Vector3 homePosition;
     private Quaternion homeRotation;
-    public State state;
-    private float timer;
-    private MechanicManager mManager;
-    private float turnSpeed;
     private Animator anim;
+    public State state;
+    private MechanicManager mManager;
+
+    private float timer;
+    private float turnSpeed;
     private float heightOfMap = 0.254f;
 
     private void Start()
@@ -55,13 +56,13 @@ public class Mechanic : MonoBehaviour
             case State.OrientTask:
                 Vector3 goalDirection = (task.taskLocation - transform.position).normalized;
 
-                if (Vector3.Dot(goalDirection, transform.forward) > 0.98f)
+                if (Vector3.Dot(goalDirection, transform.forward) > 0.95f)
                 {
                     state = State.MoveToTask;
                 }
                 break;
             case State.MoveToTask:
-                if (Vector3.Distance(transform.position, task.taskLocation) < 0.8f)
+                if (Vector3.Distance(transform.position, task.taskLocation) < 0.5f)
                 {
                     state = State.Work;
                 }
@@ -191,6 +192,7 @@ public class Mechanic : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(target.x, heightOfMap, target.z), movementSpeed * Time.deltaTime);
     }
 
+    /* Turns the mechanic towards the desired target */
     private void TurnTowardsTarget(Vector3 target)
     {
         Vector3 newDirection = Vector3.RotateTowards(transform.forward, new Vector3(target.x, transform.position.y, target.z) - transform.position,
@@ -209,11 +211,13 @@ public class Mechanic : MonoBehaviour
         }
     }
 
+    /* Make the Mechanic face the default rotation */
     private void RestoreDefaultRotation()
     {
         transform.rotation = homeRotation;
     }
 
+    /* Requests a task from the mechanic manager */
     public void RequestTask()
     {
         task = mManager.GetTask();

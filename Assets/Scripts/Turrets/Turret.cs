@@ -161,6 +161,7 @@ public class Turret : MonoBehaviour, IDamageable
     public void SellTurret()
     {
         Bank.instance.DepositMoney(sellCost);
+        myTileBuildManager.SetPendingTileColor(false);
         DestroyTurret();
     }
 
@@ -169,6 +170,7 @@ public class Turret : MonoBehaviour, IDamageable
     {
         /* Replaced turret on tile with the upgraded one */
         myTileBuildManager.ReplaceTurret(nextUpgrade);
+        myTileBuildManager.SetPendingTileColor(false);
         DestroyTurret();
     }
 
@@ -181,6 +183,7 @@ public class Turret : MonoBehaviour, IDamageable
             health = maxHealth;
         }
 
+        myTileBuildManager.SetPendingTileColor(false);
         controller.ChangeButtonInteractivity(true);
     }
 
@@ -193,6 +196,7 @@ public class Turret : MonoBehaviour, IDamageable
                 MechanicManager.instance.AddTask(new Task(transform.position, type, this, null));
                 DisableTurretUI();
                 controller.ChangeButtonInteractivity(false);
+                myTileBuildManager.SetPendingTileColor(true);
                 break;
             case Task.Type.Upgrade:
                 if (nextUpgrade != null && Bank.instance.WithdrawMoney(upgradeCost))
@@ -200,6 +204,7 @@ public class Turret : MonoBehaviour, IDamageable
                     MechanicManager.instance.AddTask(new Task(transform.position, type, this, null));
                     DisableTurretUI();
                     controller.ChangeButtonInteractivity(false);
+                    myTileBuildManager.SetPendingTileColor(true);
                 }
                 break;
             case Task.Type.Repair:
@@ -208,6 +213,7 @@ public class Turret : MonoBehaviour, IDamageable
                     MechanicManager.instance.AddTask(new Task(transform.position, type, this, null));
                     DisableTurretUI();
                     controller.ChangeButtonInteractivity(false);
+                    myTileBuildManager.SetPendingTileColor(true);
                 }
                 break;
             default:
