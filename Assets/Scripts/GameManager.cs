@@ -57,14 +57,12 @@ public class GameManager : MonoBehaviour
     }
 
     public void GameWon(){
-        Debug.Log("Game has been won");
         AudioManager.instance.PlayLevelCompleteMusic();
         gameIsOver = true;
         winUI.SetActive(true);
     }
 
     void GameEnded(){
-        Debug.Log("Game has ended");
         gameIsOver = true;
         gameOverUI.SetActive(true);
     }
