@@ -10,7 +10,6 @@ public class ProjectileCatapult : Projectile
     private void Start()
     {
         startPosition = transform.position;
-
     }
 
     protected override void FollowTarget()

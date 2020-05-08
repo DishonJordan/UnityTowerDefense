@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Assertions;
 
 public class Turret : MonoBehaviour, IDamageable
 {
@@ -41,10 +42,12 @@ public class Turret : MonoBehaviour, IDamageable
     private TurretUIController controller;
 
     /* Initializations that occur when the object is instantiated */
-    private void Start()
+    protected void Start()
     {
         timer = 0.0f;
         controller = turretUI.GetComponent<TurretUIController>();
+        Assert.IsNotNull(controller);
+        Debug.Log(controller);
         myTileBuildManager.SetTilePendingColor(false);
     }
 
