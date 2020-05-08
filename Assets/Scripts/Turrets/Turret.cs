@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Assertions;
 
 public class Turret : MonoBehaviour, IDamageable
 {
@@ -14,9 +13,9 @@ public class Turret : MonoBehaviour, IDamageable
     public int upgradeCost;
 
     [Header("Properties")]
-    [Tooltip("After how many seconds does the turret shoots")]
+    [Tooltip("After how many seconds does the turret shoot")]
     public float fireRate;
-    [Tooltip("This range can be seen in the unity editor by clicking on the turret object")]
+    [Tooltip("The range in units that the turret can shoot")]
     public float fireRange;
     [Tooltip("The maximum health of this turret")]
     public float maxHealth;
@@ -46,9 +45,7 @@ public class Turret : MonoBehaviour, IDamageable
     {
         timer = 0.0f;
         controller = turretUI.GetComponent<TurretUIController>();
-        Assert.IsNotNull(controller);
-        Debug.Log(controller);
-        myTileBuildManager.SetTilePendingColor(false);
+        myTileBuildManager.SetTileToPendingColor(false);
     }
 
     /* Handles when the user clicks on a turret */
@@ -60,6 +57,7 @@ public class Turret : MonoBehaviour, IDamageable
         }
     }
 
+    /* Targeting and firing happens here*/
     private void Update()
     {
         /* If there is no target, search for one, else track the target and coundown to shoot */
@@ -166,7 +164,7 @@ public class Turret : MonoBehaviour, IDamageable
     {
         Bank.instance.DepositMoney(sellCost);
 
-        myTileBuildManager.SetTilePendingColor(false);
+        myTileBuildManager.SetTileToPendingColor(false);
         myTileBuildManager.taskInProgress = false;
 
         DestroyTurret();
@@ -178,7 +176,7 @@ public class Turret : MonoBehaviour, IDamageable
         /* Replaced turret on tile with the upgraded one */
         myTileBuildManager.ReplaceTurret(nextUpgrade);
 
-        myTileBuildManager.SetTilePendingColor(false);
+        myTileBuildManager.SetTileToPendingColor(false);
         myTileBuildManager.taskInProgress = false;
 
         DestroyTurret();
@@ -193,49 +191,40 @@ public class Turret : MonoBehaviour, IDamageable
             health = maxHealth;
         }
 
-        myTileBuildManager.SetTilePendingColor(false);
+        myTileBuildManager.SetTileToPendingColor(false);
         controller.ChangeButtonInteractivity(true);
         myTileBuildManager.taskInProgress = false;
     }
 
-    /* Requests that the Mechanic Manager modifies the tower */
+    /* Requests that the MechanicManager modifies the tower */
     public void RequestModification(Task.Type type)
     {
         switch (type)
         {
             case Task.Type.Sell:
                 MechanicManager.instance.AddTask(new Task(transform.position, type, this, null));
-
-                DisableTurretUI();
-                controller.ChangeButtonInteractivity(false);
-                myTileBuildManager.taskInProgress = true;
-                myTileBuildManager.SetTilePendingColor(true);
                 break;
             case Task.Type.Upgrade:
                 if (nextUpgrade != null && Bank.instance.WithdrawMoney(upgradeCost))
                 {
                     MechanicManager.instance.AddTask(new Task(transform.position, type, this, null));
-
-                    DisableTurretUI();
-                    controller.ChangeButtonInteractivity(false);
-                    myTileBuildManager.taskInProgress = true;
-                    myTileBuildManager.SetTilePendingColor(true);
                 }
                 break;
             case Task.Type.Repair:
                 if (Bank.instance.WithdrawMoney(repairCost))
                 {
                     MechanicManager.instance.AddTask(new Task(transform.position, type, this, null));
-
-                    DisableTurretUI();
-                    controller.ChangeButtonInteractivity(false);
-                    myTileBuildManager.taskInProgress = true;
-                    myTileBuildManager.SetTilePendingColor(true);
                 }
                 break;
             default:
+                Debug.Log("Should Never Arrive Here!");
                 break;
         }
+
+        DisableTurretUI();
+        controller.ChangeButtonInteractivity(false);
+        myTileBuildManager.taskInProgress = true;
+        myTileBuildManager.SetTileToPendingColor(true);
     }
 
     /* Destroys the Current Turret */

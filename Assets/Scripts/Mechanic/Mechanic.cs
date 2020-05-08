@@ -2,7 +2,7 @@
 
 public class Mechanic : MonoBehaviour
 {
-    public enum State
+    enum State
     {
         Home,
         OrientTask,
@@ -24,27 +24,28 @@ public class Mechanic : MonoBehaviour
     private Vector3 homePosition;
     private Quaternion homeRotation;
     private Animator anim;
-    public State state;
+    private State state;
     private MechanicManager mManager;
 
     private float timer;
-    private float turnSpeed;
+    private float turnSpeed = 7f;
     private float heightOfMap = 0.254f;
 
     private void Start()
     {
         state = State.Home;
         timer = 0.0f;
-        turnSpeed = 7f;
+
         homePosition = transform.position;
         homeRotation = transform.rotation;
+
         mManager = MechanicManager.instance;
         anim = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        /* State Transisions */
+        /* State Transitions */
         switch (state)
         {
             case State.Home:
@@ -71,7 +72,6 @@ public class Mechanic : MonoBehaviour
                 if (timer > taskSpeed)
                 {
                     state = State.Finish;
-                    timer = 0.0f;
                 }
                 break;
             case State.Finish:
@@ -130,56 +130,35 @@ public class Mechanic : MonoBehaviour
         {
             case State.Home:
                 RequestTask();
-                anim.SetBool("Move", false);
-                anim.SetBool("Idle", true);
-                anim.SetBool("Work", false);
+                SetAnimationBools(false, true, false);
                 break;
             case State.OrientTask:
-                anim.SetBool("Move", false);
-                anim.SetBool("Idle", false);
-                anim.SetBool("Work", false);
-
                 TurnTowardsTarget(task.taskLocation);
+                SetAnimationBools(false, false, false);
                 break;
             case State.MoveToTask:
-                anim.SetBool("Move", true);
-                anim.SetBool("Idle", false);
-                anim.SetBool("Work", false);
-
                 MoveTowardsTarget(task.taskLocation);
+                SetAnimationBools(true, false, false);
                 break;
             case State.Work:
-                anim.SetBool("Move", false);
-                anim.SetBool("Idle", false);
-                anim.SetBool("Work", true);
-
                 WorkOnTurret();
+                SetAnimationBools(false, false, true);
                 break;
             case State.Finish:
-                anim.SetBool("Move", false);
-                anim.SetBool("Idle", true);
-                anim.SetBool("Work", false);
-
+                timer = 0.0f;
+                SetAnimationBools(false, true, false);
                 break;
             case State.OrientHome:
-                anim.SetBool("Move", false);
-                anim.SetBool("Idle", false);
-                anim.SetBool("Work", false);
-
                 TurnTowardsTarget(homePosition);
+                SetAnimationBools(false, false, false);
                 break;
             case State.MoveToHome:
-                anim.SetBool("Move", true);
-                anim.SetBool("Idle", false);
-                anim.SetBool("Work", false);
-
                 MoveTowardsTarget(homePosition);
+                SetAnimationBools(true, false, false);
                 break;
             case State.DefaultOrientation:
-                anim.SetBool("Move", false);
-                anim.SetBool("Idle", false);
-                anim.SetBool("Work", false);
                 RestoreDefaultRotation();
+                SetAnimationBools(false, false, false);
                 break;
             default:
                 break;
@@ -218,8 +197,16 @@ public class Mechanic : MonoBehaviour
     }
 
     /* Requests a task from the mechanic manager */
-    public void RequestTask()
+    private void RequestTask()
     {
         task = mManager.GetTask();
+    }
+
+    /* Sets the animation bools */
+    private void SetAnimationBools(bool move, bool idle, bool work)
+    {
+        anim.SetBool("Move", move);
+        anim.SetBool("Idle", idle);
+        anim.SetBool("Work", work);
     }
 }
