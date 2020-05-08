@@ -21,11 +21,13 @@ public class BuildManager : MonoBehaviour
     public AudioClip buildSound;
     public AudioClip upgradeSound;
 
+    [HideInInspector]
+    public bool taskInProgress;
+
     private GameObject turretOnTile;
     private Color originalColor;
     private Renderer myRenderer;
     private Vector3 offset = new Vector3(0f, 0.2f, 0f);
-    private bool taskInProgress;
     private ShopUIController controller;
 
     private void Start()
@@ -51,7 +53,10 @@ public class BuildManager : MonoBehaviour
     {
         if (!shopUIActive || turretOnTile == null)
         {
-            myRenderer.materials[1].color = originalColor;
+            if (!taskInProgress)
+            {
+                myRenderer.materials[1].color = originalColor;
+            }
         }
     }
 
@@ -79,7 +84,7 @@ public class BuildManager : MonoBehaviour
             turretShopUI.SetActive(false);
             shopUIActive = false;
             taskInProgress = true;
-            SetPendingTileColor(true);
+            SetTilePendingColor(true);
             controller.ChangeButtonInteractivity(false);
         }
     }
@@ -98,7 +103,7 @@ public class BuildManager : MonoBehaviour
 
         taskInProgress = false;
         controller.ChangeButtonInteractivity(true);
-        SetPendingTileColor(false);
+        SetTilePendingColor(false);
     }
 
     /* Replaces the turret on the tile with a new one */
@@ -109,12 +114,7 @@ public class BuildManager : MonoBehaviour
             audioSource.PlayOneShot(upgradeSound);
             turretOnTile = null;
 
-            turretOnTile = Instantiate(turret, transform.position + offset, transform.rotation);
-            Turret turretScript = turretOnTile.GetComponentInChildren<Turret>();
-            turretScript.SetBuildManager(this);
-
-            turretShopUI.SetActive(false);
-            shopUIActive = false;
+            BuildTurret(turret);
         }
     }
 
@@ -123,8 +123,12 @@ public class BuildManager : MonoBehaviour
     {
         audioSource.PlayOneShot(openSound);
         turretShopUI.SetActive(true);
-        shopUIActive = turretShopUI.activeSelf;
-        myRenderer.materials[1].color = originalColor;
+        shopUIActive = true;
+
+        if (!taskInProgress)
+        {
+            myRenderer.materials[1].color = originalColor;
+        }
     }
 
     /* Disables the shop UI */
@@ -132,10 +136,12 @@ public class BuildManager : MonoBehaviour
     {
         audioSource.PlayOneShot(closeSound);
         turretShopUI.SetActive(false);
-        shopUIActive = turretShopUI.activeSelf;
+        shopUIActive = false;
     }
 
-    public void SetPendingTileColor(bool b) {
-        myRenderer.materials[1].color = (b)?pendingColor.color :originalColor;
+    /* Sets the tile to the pending*/
+    public void SetTilePendingColor(bool b)
+    {
+        myRenderer.materials[1].color = (b) ? pendingColor.color : originalColor;
     }
 }

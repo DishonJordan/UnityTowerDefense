@@ -45,6 +45,7 @@ public class Turret : MonoBehaviour, IDamageable
     {
         timer = 0.0f;
         controller = turretUI.GetComponent<TurretUIController>();
+        myTileBuildManager.SetTilePendingColor(false);
     }
 
     /* Handles when the user clicks on a turret */
@@ -161,7 +162,10 @@ public class Turret : MonoBehaviour, IDamageable
     public void SellTurret()
     {
         Bank.instance.DepositMoney(sellCost);
-        myTileBuildManager.SetPendingTileColor(false);
+
+        myTileBuildManager.SetTilePendingColor(false);
+        myTileBuildManager.taskInProgress = false;
+
         DestroyTurret();
     }
 
@@ -170,7 +174,10 @@ public class Turret : MonoBehaviour, IDamageable
     {
         /* Replaced turret on tile with the upgraded one */
         myTileBuildManager.ReplaceTurret(nextUpgrade);
-        myTileBuildManager.SetPendingTileColor(false);
+
+        myTileBuildManager.SetTilePendingColor(false);
+        myTileBuildManager.taskInProgress = false;
+
         DestroyTurret();
     }
 
@@ -183,8 +190,9 @@ public class Turret : MonoBehaviour, IDamageable
             health = maxHealth;
         }
 
-        myTileBuildManager.SetPendingTileColor(false);
+        myTileBuildManager.SetTilePendingColor(false);
         controller.ChangeButtonInteractivity(true);
+        myTileBuildManager.taskInProgress = false;
     }
 
     /* Requests that the Mechanic Manager modifies the tower */
@@ -194,26 +202,32 @@ public class Turret : MonoBehaviour, IDamageable
         {
             case Task.Type.Sell:
                 MechanicManager.instance.AddTask(new Task(transform.position, type, this, null));
+
                 DisableTurretUI();
                 controller.ChangeButtonInteractivity(false);
-                myTileBuildManager.SetPendingTileColor(true);
+                myTileBuildManager.taskInProgress = true;
+                myTileBuildManager.SetTilePendingColor(true);
                 break;
             case Task.Type.Upgrade:
                 if (nextUpgrade != null && Bank.instance.WithdrawMoney(upgradeCost))
                 {
                     MechanicManager.instance.AddTask(new Task(transform.position, type, this, null));
+
                     DisableTurretUI();
                     controller.ChangeButtonInteractivity(false);
-                    myTileBuildManager.SetPendingTileColor(true);
+                    myTileBuildManager.taskInProgress = true;
+                    myTileBuildManager.SetTilePendingColor(true);
                 }
                 break;
             case Task.Type.Repair:
                 if (Bank.instance.WithdrawMoney(repairCost))
                 {
                     MechanicManager.instance.AddTask(new Task(transform.position, type, this, null));
+
                     DisableTurretUI();
                     controller.ChangeButtonInteractivity(false);
-                    myTileBuildManager.SetPendingTileColor(true);
+                    myTileBuildManager.taskInProgress = true;
+                    myTileBuildManager.SetTilePendingColor(true);
                 }
                 break;
             default:
