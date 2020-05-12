@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Turret : MonoBehaviour
+public class Turret : MonoBehaviour, IDamageable
 {
     public static bool turretUIActive;
     [Header("Name")]
@@ -15,8 +15,12 @@ public class Turret : MonoBehaviour
     [Header("Properties")]
     [Tooltip("After how many seconds does the turret shoots")]
     public float fireRate;
-    [Tooltip("This range can be seen in the unity editor by clicking on the turet object")]
+    [Tooltip("This range can be seen in the unity editor by clicking on the turret object")]
     public float fireRange;
+    [Tooltip("The maximum health of this turret")]
+    public float maxHealth;
+    [Tooltip("The current health of this turret")]
+    public float health;
 
     [Header("UI")]
     public GameObject turretUI;
@@ -25,6 +29,10 @@ public class Turret : MonoBehaviour
     public GameObject turretProjectile;
     public Transform firePoint;
     public GameObject nextUpgrade;
+
+    [Header("Sounds")]
+    public AudioSource audioSource;
+    public AudioClip shootSound;
 
     protected GameObject currentTarget;
     private readonly float turnRate = 6f;
@@ -59,6 +67,10 @@ public class Turret : MonoBehaviour
             timer += Time.deltaTime;
             if (timer > fireRate)
             {
+                if (audioSource != null && shootSound != null)
+                {
+                    audioSource.PlayOneShot(shootSound);
+                }
                 FireProjectile();
                 timer = 0.0f;
             }
@@ -113,9 +125,19 @@ public class Turret : MonoBehaviour
         if (currentTarget != null)
         {
             GameObject projectile = Instantiate(turretProjectile, firePoint.position, firePoint.rotation);
-            Projectile p = projectile.GetComponent<Projectile>();
+            Projectile p = projectile.GetComponentInChildren<Projectile>();
 
             p.SetTarget(currentTarget);
+        }
+    }
+
+    /* Interface for taking projectile damage from an enemy */
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        if(health <= 0)
+        {
+            health = 0;
         }
     }
 
@@ -154,7 +176,13 @@ public class Turret : MonoBehaviour
     /* Repairs health of the turret */
     public void RepairTurret()
     {
-        Debug.Log("TODO: IMPLEMENT REPAIR");
+        if(Bank.instance.WithdrawMoney(repairCost)){
+            health += 25;
+            if(health > maxHealth)
+            {
+                health = maxHealth;
+            }
+        }
     }
 
     /* Destroys the Current Turret */

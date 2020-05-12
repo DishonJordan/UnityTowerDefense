@@ -25,6 +25,7 @@ public class TurretUIController : MonoBehaviour
     public TextMeshProUGUI statDamageText;
     public TextMeshProUGUI statSpeedText;
     public TextMeshProUGUI statRangeText;
+    public TextMeshProUGUI statHealthText;
 
     private Turret _turret;
     private List<int> prices;
@@ -53,6 +54,7 @@ public class TurretUIController : MonoBehaviour
         statDamageText.text = "DMG: " + _turret.turretProjectile.GetComponent<Projectile>().projectileDamage;
         statSpeedText.text = "SPD: " + _turret.fireRate;
         statRangeText.text = "RNG: " + _turret.fireRange;
+        statHealthText.text = "HP: " + _turret.health + "/" + _turret.maxHealth;
     }
 
     private void LinkButtonsToTurret()
@@ -117,5 +119,6 @@ public class TurretUIController : MonoBehaviour
                     break;
             }
         }
+        statHealthText.text = "HP: " + _turret.health + "/" + _turret.maxHealth;
     }
 }
