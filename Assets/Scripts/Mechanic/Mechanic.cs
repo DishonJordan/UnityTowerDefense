@@ -30,6 +30,7 @@ public class Mechanic : MonoBehaviour
     private float timer;
     private float turnSpeed = 7f;
     private float heightOfMap = 0.254f;
+    private float previousDirection = 3f;
 
     private void Start()
     {
@@ -57,10 +58,12 @@ public class Mechanic : MonoBehaviour
             case State.OrientTask:
                 Vector3 goalDirection = (task.taskLocation - transform.position).normalized;
 
-                if (Vector3.Dot(goalDirection, transform.forward) > 0.95f)
+                if (Vector3.Dot(goalDirection, transform.forward) > 0.95f || previousDirection == Vector3.Dot(goalDirection, transform.forward))
                 {
                     state = State.MoveToTask;
                 }
+
+                previousDirection = Vector3.Dot(goalDirection, transform.forward);
                 break;
             case State.MoveToTask:
                 if (Vector3.Distance(transform.position, task.taskLocation) < 0.5f)
