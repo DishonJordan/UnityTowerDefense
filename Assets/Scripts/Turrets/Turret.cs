@@ -203,28 +203,38 @@ public class Turret : MonoBehaviour, IDamageable
         {
             case Task.Type.Sell:
                 MechanicManager.instance.AddTask(new Task(transform.position, type, this, null));
+
+                DisableTurretUI();
+                controller.ChangeButtonInteractivity(false);
+                myTileBuildManager.taskInProgress = true;
+                myTileBuildManager.SetTileToPendingColor(true);
                 break;
             case Task.Type.Upgrade:
                 if (nextUpgrade != null && Bank.instance.WithdrawMoney(upgradeCost))
                 {
                     MechanicManager.instance.AddTask(new Task(transform.position, type, this, null));
+
+                    DisableTurretUI();
+                    controller.ChangeButtonInteractivity(false);
+                    myTileBuildManager.taskInProgress = true;
+                    myTileBuildManager.SetTileToPendingColor(true);
                 }
                 break;
             case Task.Type.Repair:
                 if (Bank.instance.WithdrawMoney(repairCost))
                 {
                     MechanicManager.instance.AddTask(new Task(transform.position, type, this, null));
+
+                    DisableTurretUI();
+                    controller.ChangeButtonInteractivity(false);
+                    myTileBuildManager.taskInProgress = true;
+                    myTileBuildManager.SetTileToPendingColor(true);
                 }
                 break;
             default:
                 Debug.Log("Should Never Arrive Here!");
                 break;
         }
-
-        DisableTurretUI();
-        controller.ChangeButtonInteractivity(false);
-        myTileBuildManager.taskInProgress = true;
-        myTileBuildManager.SetTileToPendingColor(true);
     }
 
     /* Destroys the Current Turret */
