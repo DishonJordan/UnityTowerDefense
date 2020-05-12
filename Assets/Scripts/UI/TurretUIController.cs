@@ -66,9 +66,9 @@ public class TurretUIController : MonoBehaviour
         exitButtons.ForEach(button => button.onClick.RemoveAllListeners());
 
         // Add new listeners
-        sellButton.onClick.AddListener(_turret.SellTurret);
-        upgradeButton.onClick.AddListener(_turret.UpgradeTurret);
-        repairButton.onClick.AddListener(_turret.RepairTurret);
+        sellButton.onClick.AddListener(() => _turret.RequestModification(Task.Type.Sell));
+        upgradeButton.onClick.AddListener(() => _turret.RequestModification(Task.Type.Upgrade));
+        repairButton.onClick.AddListener(() => _turret.RequestModification(Task.Type.Repair));
         exitButtons.ForEach(button => button.onClick.AddListener(_turret.DisableTurretUI));
     }
 
@@ -120,5 +120,12 @@ public class TurretUIController : MonoBehaviour
             }
         }
         statHealthText.text = "HP: " + _turret.health + "/" + _turret.maxHealth;
+    }
+
+    public void ChangeButtonInteractivity(bool status)
+    {
+        sellButton.interactable = status;
+        upgradeButton.interactable = status;
+        repairButton.interactable = status;
     }
 }

@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turretName: Ballista Turret V1
-  purchaseCost: 175
+  purchaseCost: 200
   sellCost: 100
   repairCost: 45
   upgradeCost: 125

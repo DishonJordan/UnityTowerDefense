@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turretName: Catapult Turret V1
-  purchaseCost: 200
+  purchaseCost: 175
   sellCost: 100
   repairCost: 50
   upgradeCost: 150
