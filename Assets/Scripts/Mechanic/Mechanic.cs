@@ -26,6 +26,7 @@ public class Mechanic : MonoBehaviour
     private Animator anim;
     private State state;
     private MechanicManager mManager;
+    private GameObject buttonLocation;
 
     private float timer;
     private float turnSpeed = 7f;
@@ -42,6 +43,8 @@ public class Mechanic : MonoBehaviour
 
         mManager = MechanicManager.instance;
         anim = GetComponent<Animator>();
+
+        buttonLocation = transform.GetChild(3).gameObject;
     }
 
     private void Update()
@@ -202,7 +205,11 @@ public class Mechanic : MonoBehaviour
     /* Requests a task from the mechanic manager */
     private void RequestTask()
     {
-        task = mManager.GetTask();
+        task = mManager.GetTask(buttonLocation.transform);
+    }
+
+    private void SetButton() {
+
     }
 
     /* Sets the animation bools */

@@ -44,4 +44,21 @@ public class Task
                 break;
         }
     }
+
+    public string GetTaskName()
+    {
+        switch (type)
+        {
+            case Type.Build:
+                return "Build";
+            case Type.Sell:
+                return "Sell";
+            case Type.Upgrade:
+                return "Upgrade";
+            case Type.Repair:
+                return "Repair";
+            default:
+                return "ERROR";
+        }
+    }
 }
