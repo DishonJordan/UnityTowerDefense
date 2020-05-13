@@ -24,6 +24,8 @@ public class MechanicManager : MonoBehaviour
 
     #endregion
 
+    public GameObject mechanicUI;
+
     private GameObject mechanic;
     private LinkedList<Task> tasks;
 
@@ -49,5 +51,11 @@ public class MechanicManager : MonoBehaviour
     public void AddTask(Task t)
     {
         tasks.AddLast(t);
+    }
+
+    public void OnMouseDown()
+    {
+        /* Toggle Mechanic UI */
+        mechanicUI.SetActive(!mechanicUI.activeSelf);
     }
 }
