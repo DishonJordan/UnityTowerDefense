@@ -23,6 +23,8 @@ public class BuildManager : MonoBehaviour
 
     [HideInInspector]
     public bool taskInProgress;
+    [HideInInspector]
+    public GameObject mechanicIcon;
 
     private GameObject turretOnTile;
     private Color originalColor;
@@ -37,6 +39,7 @@ public class BuildManager : MonoBehaviour
         originalColor = myRenderer.materials[1].color;
         taskInProgress = false;
         controller = transform.GetChild(0).GetComponentInChildren<ShopUIController>();
+        mechanicIcon = transform.GetChild(1).gameObject;
     }
 
     /* Changes the color of tile to show it is clickable */
@@ -64,7 +67,7 @@ public class BuildManager : MonoBehaviour
     private void OnMouseDown()
     {
         if (turretOnTile == null && !EventSystem.current.IsPointerOverGameObject()
-            && !shopUIActive && !Turret.turretUIActive)
+            && !shopUIActive && !Turret.turretUIActive && !taskInProgress)
         {
             EnableShopUI();
         }
@@ -86,6 +89,7 @@ public class BuildManager : MonoBehaviour
 
             taskInProgress = true;
             SetTileToPendingColor(true);
+            mechanicIcon.SetActive(true);
             controller.ChangeButtonInteractivity(false);
         }
     }
@@ -105,6 +109,7 @@ public class BuildManager : MonoBehaviour
         taskInProgress = false;
         controller.ChangeButtonInteractivity(true);
         SetTileToPendingColor(false);
+        mechanicIcon.SetActive(false);
     }
 
     /* Replaces the turret on the tile with a new one */
@@ -152,5 +157,6 @@ public class BuildManager : MonoBehaviour
         taskInProgress = false;
         controller.ChangeButtonInteractivity(true);
         SetTileToPendingColor(false);
+        mechanicIcon.SetActive(false);
     }
 }

@@ -52,7 +52,7 @@ public class Turret : MonoBehaviour, IDamageable
     /* Handles when the user clicks on a turret */
     private void OnMouseDown()
     {
-        if (!turretUIActive && !BuildManager.shopUIActive)
+        if (!turretUIActive && !BuildManager.shopUIActive && !myTileBuildManager.taskInProgress)
         {
             EnableTurretUI();
         }
@@ -205,6 +205,7 @@ public class Turret : MonoBehaviour, IDamageable
                 controller.ChangeButtonInteractivity(false);
                 myTileBuildManager.taskInProgress = true;
                 myTileBuildManager.SetTileToPendingColor(true);
+                myTileBuildManager.mechanicIcon.SetActive(true);
                 break;
             case Task.Type.Upgrade:
                 if (nextUpgrade != null && Bank.instance.WithdrawMoney(upgradeCost))
@@ -215,6 +216,7 @@ public class Turret : MonoBehaviour, IDamageable
                     controller.ChangeButtonInteractivity(false);
                     myTileBuildManager.taskInProgress = true;
                     myTileBuildManager.SetTileToPendingColor(true);
+                    myTileBuildManager.mechanicIcon.SetActive(true);
                 }
                 break;
             case Task.Type.Repair:
@@ -226,6 +228,7 @@ public class Turret : MonoBehaviour, IDamageable
                     controller.ChangeButtonInteractivity(false);
                     myTileBuildManager.taskInProgress = true;
                     myTileBuildManager.SetTileToPendingColor(true);
+                    myTileBuildManager.mechanicIcon.SetActive(true);
                 }
                 break;
             default:
@@ -253,6 +256,7 @@ public class Turret : MonoBehaviour, IDamageable
         myTileBuildManager.SetTileToPendingColor(false);
         controller.ChangeButtonInteractivity(true);
         myTileBuildManager.taskInProgress = false;
+        myTileBuildManager.mechanicIcon.SetActive(false);
     }
 
     /* When clicking on the turret in the scene, it will show the fireRange of the turret */
