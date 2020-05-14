@@ -113,6 +113,7 @@ public class MechanicManager : MonoBehaviour
         }
     }
 
+    /* Finds the task associated with a button in the taskDict */
     private Task GetTaskFromButton(GameObject button)
     {
         if (taskDict.TryGetValue(button, out Task t))
@@ -122,6 +123,7 @@ public class MechanicManager : MonoBehaviour
         return null;
     }
 
+    /* Removes the Task from the queue, deletes the button, and refunds user*/
     public void RemoveTaskFromQueue(GameObject button)
     {
         Task t = GetTaskFromButton(button);

@@ -39,13 +39,11 @@ public class Turret : MonoBehaviour, IDamageable
     private readonly float turnRate = 6f;
     private float timer;
     private BuildManager myTileBuildManager;
-    private TurretUIController controller;
 
     /* Initializations that occur when the object is instantiated */
     protected void Start()
     {
         timer = 0.0f;
-        controller = turretUI.GetComponent<TurretUIController>();
         myTileBuildManager.SetTileToPendingColor(false);
         myTileBuildManager.taskInProgress = false;
     }
@@ -56,6 +54,25 @@ public class Turret : MonoBehaviour, IDamageable
         if (!turretUIActive && !BuildManager.shopUIActive && !myTileBuildManager.taskInProgress)
         {
             EnableTurretUI();
+            myTileBuildManager.SetTileToHighlightColor(false);
+        }
+    }
+
+    /* Handles when the user hovers over the turret */
+    private void OnMouseOver()
+    {
+        if (!myTileBuildManager.taskInProgress && !BuildManager.shopUIActive && !turretUIActive)
+        {
+            myTileBuildManager.SetTileToHighlightColor(true);
+        }
+    }
+
+    /* Handles when the user leaves hovering over the turret */
+    private void OnMouseExit()
+    {
+        if (!myTileBuildManager.taskInProgress && !BuildManager.shopUIActive && !turretUIActive)
+        {
+            myTileBuildManager.SetTileToHighlightColor(false);
         }
     }
 
@@ -166,7 +183,7 @@ public class Turret : MonoBehaviour, IDamageable
     {
         Bank.instance.DepositMoney(sellCost);
 
-        UndoPendingTask();
+        SetTaskActive(false);
 
         DestroyTurret();
     }
@@ -177,7 +194,7 @@ public class Turret : MonoBehaviour, IDamageable
         /* Replaced turret on tile with the upgraded one */
         myTileBuildManager.ReplaceTurret(nextUpgrade);
 
-        UndoPendingTask();
+        SetTaskActive(false);
 
         DestroyTurret();
     }
@@ -191,7 +208,7 @@ public class Turret : MonoBehaviour, IDamageable
             health = maxHealth;
         }
 
-        UndoPendingTask();
+        SetTaskActive(false);
     }
 
     /* Requests that the MechanicManager modifies the tower */
@@ -203,10 +220,7 @@ public class Turret : MonoBehaviour, IDamageable
                 MechanicManager.instance.AddTask(new Task(transform.position, type, this, null, TurretSprite, 0));
 
                 DisableTurretUI();
-                controller.ChangeButtonInteractivity(false);
-                myTileBuildManager.taskInProgress = true;
-                myTileBuildManager.SetTileToPendingColor(true);
-                myTileBuildManager.mechanicIcon.SetActive(true);
+                SetTaskActive(true);
                 break;
             case Task.Type.Upgrade:
                 if (nextUpgrade != null && Bank.instance.WithdrawMoney(upgradeCost))
@@ -214,10 +228,7 @@ public class Turret : MonoBehaviour, IDamageable
                     MechanicManager.instance.AddTask(new Task(transform.position, type, this, null, TurretSprite, upgradeCost));
 
                     DisableTurretUI();
-                    controller.ChangeButtonInteractivity(false);
-                    myTileBuildManager.taskInProgress = true;
-                    myTileBuildManager.SetTileToPendingColor(true);
-                    myTileBuildManager.mechanicIcon.SetActive(true);
+                    SetTaskActive(true);
                 }
                 break;
             case Task.Type.Repair:
@@ -226,10 +237,7 @@ public class Turret : MonoBehaviour, IDamageable
                     MechanicManager.instance.AddTask(new Task(transform.position, type, this, null, TurretSprite, repairCost));
 
                     DisableTurretUI();
-                    controller.ChangeButtonInteractivity(false);
-                    myTileBuildManager.taskInProgress = true;
-                    myTileBuildManager.SetTileToPendingColor(true);
-                    myTileBuildManager.mechanicIcon.SetActive(true);
+                    SetTaskActive(true);
                 }
                 break;
             default:
@@ -251,13 +259,12 @@ public class Turret : MonoBehaviour, IDamageable
         myTileBuildManager = buildManager;
     }
 
-    /* Resets the Button Interactivity and Pending Tile Color */
-    public void UndoPendingTask()
+    /* Sets the task related fields based on whether the task is active or not */
+    public void SetTaskActive(bool b)
     {
-        myTileBuildManager.SetTileToPendingColor(false);
-        controller.ChangeButtonInteractivity(true);
-        myTileBuildManager.taskInProgress = false;
-        myTileBuildManager.mechanicIcon.SetActive(false);
+        myTileBuildManager.SetTileToPendingColor(b);
+        myTileBuildManager.taskInProgress = b;
+        myTileBuildManager.mechanicIcon.SetActive(b);
     }
 
     /* When clicking on the turret in the scene, it will show the fireRange of the turret */

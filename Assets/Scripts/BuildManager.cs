@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
 
 public class BuildManager : MonoBehaviour
@@ -29,37 +28,33 @@ public class BuildManager : MonoBehaviour
     private GameObject turretOnTile;
     private Color originalColor;
     private Renderer myRenderer;
-    private Vector3 offset = new Vector3(0f, 0.2f, 0f);
-    private ShopUIController controller;
+    private Vector3 groundOffset = new Vector3(0f, 0.2f, 0f);
 
     private void Start()
     {
         shopUIActive = false;
+        taskInProgress = false;
+
         myRenderer = GetComponent<Renderer>();
         originalColor = myRenderer.materials[1].color;
-        taskInProgress = false;
-        controller = transform.GetChild(0).GetComponentInChildren<ShopUIController>();
         mechanicIcon = transform.GetChild(1).gameObject;
     }
 
     /* Changes the color of tile to show it is clickable */
     private void OnMouseEnter()
     {
-        if (!shopUIActive && turretOnTile == null && !taskInProgress)
+        if (!shopUIActive && !taskInProgress && turretOnTile == null)
         {
-            myRenderer.materials[1].color = highlightColor.color;
+            SetTileToHighlightColor(true);
         }
     }
 
     /* Reverts the color of the Tile */
     private void OnMouseExit()
     {
-        if (!shopUIActive || turretOnTile == null)
+        if ((!shopUIActive && turretOnTile == null) && !taskInProgress)
         {
-            if (!taskInProgress)
-            {
-                myRenderer.materials[1].color = originalColor;
-            }
+            SetTileToHighlightColor(false);
         }
     }
 
@@ -77,20 +72,14 @@ public class BuildManager : MonoBehaviour
     public void RequestBuild(GameObject turret)
     {
         Turret t = turret.GetComponentInChildren<Turret>();
-        Assert.IsNotNull(turret, "Build Manager Could Not Find Turret");
 
         if (turret != null && turretOnTile == null && Bank.instance.WithdrawMoney(t.purchaseCost))
         {
             Task task = new Task(transform.position, Task.Type.Build, this, turret, t.TurretSprite, t.purchaseCost);
             MechanicManager.instance.AddTask(task);
 
-            turretShopUI.SetActive(false);
-            shopUIActive = false;
-
-            taskInProgress = true;
-            SetTileToPendingColor(true);
-            mechanicIcon.SetActive(true);
-            controller.ChangeButtonInteractivity(false);
+            DisableShopUI();
+            SetTaskActive(true);
         }
     }
 
@@ -98,18 +87,13 @@ public class BuildManager : MonoBehaviour
     public void BuildTurret(GameObject turret)
     {
         audioSource.PlayOneShot(buildSound);
-        turretOnTile = Instantiate(turret, transform.position + offset, transform.rotation);
+        turretOnTile = Instantiate(turret, transform.position + groundOffset, transform.rotation);
 
         Turret turretScript = turretOnTile.GetComponentInChildren<Turret>();
         turretScript.SetBuildManager(this);
 
-        turretShopUI.SetActive(false);
-        shopUIActive = false;
-
-        taskInProgress = false;
-        controller.ChangeButtonInteractivity(true);
-        SetTileToPendingColor(false);
-        mechanicIcon.SetActive(false);
+        DisableShopUI();
+        SetTaskActive(false);
     }
 
     /* Replaces the turret on the tile with a new one */
@@ -130,11 +114,6 @@ public class BuildManager : MonoBehaviour
         audioSource.PlayOneShot(openSound);
         turretShopUI.SetActive(true);
         shopUIActive = true;
-
-        if (!taskInProgress)
-        {
-            myRenderer.materials[1].color = originalColor;
-        }
     }
 
     /* Disables the shop UI */
@@ -145,18 +124,23 @@ public class BuildManager : MonoBehaviour
         shopUIActive = false;
     }
 
-    /* Sets the tile to the pending*/
+    /* Sets the tile to the pending highlight color*/
     public void SetTileToPendingColor(bool b)
     {
         myRenderer.materials[1].color = (b) ? pendingColor.color : originalColor;
     }
 
-    /* Undoes the Pending Task Highlight and State */
-    public void UndoPendingTask()
+    /* Sets the tile to the hover highlight color */
+    public void SetTileToHighlightColor(bool b)
     {
-        taskInProgress = false;
-        controller.ChangeButtonInteractivity(true);
-        SetTileToPendingColor(false);
-        mechanicIcon.SetActive(false);
+        myRenderer.materials[1].color = (b) ? highlightColor.color : originalColor;
+    }
+
+    /* Sets the task related fields based on whether the task is active or not */
+    public void SetTaskActive(bool b)
+    {
+        taskInProgress = b;
+        SetTileToPendingColor(b);
+        mechanicIcon.SetActive(b);
     }
 }

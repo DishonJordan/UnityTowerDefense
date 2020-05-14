@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Mechanic : MonoBehaviour
 {
-    public enum State
+    enum State
     {
         Home,
         OrientTask,
@@ -28,14 +28,14 @@ public class Mechanic : MonoBehaviour
     private Vector3 homePosition;
     private Quaternion homeRotation;
     private Animator anim;
-    public State state;
+    private State state;
     private MechanicManager mManager;
     private GameObject taskButton;
 
     private float timer;
     private readonly float turnSpeed = 7f;
     private readonly float heightOfMap = 0.254f;
-    private float previousDirection = 3f;
+    private float previousDirection = 0f;
 
     private void Start()
     {

@@ -82,18 +82,18 @@ public class Task
         switch (type)
         {
             case Type.Build:
-                ((BuildManager)script).UndoPendingTask();
+                ((BuildManager)script).SetTaskActive(false);
                 Bank.instance.DepositMoney(cost);
                 break;
             case Type.Sell:
-                ((Turret)script).UndoPendingTask();
+                ((Turret)script).SetTaskActive(false);
                 break;
             case Type.Upgrade:
-                ((Turret)script).UndoPendingTask();
+                ((Turret)script).SetTaskActive(false);
                 Bank.instance.DepositMoney(cost);
                 break;
             case Type.Repair:
-                ((Turret)script).UndoPendingTask();
+                ((Turret)script).SetTaskActive(false);
                 Bank.instance.DepositMoney(cost);
                 break;
             default:
