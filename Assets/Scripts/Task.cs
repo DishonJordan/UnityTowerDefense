@@ -14,14 +14,18 @@ public class Task
     private Type type;
     private MonoBehaviour script;
     private GameObject turretToBuild;
+    private Sprite turretIcon;
 
-    /* Location of task, Type of task, Script to execute task, optional gameobject to be used as a parameter for task execution */
-    public Task(Vector3 loc, Type t, MonoBehaviour s, GameObject tb)
+    /* Location of task, Type of task, Script to execute task, 
+     * optional gameobject to be used as a parameter for task execution, 
+     * and a icon for the turret */
+    public Task(Vector3 loc, Type t, MonoBehaviour s, GameObject tb, Sprite icon)
     {
         taskLocation = loc;
         type = t;
         script = s;
         turretToBuild = tb;
+        turretIcon = icon;
     }
 
     public void PerformTask()
@@ -59,6 +63,32 @@ public class Task
                 return "Repair";
             default:
                 return "ERROR";
+        }
+    }
+
+    public Sprite GetIcon()
+    {
+        return turretIcon;
+    }
+
+    
+    public void EndTask() { //NEed to refund too
+        switch (type)
+        {
+            case Type.Build:
+                ((BuildManager)script).UndoPendingTask();
+                break;
+            case Type.Sell:
+                ((Turret)script).SellTurret();
+                break;
+            case Type.Upgrade:
+                ((Turret)script).UpgradeTurret();
+                break;
+            case Type.Repair:
+                ((Turret)script).RepairTurret();
+                break;
+            default:
+                break;
         }
     }
 }

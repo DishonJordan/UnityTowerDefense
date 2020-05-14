@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class Mechanic : MonoBehaviour
 {
@@ -18,6 +20,8 @@ public class Mechanic : MonoBehaviour
     public float movementSpeed;
     public float taskSpeed;
 
+    public GameObject taskUI;
+
     [HideInInspector]
     private Task task;
 
@@ -26,11 +30,11 @@ public class Mechanic : MonoBehaviour
     private Animator anim;
     private State state;
     private MechanicManager mManager;
-    private GameObject buttonLocation;
+    private GameObject taskButton;
 
     private float timer;
-    private float turnSpeed = 7f;
-    private float heightOfMap = 0.254f;
+    private readonly float turnSpeed = 7f;
+    private readonly float heightOfMap = 0.254f;
     private float previousDirection = 3f;
 
     private void Start()
@@ -44,10 +48,24 @@ public class Mechanic : MonoBehaviour
         mManager = MechanicManager.instance;
         anim = GetComponent<Animator>();
 
-        buttonLocation = transform.GetChild(3).gameObject;
+        taskButton = taskUI.transform.GetChild(0).GetChild(1).gameObject;
+        UpdateTaskUI(null, "No Task");
+
     }
 
     private void Update()
+    {
+        Tick();
+    }
+
+    /* Toggles the Task UI */
+    private void OnMouseDown()
+    {
+        taskUI.SetActive(!taskUI.activeSelf);
+    }
+
+    /* Runs the state machine */
+    private void Tick()
     {
         /* State Transitions */
         switch (state)
@@ -193,6 +211,7 @@ public class Mechanic : MonoBehaviour
         if (timer > taskSpeed)
         {
             task.PerformTask();
+            UpdateTaskUI(null, "No Task");
         }
     }
 
@@ -205,11 +224,31 @@ public class Mechanic : MonoBehaviour
     /* Requests a task from the mechanic manager */
     private void RequestTask()
     {
-        task = mManager.GetTask(buttonLocation.transform);
+        task = mManager.GetTask();
+        if (task != null)
+        {
+            UpdateTaskUI(task.GetIcon(), task.GetTaskName());
+        }
     }
 
-    private void SetButton() {
+    /* Update the Task UI to a specific sprite and string */
+    private void UpdateTaskUI(Sprite s, string t)
+    {
+        taskButton.GetComponentInChildren<TextMeshProUGUI>().text = t;
 
+        if (s != null)
+        {
+            Image img = taskButton.transform.GetChild(1).GetComponentInChildren<Image>();
+            img.sprite = s;
+            img.color = new Color(img.color.r, img.color.g, img.color.b, 255);
+        }
+        else
+        {
+            taskButton.transform.GetChild(1).GetComponentInChildren<Image>().sprite = null;
+
+            Color c = taskButton.transform.GetChild(1).GetComponentInChildren<Image>().color;
+            taskButton.transform.GetChild(1).GetComponentInChildren<Image>().color = new Color(c.r, c.b, c.g, 0);
+        }
     }
 
     /* Sets the animation bools */

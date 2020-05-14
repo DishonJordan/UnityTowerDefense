@@ -193,6 +193,7 @@ MonoBehaviour:
   maxHealth: 200
   health: 200
   turretUI: {fileID: 3840033484389114304}
+  TurretSprite: {fileID: 21300000, guid: c44a01790b56a8549abece5b156fb8de, type: 3}
   turretProjectile: {fileID: 8575892767575457776, guid: c8a081459bd7bb64e8d4b6316f1205ec,
     type: 3}
   firePoint: {fileID: 492968037907114793}

@@ -78,7 +78,7 @@ public class BuildManager : MonoBehaviour
 
         if (turret != null && turretOnTile == null && Bank.instance.WithdrawMoney(t.purchaseCost))
         {
-            Task task = new Task(transform.position, Task.Type.Build, this, turret);
+            Task task = new Task(transform.position, Task.Type.Build, this, turret, t.TurretSprite);
             MechanicManager.instance.AddTask(task);
 
             turretShopUI.SetActive(false);
@@ -144,5 +144,12 @@ public class BuildManager : MonoBehaviour
     public void SetTileToPendingColor(bool b)
     {
         myRenderer.materials[1].color = (b) ? pendingColor.color : originalColor;
+    }
+
+    /* Undoes the Pending Task Highlight and State */
+    public void UndoPendingTask() {
+        taskInProgress = false;
+        controller.ChangeButtonInteractivity(true);
+        SetTileToPendingColor(false);
     }
 }
