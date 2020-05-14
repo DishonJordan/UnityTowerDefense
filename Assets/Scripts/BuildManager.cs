@@ -147,7 +147,8 @@ public class BuildManager : MonoBehaviour
     }
 
     /* Undoes the Pending Task Highlight and State */
-    public void UndoPendingTask() {
+    public void UndoPendingTask()
+    {
         taskInProgress = false;
         controller.ChangeButtonInteractivity(true);
         SetTileToPendingColor(false);

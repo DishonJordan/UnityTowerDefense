@@ -34,7 +34,7 @@ public class MechanicManager : MonoBehaviour
 
     private GameObject mechanic;
     private LinkedList<Task> tasks;
-    private Dictionary<GameObject,Task> taskDict;
+    private Dictionary<GameObject, Task> taskDict;
 
     private void Start()
     {
@@ -69,24 +69,30 @@ public class MechanicManager : MonoBehaviour
     }
 
     /* Removes a Task from the LinkedList */
-    public void RemoveTask(Task t) {
+    public void RemoveTask(Task t)
+    {
         LinkedListNode<Task> node = tasks.Find(t);
-        if (node != null) {
+        if (node != null)
+        {
             tasks.Remove(node);
         }
     }
 
-    private Task GetTaskFromButton(GameObject button) {
-        if (taskDict.TryGetValue(button, out Task t)){
+    private Task GetTaskFromButton(GameObject button)
+    {
+        if (taskDict.TryGetValue(button, out Task t))
+        {
             return t;
         }
         return null;
     }
 
-    public void RemoveTaskFromQueue(GameObject button) {
+    public void RemoveTaskFromQueue(GameObject button)
+    {
         Task t = GetTaskFromButton(button);
 
-        if (t != null) {
+        if (t != null)
+        {
             RemoveTask(t);
             taskDict.Remove(button);
             t.CancelTask();

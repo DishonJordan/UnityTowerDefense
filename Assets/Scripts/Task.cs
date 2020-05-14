@@ -73,8 +73,9 @@ public class Task
     {
         return turretIcon;
     }
-    
-    public void CancelTask() {
+
+    public void CancelTask()
+    {
         switch (type)
         {
             case Type.Build:
@@ -82,14 +83,14 @@ public class Task
                 Bank.instance.DepositMoney(cost);
                 break;
             case Type.Sell:
-                ((Turret)script).SellTurret();
+                ((Turret)script).UndoPendingTask();
                 break;
             case Type.Upgrade:
-                ((Turret)script).UpgradeTurret();
+                ((Turret)script).UndoPendingTask();
                 Bank.instance.DepositMoney(cost);
                 break;
             case Type.Repair:
-                ((Turret)script).RepairTurret();
+                ((Turret)script).UndoPendingTask();
                 Bank.instance.DepositMoney(cost);
                 break;
             default:

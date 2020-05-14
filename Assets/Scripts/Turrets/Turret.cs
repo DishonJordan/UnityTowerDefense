@@ -247,8 +247,9 @@ public class Turret : MonoBehaviour, IDamageable
         myTileBuildManager = buildManager;
     }
 
-    /**/
-    public void UndoPendingTask() {
+    /* Resets the Button Interactivity and Pending Tile Color */
+    public void UndoPendingTask()
+    {
         myTileBuildManager.SetTileToPendingColor(false);
         controller.ChangeButtonInteractivity(true);
         myTileBuildManager.taskInProgress = false;
