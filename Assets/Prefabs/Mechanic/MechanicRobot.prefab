@@ -1303,7 +1303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 3
-  taskSpeed: 10
+  taskSpeed: 2
   taskUI: {fileID: 7889882356536192887}
 --- !u!95 &8296172668915787356
 Animator:

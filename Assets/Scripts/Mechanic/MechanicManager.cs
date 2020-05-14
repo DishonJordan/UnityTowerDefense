@@ -26,20 +26,33 @@ public class MechanicManager : MonoBehaviour
 
     #endregion
 
+    [Header("UI Elements")]
     public GameObject mechanicUpgradeUI;
     public GameObject mechanicTaskUI;
 
+    [Header("Mechanic")]
+    public GameObject mechanic;
+
+    [Header("Task Elements")]
     public GameObject taskButton;
     public GameObject taskPanel;
 
-    private GameObject mechanic;
+    [Header("Mechanic")]
+    public Material highlightColor;
+
     private LinkedList<Task> tasks;
     private Dictionary<GameObject, Task> taskDict;
+    private GameObject spawnLocation;
+    private Color originalColor;
 
     private void Start()
     {
         tasks = new LinkedList<Task>();
         taskDict = new Dictionary<GameObject, Task>();
+        spawnLocation = transform.GetChild(3).gameObject;
+        originalColor = GetComponent<MeshRenderer>().materials[1].color;
+
+        Instantiate(mechanic, spawnLocation.transform.position, spawnLocation.transform.rotation);
     }
 
     /* Toggle Mechanic UIs */
@@ -47,6 +60,25 @@ public class MechanicManager : MonoBehaviour
     {
         mechanicUpgradeUI.SetActive(!mechanicUpgradeUI.activeSelf);
         mechanicTaskUI.SetActive(!mechanicTaskUI.activeSelf);
+        GetComponent<MeshRenderer>().materials[1].color = originalColor;
+    }
+
+    /* On hover highlight effect */
+    public void OnMouseEnter()
+    {
+        if (!mechanicTaskUI.activeSelf)
+        {
+            GetComponent<MeshRenderer>().materials[1].color = highlightColor.color;
+        }
+    }
+
+    /* Remove hover highlight effect */
+    public void OnMouseExit()
+    {
+        if (!mechanicTaskUI.activeSelf)
+        {
+            GetComponent<MeshRenderer>().materials[1].color = originalColor;
+        }
     }
 
     /* Gets a new task from the Queue and removes it from the Queue UI*/

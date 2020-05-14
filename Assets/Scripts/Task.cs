@@ -30,6 +30,7 @@ public class Task
         cost = c;
     }
 
+    /* Runs the associated function on the script */
     public void PerformTask()
     {
         switch (type)
@@ -51,6 +52,7 @@ public class Task
         }
     }
 
+    /* Gets the Name of the Task type*/
     public string GetTaskName()
     {
         switch (type)
@@ -74,6 +76,7 @@ public class Task
         return turretIcon;
     }
 
+    /* Refunds player task money and un-highlights task */
     public void CancelTask()
     {
         switch (type)

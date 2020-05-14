@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &146618655
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 146618656}
+  m_Layer: 0
+  m_Name: SpawnLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &146618656
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146618655}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0.011, y: 0.252, z: 0.078}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3659364036624743188}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &329877595670546695
 GameObject:
   m_ObjectHideFlags: 0
@@ -34,6 +64,7 @@ Transform:
   - {fileID: 1126311619585643801}
   - {fileID: 3472050769462675739}
   - {fileID: 8317732542030328011}
+  - {fileID: 146618656}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -100,6 +131,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mechanicUpgradeUI: {fileID: 4976608585341879775}
   mechanicTaskUI: {fileID: 2041803195748845714}
+  mechanic: {fileID: 3386981830917370694, guid: f3f9ba439381bd943b47f153fb641d38,
+    type: 3}
   taskButton: {fileID: 5556280599098715982, guid: a69fd8b83a75c4c42bff3495a9c1c8ca,
     type: 3}
   taskPanel: {fileID: 8677889587928341910}
