@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Task
+public abstract class Task
 {
     public enum Type
     {
@@ -11,64 +11,25 @@ public class Task
     }
 
     public Vector3 taskLocation;
-    private Type type;
-    private MonoBehaviour script;
-    private GameObject turretToBuild;
-    private Sprite turretIcon;
-    private int cost;
+    protected Type type;
+    protected MonoBehaviour script;
+    protected Sprite turretIcon;
+    protected int cost;
 
-    /* Location of task, Type of task, Script to execute task, 
-     * optional gameobject to be used as a parameter for task execution, 
-     * and a icon for the turret */
-    public Task(Vector3 loc, Type t, MonoBehaviour s, GameObject tb, Sprite icon, int c)
+    public Task(Vector3 taskLoc, Type taskType, MonoBehaviour taskScript, Sprite taskTurretIcon, int taskCost)
     {
-        taskLocation = loc;
-        type = t;
-        script = s;
-        turretToBuild = tb;
-        turretIcon = icon;
-        cost = c;
+        taskLocation = taskLoc;
+        type = taskType;
+        script = taskScript;
+        turretIcon = taskTurretIcon;
+        cost = taskCost;
     }
 
     /* Runs the associated function on the script */
-    public void PerformTask()
-    {
-        switch (type)
-        {
-            case Type.Build:
-                ((BuildManager)script).BuildTurret(turretToBuild);
-                break;
-            case Type.Sell:
-                ((Turret)script).SellTurret();
-                break;
-            case Type.Upgrade:
-                ((Turret)script).UpgradeTurret();
-                break;
-            case Type.Repair:
-                ((Turret)script).RepairTurret();
-                break;
-            default:
-                break;
-        }
-    }
+    public abstract void PerformTask();
 
     /* Gets the Name of the Task type*/
-    public string GetTaskName()
-    {
-        switch (type)
-        {
-            case Type.Build:
-                return "Build";
-            case Type.Sell:
-                return "Sell";
-            case Type.Upgrade:
-                return "Upgrade";
-            case Type.Repair:
-                return "Repair";
-            default:
-                return "ERROR";
-        }
-    }
+    public abstract string GetTaskName();
 
     /* Gets the Turret Sprite */
     public Sprite GetIcon()
@@ -77,27 +38,108 @@ public class Task
     }
 
     /* Refunds player task money and un-highlights task */
-    public void CancelTask()
+    public abstract void CancelTask();
+}
+
+public class BuildTask : Task
+{
+
+    private GameObject turretToBuild;
+
+    public BuildTask(Vector3 taskLoc, Type taskType, MonoBehaviour taskScript,
+        GameObject taskTurretToBuild, Sprite taskTurretIcon, int taskCost)
+        : base(taskLoc, taskType, taskScript, taskTurretIcon, taskCost)
     {
-        switch (type)
-        {
-            case Type.Build:
-                ((BuildManager)script).SetTaskActive(false);
-                Bank.instance.DepositMoney(cost);
-                break;
-            case Type.Sell:
-                ((Turret)script).SetTaskActive(false);
-                break;
-            case Type.Upgrade:
-                ((Turret)script).SetTaskActive(false);
-                Bank.instance.DepositMoney(cost);
-                break;
-            case Type.Repair:
-                ((Turret)script).SetTaskActive(false);
-                Bank.instance.DepositMoney(cost);
-                break;
-            default:
-                break;
-        }
+        turretToBuild = taskTurretToBuild;
+    }
+
+    public override void PerformTask()
+    {
+        ((BuildManager)script).BuildTurret(turretToBuild);
+    }
+
+    public override string GetTaskName()
+    {
+        return "Build";
+    }
+
+    public override void CancelTask()
+    {
+        ((BuildManager)script).SetTaskActive(false);
+        Bank.instance.DepositMoney(cost);
+    }
+}
+
+public class SellTask : Task
+{
+    public SellTask(Vector3 taskLoc, Type taskType, MonoBehaviour taskScript,
+        Sprite taskTurretIcon, int taskCost)
+        : base(taskLoc, taskType, taskScript, taskTurretIcon, taskCost)
+    {
+    }
+
+    public override void PerformTask()
+    {
+        ((Turret)script).SellTurret();
+    }
+
+    public override string GetTaskName()
+    {
+        return "Sell";
+    }
+
+    public override void CancelTask()
+    {
+        ((Turret)script).SetTaskActive(false);
+    }
+}
+
+public class UpgradeTask : Task
+{
+    public UpgradeTask(Vector3 taskLoc, Type taskType, MonoBehaviour taskScript,
+        Sprite taskTurretIcon, int taskCost)
+        : base(taskLoc, taskType, taskScript, taskTurretIcon, taskCost)
+    {
+    }
+
+    public override void PerformTask()
+    {
+        ((Turret)script).UpgradeTurret();
+    }
+
+    public override string GetTaskName()
+    {
+        return "Upgrade";
+    }
+
+    public override void CancelTask()
+    {
+        ((Turret)script).SetTaskActive(false);
+        Bank.instance.DepositMoney(cost);
+    }
+}
+
+public class RepairTask : Task
+{
+    public RepairTask(Vector3 taskLoc, Type taskType, MonoBehaviour taskScript,
+        Sprite taskTurretIcon, int taskCost)
+        : base(taskLoc, taskType, taskScript, taskTurretIcon, taskCost)
+    {
+    }
+
+    public override void PerformTask()
+    {
+        ((Turret)script).RepairTurret();
+    }
+
+    public override string GetTaskName()
+    {
+        return "Repair";
+    }
+
+    public override void CancelTask()
+    {
+        ((Turret)script).SetTaskActive(false);
+        Bank.instance.DepositMoney(cost);
     }
 }

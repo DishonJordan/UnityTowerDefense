@@ -65,6 +65,7 @@ public class BuildManager : MonoBehaviour
             && !shopUIActive && !Turret.turretUIActive && !taskInProgress)
         {
             EnableShopUI();
+            SetTileToHighlightColor(false);
         }
     }
 
@@ -75,7 +76,7 @@ public class BuildManager : MonoBehaviour
 
         if (turret != null && turretOnTile == null && Bank.instance.WithdrawMoney(t.purchaseCost))
         {
-            Task task = new Task(transform.position, Task.Type.Build, this, turret, t.TurretSprite, t.purchaseCost);
+            Task task = new BuildTask(transform.position, Task.Type.Build, this, turret, t.TurretSprite, t.purchaseCost);
             MechanicManager.instance.AddTask(task);
 
             DisableShopUI();
