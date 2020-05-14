@@ -47,6 +47,7 @@ public class Turret : MonoBehaviour, IDamageable
         timer = 0.0f;
         controller = turretUI.GetComponent<TurretUIController>();
         myTileBuildManager.SetTileToPendingColor(false);
+        myTileBuildManager.taskInProgress = false;
     }
 
     /* Handles when the user clicks on a turret */

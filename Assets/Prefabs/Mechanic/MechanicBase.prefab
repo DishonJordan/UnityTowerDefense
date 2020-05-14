@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146618655}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.011, y: 0.252, z: 0.078}
+  m_LocalPosition: {x: 0.011, y: 0.239, z: 0.078}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3659364036624743188}
@@ -136,6 +136,7 @@ MonoBehaviour:
   taskButton: {fileID: 5556280599098715982, guid: a69fd8b83a75c4c42bff3495a9c1c8ca,
     type: 3}
   taskPanel: {fileID: 8677889587928341910}
+  highlightColor: {fileID: 2100000, guid: fd2c2e627bff73b49a1257bc601b8f72, type: 2}
 --- !u!65 &3135845609983244964
 BoxCollider:
   m_ObjectHideFlags: 0

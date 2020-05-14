@@ -22516,10 +22516,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 146618656, guid: 86662d69179494d4f817bce4ddbe1f10, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.239
-      objectReference: {fileID: 0}
     - target: {fileID: 329877595670546695, guid: 86662d69179494d4f817bce4ddbe1f10,
         type: 3}
       propertyPath: m_Name
@@ -22580,11 +22576,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7508883854892760714, guid: 86662d69179494d4f817bce4ddbe1f10,
+    - target: {fileID: 3776721929118409104, guid: 86662d69179494d4f817bce4ddbe1f10,
         type: 3}
-      propertyPath: highlightColor
-      value: 
-      objectReference: {fileID: 2100000, guid: fd2c2e627bff73b49a1257bc601b8f72, type: 2}
+      propertyPath: m_ScrollSensitivity
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86662d69179494d4f817bce4ddbe1f10, type: 3}
 --- !u!1001 &8409425099167118549

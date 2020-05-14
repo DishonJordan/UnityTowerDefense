@@ -90,6 +90,9 @@ public class MechanicManager : MonoBehaviour
             tasks.RemoveFirst();
 
             GameObject b = taskPanel.transform.GetChild(0).gameObject;
+
+            RemoveTask(t);
+            taskDict.Remove(b);
             Destroy(b);
 
             return t;

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Mechanic : MonoBehaviour
 {
-    enum State
+    public enum State
     {
         Home,
         OrientTask,
@@ -28,7 +28,7 @@ public class Mechanic : MonoBehaviour
     private Vector3 homePosition;
     private Quaternion homeRotation;
     private Animator anim;
-    private State state;
+    public State state;
     private MechanicManager mManager;
     private GameObject taskButton;
 
