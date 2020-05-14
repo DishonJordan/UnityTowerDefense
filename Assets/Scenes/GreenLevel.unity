@@ -20234,6 +20234,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MechanicRobot
       objectReference: {fileID: 0}
+    - target: {fileID: 6638612691685986090, guid: f3f9ba439381bd943b47f153fb641d38,
+        type: 3}
+      propertyPath: taskSpeed
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3f9ba439381bd943b47f153fb641d38, type: 3}
 --- !u!1001 &7210128777437517750
