@@ -199,7 +199,7 @@ public class Turret : MonoBehaviour, IDamageable
         switch (type)
         {
             case Task.Type.Sell:
-                MechanicManager.instance.AddTask(new Task(transform.position, type, this, null, TurretSprite));
+                MechanicManager.instance.AddTask(new Task(transform.position, type, this, null, TurretSprite, 0));
 
                 DisableTurretUI();
                 controller.ChangeButtonInteractivity(false);
@@ -209,7 +209,7 @@ public class Turret : MonoBehaviour, IDamageable
             case Task.Type.Upgrade:
                 if (nextUpgrade != null && Bank.instance.WithdrawMoney(upgradeCost))
                 {
-                    MechanicManager.instance.AddTask(new Task(transform.position, type, this, null, TurretSprite));
+                    MechanicManager.instance.AddTask(new Task(transform.position, type, this, null, TurretSprite, upgradeCost));
 
                     DisableTurretUI();
                     controller.ChangeButtonInteractivity(false);
@@ -220,7 +220,7 @@ public class Turret : MonoBehaviour, IDamageable
             case Task.Type.Repair:
                 if (Bank.instance.WithdrawMoney(repairCost))
                 {
-                    MechanicManager.instance.AddTask(new Task(transform.position, type, this, null, TurretSprite));
+                    MechanicManager.instance.AddTask(new Task(transform.position, type, this, null, TurretSprite, repairCost));
 
                     DisableTurretUI();
                     controller.ChangeButtonInteractivity(false);

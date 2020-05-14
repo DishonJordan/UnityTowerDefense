@@ -15,17 +15,19 @@ public class Task
     private MonoBehaviour script;
     private GameObject turretToBuild;
     private Sprite turretIcon;
+    private int cost;
 
     /* Location of task, Type of task, Script to execute task, 
      * optional gameobject to be used as a parameter for task execution, 
      * and a icon for the turret */
-    public Task(Vector3 loc, Type t, MonoBehaviour s, GameObject tb, Sprite icon)
+    public Task(Vector3 loc, Type t, MonoBehaviour s, GameObject tb, Sprite icon, int c)
     {
         taskLocation = loc;
         type = t;
         script = s;
         turretToBuild = tb;
         turretIcon = icon;
+        cost = c;
     }
 
     public void PerformTask()
@@ -66,26 +68,29 @@ public class Task
         }
     }
 
+    /* Gets the Turret Sprite */
     public Sprite GetIcon()
     {
         return turretIcon;
     }
-
     
-    public void EndTask() { //NEed to refund too
+    public void CancelTask() {
         switch (type)
         {
             case Type.Build:
                 ((BuildManager)script).UndoPendingTask();
+                Bank.instance.DepositMoney(cost);
                 break;
             case Type.Sell:
                 ((Turret)script).SellTurret();
                 break;
             case Type.Upgrade:
                 ((Turret)script).UpgradeTurret();
+                Bank.instance.DepositMoney(cost);
                 break;
             case Type.Repair:
                 ((Turret)script).RepairTurret();
+                Bank.instance.DepositMoney(cost);
                 break;
             default:
                 break;

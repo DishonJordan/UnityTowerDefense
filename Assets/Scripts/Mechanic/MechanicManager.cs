@@ -40,7 +40,6 @@ public class MechanicManager : MonoBehaviour
     {
         tasks = new LinkedList<Task>();
         taskDict = new Dictionary<GameObject, Task>();
-        PrintDict();
     }
 
     /* Toggle Mechanic UIs */
@@ -85,17 +84,14 @@ public class MechanicManager : MonoBehaviour
     }
 
     public void RemoveTaskFromQueue(GameObject button) {
-        Debug.Log("Attempting to Remove!");
         Task t = GetTaskFromButton(button);
 
         if (t != null) {
-            Debug.Log("Found Task From Button");
             RemoveTask(t);
             taskDict.Remove(button);
-            t.EndTask();
+            t.CancelTask();
             Destroy(button);
         }
-        PrintDict();
     }
 
     /* Adds a Task to the Queue and Adds a button to the Queue UI*/
@@ -112,12 +108,5 @@ public class MechanicManager : MonoBehaviour
         button.onClick.AddListener(() => RemoveTaskFromQueue(b));
 
         taskDict.Add(b, t);
-        PrintDict();
-    }
-
-    private void PrintDict() {
-        foreach (KeyValuePair<GameObject, Task> kvp in taskDict) {
-            Debug.Log(kvp.Key + " " + kvp.Value);
-        }
     }
 }

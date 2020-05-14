@@ -3,7 +3,9 @@
 public class PointTowardsCamera : MonoBehaviour
 {
     public static GameObject mainCamera;
-    private readonly float turnRate = 1000f;
+
+    public float turnRate = 1000f;
+    public bool continuous = true;
 
     private void Start()
     {
@@ -12,15 +14,27 @@ public class PointTowardsCamera : MonoBehaviour
         {
             mainCamera = GameObject.Find("Main Camera");
         }
+
+        if (!continuous) {
+            Vector3 direction = mainCamera.transform.position - transform.position;
+            Quaternion qRotation = Quaternion.LookRotation(direction);
+            Vector3 rotation = Quaternion.Lerp(transform.rotation, qRotation, Time.deltaTime * 1000f).eulerAngles;
+
+            /* Rotates the ui about the y axis*/
+            transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+        }
     }
 
     void Update()
     {
-        Vector3 direction = mainCamera.transform.position - transform.position;
-        Quaternion qRotation = Quaternion.LookRotation(direction);
-        Vector3 rotation = Quaternion.Lerp(transform.rotation, qRotation, Time.deltaTime * turnRate).eulerAngles;
+        if (continuous)
+        {
+            Vector3 direction = mainCamera.transform.position - transform.position;
+            Quaternion qRotation = Quaternion.LookRotation(direction);
+            Vector3 rotation = Quaternion.Lerp(transform.rotation, qRotation, Time.deltaTime * turnRate).eulerAngles;
 
-        /* Rotates the ui about the y axis*/
-        transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+            /* Rotates the ui about the y axis*/
+            transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+        }
     }
 }
