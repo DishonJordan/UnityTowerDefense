@@ -262,9 +262,7 @@ public class Turret : MonoBehaviour, IDamageable
     /* Sets the task related fields based on whether the task is active or not */
     public void SetTaskActive(bool b)
     {
-        myTileBuildManager.SetTileToPendingColor(b);
-        myTileBuildManager.taskInProgress = b;
-        myTileBuildManager.mechanicIcon.SetActive(b);
+        myTileBuildManager.SetTaskActive(b);
     }
 
     /* When clicking on the turret in the scene, it will show the fireRange of the turret */

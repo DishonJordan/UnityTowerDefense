@@ -14,27 +14,24 @@ public class PointTowardsCamera : MonoBehaviour
         {
             mainCamera = GameObject.Find("Main Camera");
         }
-
-        if (!continuous) {
-            Vector3 direction = mainCamera.transform.position - transform.position;
-            Quaternion qRotation = Quaternion.LookRotation(direction);
-            Vector3 rotation = Quaternion.Lerp(transform.rotation, qRotation, Time.deltaTime * 1000f).eulerAngles;
-
-            /* Rotates the ui about the y axis*/
-            transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-        }
     }
 
-    void Update()
+    private void Update()
     {
         if (continuous)
         {
-            Vector3 direction = mainCamera.transform.position - transform.position;
-            Quaternion qRotation = Quaternion.LookRotation(direction);
-            Vector3 rotation = Quaternion.Lerp(transform.rotation, qRotation, Time.deltaTime * turnRate).eulerAngles;
-
-            /* Rotates the ui about the y axis*/
-            transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+            RotateTowardsCamera();
         }
     }
+
+    private void RotateTowardsCamera()
+    {
+        Vector3 direction = mainCamera.transform.position - transform.position;
+        Quaternion qRotation = Quaternion.LookRotation(direction);
+        Vector3 rotation = Quaternion.Lerp(transform.rotation, qRotation, Time.deltaTime * turnRate).eulerAngles;
+
+        /* Rotates the ui about the y axis*/
+        transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+    }
+
 }
