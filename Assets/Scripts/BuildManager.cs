@@ -22,9 +22,8 @@ public class BuildManager : MonoBehaviour
 
     [HideInInspector]
     public bool taskInProgress;
-    [HideInInspector]
-    public GameObject mechanicIcon;
 
+    private GameObject mechanicIcon;
     private GameObject turretOnTile;
     private Color originalColor;
     private Renderer myRenderer;
@@ -76,7 +75,7 @@ public class BuildManager : MonoBehaviour
 
         if (turret != null && turretOnTile == null && Bank.instance.WithdrawMoney(t.purchaseCost))
         {
-            Task task = new BuildTask(transform.position, Task.Type.Build, this, turret, t.TurretSprite, t.purchaseCost);
+            Task task = new BuildTask(this, turret);
             MechanicManager.instance.AddTask(task);
 
             DisableShopUI();

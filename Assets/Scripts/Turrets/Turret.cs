@@ -217,7 +217,7 @@ public class Turret : MonoBehaviour, IDamageable
         switch (type)
         {
             case Task.Type.Sell:
-                MechanicManager.instance.AddTask(new SellTask(transform.position, type, this, TurretSprite, 0));
+                MechanicManager.instance.AddTask(new SellTask(this));
 
                 DisableTurretUI();
                 SetTaskActive(true);
@@ -225,7 +225,7 @@ public class Turret : MonoBehaviour, IDamageable
             case Task.Type.Upgrade:
                 if (nextUpgrade != null && Bank.instance.WithdrawMoney(upgradeCost))
                 {
-                    MechanicManager.instance.AddTask(new UpgradeTask(transform.position, type, this, TurretSprite, upgradeCost));
+                    MechanicManager.instance.AddTask(new UpgradeTask(this));
 
                     DisableTurretUI();
                     SetTaskActive(true);
@@ -234,7 +234,7 @@ public class Turret : MonoBehaviour, IDamageable
             case Task.Type.Repair:
                 if (Bank.instance.WithdrawMoney(repairCost))
                 {
-                    MechanicManager.instance.AddTask(new RepairTask(transform.position, type, this, TurretSprite, repairCost));
+                    MechanicManager.instance.AddTask(new RepairTask(this));
 
                     DisableTurretUI();
                     SetTaskActive(true);

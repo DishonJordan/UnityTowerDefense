@@ -16,13 +16,11 @@ public abstract class Task
     protected Sprite turretIcon;
     protected int cost;
 
-    public Task(Vector3 taskLoc, Type taskType, MonoBehaviour taskScript, Sprite taskTurretIcon, int taskCost)
+    public Task(Type taskType, MonoBehaviour taskScript)
     {
-        taskLocation = taskLoc;
         type = taskType;
         script = taskScript;
-        turretIcon = taskTurretIcon;
-        cost = taskCost;
+        taskLocation = taskScript.transform.position;
     }
 
     /* Runs the associated function on the script */
@@ -46,11 +44,14 @@ public class BuildTask : Task
 
     private GameObject turretToBuild;
 
-    public BuildTask(Vector3 taskLoc, Type taskType, MonoBehaviour taskScript,
-        GameObject taskTurretToBuild, Sprite taskTurretIcon, int taskCost)
-        : base(taskLoc, taskType, taskScript, taskTurretIcon, taskCost)
+    public BuildTask(MonoBehaviour taskScript, GameObject taskTurretToBuild)
+        : base(Type.Build, taskScript)
     {
         turretToBuild = taskTurretToBuild;
+        Turret t = taskTurretToBuild.GetComponentInChildren<Turret>();
+        turretIcon = t.TurretSprite;
+        cost = t.purchaseCost;
+
     }
 
     public override void PerformTask()
@@ -72,10 +73,11 @@ public class BuildTask : Task
 
 public class SellTask : Task
 {
-    public SellTask(Vector3 taskLoc, Type taskType, MonoBehaviour taskScript,
-        Sprite taskTurretIcon, int taskCost)
-        : base(taskLoc, taskType, taskScript, taskTurretIcon, taskCost)
+    public SellTask(MonoBehaviour taskScript)
+        : base(Type.Sell, taskScript)
     {
+        turretIcon = ((Turret)script).TurretSprite;
+        cost = 0; // Not used by SellTask
     }
 
     public override void PerformTask()
@@ -96,10 +98,11 @@ public class SellTask : Task
 
 public class UpgradeTask : Task
 {
-    public UpgradeTask(Vector3 taskLoc, Type taskType, MonoBehaviour taskScript,
-        Sprite taskTurretIcon, int taskCost)
-        : base(taskLoc, taskType, taskScript, taskTurretIcon, taskCost)
+    public UpgradeTask(MonoBehaviour taskScript)
+        : base(Type.Upgrade, taskScript)
     {
+        turretIcon = ((Turret)script).TurretSprite;
+        cost = ((Turret)script).upgradeCost;
     }
 
     public override void PerformTask()
@@ -121,10 +124,11 @@ public class UpgradeTask : Task
 
 public class RepairTask : Task
 {
-    public RepairTask(Vector3 taskLoc, Type taskType, MonoBehaviour taskScript,
-        Sprite taskTurretIcon, int taskCost)
-        : base(taskLoc, taskType, taskScript, taskTurretIcon, taskCost)
+    public RepairTask(MonoBehaviour taskScript)
+        : base(Type.Repair, taskScript)
     {
+        turretIcon = ((Turret)script).TurretSprite;
+        cost = ((Turret)script).repairCost;
     }
 
     public override void PerformTask()

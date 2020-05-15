@@ -33,5 +33,4 @@ public class PointTowardsCamera : MonoBehaviour
         /* Rotates the ui about the y axis*/
         transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
-
 }
