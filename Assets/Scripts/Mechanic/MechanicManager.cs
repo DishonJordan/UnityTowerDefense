@@ -81,7 +81,7 @@ public class MechanicManager : MonoBehaviour
         }
     }
 
-    /* Gets a new task from the Queue and removes it from the Queue UI*/
+    /* Gets a new task from the Queue and removes it from the Queue UI */
     public Task GetTask()
     {
         if (tasks.Count > 0)
@@ -123,8 +123,8 @@ public class MechanicManager : MonoBehaviour
         return null;
     }
 
-    /* Removes the Task from the queue, deletes the button, and refunds user*/
-    public void RemoveTaskFromQueue(GameObject button)
+    /* Removes the Task from the queue, deletes the button, and refunds user */
+    public void DeleteTask(GameObject button)
     {
         Task t = GetTaskFromButton(button);
 
@@ -137,7 +137,7 @@ public class MechanicManager : MonoBehaviour
         }
     }
 
-    /* Adds a Task to the Queue and Adds a button to the Queue UI*/
+    /* Adds a Task to the Queue and Adds a button to the Queue UI */
     public void AddTask(Task t)
     {
         tasks.AddLast(t);
@@ -148,7 +148,7 @@ public class MechanicManager : MonoBehaviour
         b.transform.SetParent(taskPanel.transform);
 
         Button button = b.GetComponentInChildren<Button>();
-        button.onClick.AddListener(() => RemoveTaskFromQueue(b));
+        button.onClick.AddListener(() => DeleteTask(b));
 
         taskDict.Add(b, t);
     }
