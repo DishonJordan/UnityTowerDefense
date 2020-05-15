@@ -44,15 +44,19 @@ public class MechanicManager : MonoBehaviour
     private Dictionary<GameObject, Task> taskDict;
     private GameObject spawnLocation;
     private Color originalColor;
+    private List<GameObject> mechanics;
+    private readonly float spawnRadius = 0.175f;
 
     private void Start()
     {
         tasks = new LinkedList<Task>();
+        mechanics = new List<GameObject>();
         taskDict = new Dictionary<GameObject, Task>();
+
         spawnLocation = transform.GetChild(3).gameObject;
         originalColor = GetComponent<MeshRenderer>().materials[1].color;
 
-        Instantiate(mechanic, spawnLocation.transform.position, spawnLocation.transform.rotation);
+        SpawnMechanic();
     }
 
     /* Toggle Mechanic UIs */
@@ -151,5 +155,24 @@ public class MechanicManager : MonoBehaviour
         button.onClick.AddListener(() => DeleteTask(b));
 
         taskDict.Add(b, t);
+    }
+
+    /* Spawns a new mechanic at spawnLocation and adds the mechanic to the List of Mechanics */
+    public void SpawnMechanic()
+    {
+        GameObject mech = Instantiate(mechanic, spawnLocation.transform.position +
+            new Vector3(Random.Range(-spawnRadius, spawnRadius), 0, Random.Range(-spawnRadius, spawnRadius)),
+            spawnLocation.transform.rotation);
+        mechanics.Add(mech);
+    }
+
+    public void IncreaseMovementSpeed()
+    {
+        Debug.Log("TODO: Increase Movement Speed Upgrade");
+    }
+
+    public void DecreaseTaskTime()
+    {
+        Debug.Log("TODO: Decrease Task Time Upgrade");
     }
 }
