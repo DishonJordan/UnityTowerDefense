@@ -22631,6 +22631,11 @@ PrefabInstance:
       propertyPath: m_ScrollSensitivity
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3776721929118409104, guid: 86662d69179494d4f817bce4ddbe1f10,
+        type: 3}
+      propertyPath: m_MovementType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4752733272539313261, guid: 86662d69179494d4f817bce4ddbe1f10,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
