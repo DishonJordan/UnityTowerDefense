@@ -130,6 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turretShopUI: {fileID: 1202534299649299224}
   highlightColor: {fileID: 2100000, guid: c1c72049c4fff694c9265991d222e63b, type: 2}
+  pendingColor: {fileID: 2100000, guid: e12bd476f00e1da4d88bd605ecf60093, type: 2}
   audioSource: {fileID: 5394107454513280678}
   openSound: {fileID: 8300000, guid: 28a6250b49dfb144084cc91a10e4baa9, type: 3}
   closeSound: {fileID: 8300000, guid: 100393fa3cb877a4d9a700a202162de8, type: 3}

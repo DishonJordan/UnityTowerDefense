@@ -13,9 +13,9 @@ public class Turret : MonoBehaviour, IDamageable
     public int upgradeCost;
 
     [Header("Properties")]
-    [Tooltip("After how many seconds does the turret shoots")]
+    [Tooltip("After how many seconds does the turret shoot")]
     public float fireRate;
-    [Tooltip("This range can be seen in the unity editor by clicking on the turret object")]
+    [Tooltip("The range in units that the turret can shoot")]
     public float fireRange;
     [Tooltip("The maximum health of this turret")]
     public float maxHealth;
@@ -38,11 +38,14 @@ public class Turret : MonoBehaviour, IDamageable
     private readonly float turnRate = 6f;
     private float timer;
     private BuildManager myTileBuildManager;
+    private TurretUIController controller;
 
     /* Initializations that occur when the object is instantiated */
-    private void Start()
+    protected void Start()
     {
         timer = 0.0f;
+        controller = turretUI.GetComponent<TurretUIController>();
+        myTileBuildManager.SetTileToPendingColor(false);
     }
 
     /* Handles when the user clicks on a turret */
@@ -54,6 +57,7 @@ public class Turret : MonoBehaviour, IDamageable
         }
     }
 
+    /* Targeting and firing happens here*/
     private void Update()
     {
         /* If there is no target, search for one, else track the target and coundown to shoot */
@@ -135,7 +139,7 @@ public class Turret : MonoBehaviour, IDamageable
     public void TakeDamage(float damage)
     {
         health -= damage;
-        if(health <= 0)
+        if (health <= 0)
         {
             health = 0;
         }
@@ -159,29 +163,77 @@ public class Turret : MonoBehaviour, IDamageable
     public void SellTurret()
     {
         Bank.instance.DepositMoney(sellCost);
+
+        myTileBuildManager.SetTileToPendingColor(false);
+        myTileBuildManager.taskInProgress = false;
+
         DestroyTurret();
     }
 
     /* Upgrades the stats of the turret */
     public void UpgradeTurret()
     {
-        if (nextUpgrade != null && Bank.instance.WithdrawMoney(upgradeCost))
-        {
-            /* Replaced turret on tile with the upgraded one */
-            myTileBuildManager.ReplaceTurret(nextUpgrade);
-            DestroyTurret();
-        }
+        /* Replaced turret on tile with the upgraded one */
+        myTileBuildManager.ReplaceTurret(nextUpgrade);
+
+        myTileBuildManager.SetTileToPendingColor(false);
+        myTileBuildManager.taskInProgress = false;
+
+        DestroyTurret();
     }
 
     /* Repairs health of the turret */
     public void RepairTurret()
     {
-        if(Bank.instance.WithdrawMoney(repairCost)){
-            health += 25;
-            if(health > maxHealth)
-            {
-                health = maxHealth;
-            }
+        health += 25;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+
+        myTileBuildManager.SetTileToPendingColor(false);
+        controller.ChangeButtonInteractivity(true);
+        myTileBuildManager.taskInProgress = false;
+    }
+
+    /* Requests that the MechanicManager modifies the tower */
+    public void RequestModification(Task.Type type)
+    {
+        switch (type)
+        {
+            case Task.Type.Sell:
+                MechanicManager.instance.AddTask(new Task(transform.position, type, this, null));
+
+                DisableTurretUI();
+                controller.ChangeButtonInteractivity(false);
+                myTileBuildManager.taskInProgress = true;
+                myTileBuildManager.SetTileToPendingColor(true);
+                break;
+            case Task.Type.Upgrade:
+                if (nextUpgrade != null && Bank.instance.WithdrawMoney(upgradeCost))
+                {
+                    MechanicManager.instance.AddTask(new Task(transform.position, type, this, null));
+
+                    DisableTurretUI();
+                    controller.ChangeButtonInteractivity(false);
+                    myTileBuildManager.taskInProgress = true;
+                    myTileBuildManager.SetTileToPendingColor(true);
+                }
+                break;
+            case Task.Type.Repair:
+                if (Bank.instance.WithdrawMoney(repairCost))
+                {
+                    MechanicManager.instance.AddTask(new Task(transform.position, type, this, null));
+
+                    DisableTurretUI();
+                    controller.ChangeButtonInteractivity(false);
+                    myTileBuildManager.taskInProgress = true;
+                    myTileBuildManager.SetTileToPendingColor(true);
+                }
+                break;
+            default:
+                Debug.Log("Should Never Arrive Here!");
+                break;
         }
     }
 

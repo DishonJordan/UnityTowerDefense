@@ -32,7 +32,7 @@ public class ShopUIController : MonoBehaviour
             turretPriceTexts[count] = b.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
             b.onClick.RemoveAllListeners();
             GameObject t = turrets[count];
-            b.onClick.AddListener(() => buildManager.BuildTurret(t));
+            b.onClick.AddListener(() => buildManager.RequestBuild(t));
             count++;
         }
 
@@ -50,6 +50,14 @@ public class ShopUIController : MonoBehaviour
         for (int i = 0; i < turretButtons.Length; i++)
         {
             turretButtons[i].GetComponent<Image>().sprite = Bank.instance.CanWithdrawMoney(prices[i]) ? canPurchaseSprite : cannotPurchaseSprite;
+        }
+    }
+
+    public void ChangeButtonInteractivity(bool status)
+    {
+        foreach (Button b in turretButtons)
+        {
+            b.interactable = status;
         }
     }
 }

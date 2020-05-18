@@ -4,8 +4,9 @@ public class BallistaTurret : Turret
 {
     private GameObject arrow;
 
-    private void Start()
+    new void Start()
     {
+        base.Start();
         arrow = this.gameObject.transform.GetChild(0).GetChild(0).gameObject;
     }
 
