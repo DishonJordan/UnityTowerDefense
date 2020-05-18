@@ -70,19 +70,13 @@ public class MechanicManager : MonoBehaviour
     /* On hover highlight effect */
     public void OnMouseEnter()
     {
-        if (!mechanicTaskUI.activeSelf)
-        {
             GetComponent<MeshRenderer>().materials[1].color = highlightColor.color;
-        }
     }
 
     /* Remove hover highlight effect */
     public void OnMouseExit()
     {
-        if (!mechanicTaskUI.activeSelf)
-        {
             GetComponent<MeshRenderer>().materials[1].color = originalColor;
-        }
     }
 
     /* Gets a new task from the Queue and removes it from the Queue UI */
