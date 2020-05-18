@@ -53,7 +53,12 @@ public class TurretPrefabEditor
     {
         int modified = ForeachPrefabInFolder(TURRET_FOLDER, (turretPrefab) =>
         {
-            return RemoveVFXFromTurret(turretPrefab);
+            TurretEffects effects = turretPrefab.GetComponentInChildren<TurretEffects>(true);
+            if (!effects)
+                return false;
+
+            UnityEngine.Object.DestroyImmediate(effects.gameObject);
+            return true;
         });
         Debug.Log("Modified " + modified + " turret prefabs: " + "Added VFX.");
     }
@@ -63,29 +68,52 @@ public class TurretPrefabEditor
     {
         int modified = ForeachPrefabInFolder(TURRET_FOLDER, (turretPrefab) =>
         {
-            return MaxOutHealthOnTurret(turretPrefab);
+            Turret turret = turretPrefab.GetComponentInChildren<Turret>();
+            if (!turret)
+                return false;
+
+            turret.health = turret.maxHealth;
+            return true;
         });
         Debug.Log("Modified " + modified + " turret prefabs: " + "Set health to max health.");
     }
 
-    private static bool RemoveVFXFromTurret(GameObject turretPrefab)
+    [MenuItem("Tools/Turret Prefabs/Connect TurretUI to Turret")]
+    public static void ConnectToTurretUI()
     {
-        TurretEffects effects = turretPrefab.GetComponentInChildren<TurretEffects>(true);
-        if (!effects)
-            return false;
+        int modified = ForeachPrefabInFolder(TURRET_FOLDER, (turretPrefab) =>
+        {
+            Turret turret = turretPrefab.GetComponentInChildren<Turret>();
+            if (!turret)
+                return false;
 
-        UnityEngine.Object.DestroyImmediate(effects.gameObject);
-        return true;
+            TurretUIController controller = turretPrefab.GetComponentInChildren<TurretUIController>();
+            if (!controller)
+                return false;
+
+            controller.turret = turret.gameObject;
+            return true;
+        });
+        Debug.Log("Modified " + modified + " turret prefabs: " + "Connected TurretUI to Turret.");
     }
 
-    private static bool MaxOutHealthOnTurret(GameObject turretPrefab)
+    [MenuItem("Tools/Turret Prefabs/Connect Turret Health Bar to Turret")]
+    public static void ConnectToHealthBar()
     {
-        Turret turret = turretPrefab.GetComponentInChildren<Turret>();
-        if (!turret)
-            return false;
+        int modified = ForeachPrefabInFolder(TURRET_FOLDER, (turretPrefab) =>
+        {
+            Turret turret = turretPrefab.GetComponentInChildren<Turret>();
+            if (!turret)
+                return false;
 
-        turret.health = turret.maxHealth;
-        return true;
+            TurretHealthBar healthBar = turretPrefab.GetComponentInChildren<TurretHealthBar>();
+            if (!healthBar)
+                return false;
+
+            healthBar.turret = turret;
+            return true;
+        });
+        Debug.Log("Modified " + modified + " turret prefabs: " + "Connected health bar to Turret.");
     }
 
     private static bool AddVFXToTurret(GameObject turretPrefab)
@@ -153,7 +181,7 @@ public class TurretPrefabEditor
         // Special case for Ballista Turret
         if(turret is BallistaTurret t)
         {
-            t.arrow = turret.transform.Find("arrow").gameObject;
+            t.arrow = oldTurretGameObject.transform.Find("bow/arrow").gameObject;
         }
 
         if (turret.GetComponent<Animator>() == null)
