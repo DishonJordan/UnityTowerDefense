@@ -150,6 +150,12 @@ public class TurretPrefabEditor
         // Update turret script references
         turret.audioSource = a;
 
+        // Special case for Ballista Turret
+        if(turret is BallistaTurret t)
+        {
+            t.arrow = turret.transform.Find("arrow").gameObject;
+        }
+
         if (turret.GetComponent<Animator>() == null)
         {
             Animator turretAnim = turretParent.AddComponent<Animator>();
@@ -163,8 +169,6 @@ public class TurretPrefabEditor
             turretUIController.turret = turret.gameObject;
         }
 
-        // For testing, we'll only do one
-        Debug.Log("We moved components on " + turretPrefab.name + ".");
         return true;
     }
 
