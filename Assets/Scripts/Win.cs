@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class Win : MonoBehaviour
 {
     public Text wave;
@@ -24,11 +25,11 @@ public class Win : MonoBehaviour
     }
     public void Continue()
     {
-        // TODO Go to next level
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public void Menu()
     {
-        // TODO
+        SceneManager.LoadScene("MainMenu");
     }
 }
 
