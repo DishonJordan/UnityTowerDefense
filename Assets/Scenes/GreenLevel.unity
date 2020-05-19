@@ -2755,20 +2755,20 @@ MonoBehaviour:
   - {fileID: 8613617212349986208, guid: ece76762cd57c9045876c3c589cf5548, type: 3}
   waves:
   - wave:
-    - {x: 0, y: 0}
-    - {x: 0, y: 0}
-    - {x: 0, y: 0}
-    - {x: 0, y: 0}
-    waveDelay: 100
-  - wave:
-    - {x: 0, y: 0}
-    - {x: 0, y: 0}
-    - {x: 0, y: 0}
+    - {x: 1, y: 1}
+    - {x: 1, y: 1}
+    - {x: 1, y: 1}
+    - {x: 1, y: 1}
+    - {x: 1, y: 1}
+    - {x: 1, y: 1}
+    - {x: 1, y: 1}
+    - {x: 1, y: 1}
+    - {x: 1, y: 1}
+    - {x: 1, y: 1}
     waveDelay: 0
-  - wave:
-    - {x: 0, y: 0}
-    - {x: 0, y: 0}
-    - {x: 0, y: 0}
+  - wave: []
+    waveDelay: 0
+  - wave: []
     waveDelay: 0
   waveEnded: 0
   waypoints: {fileID: 313300509}
@@ -3693,6 +3693,7 @@ MonoBehaviour:
   - {fileID: 1640357704}
   - {fileID: 475187009}
   - {fileID: 694432309}
+  lengthOfPath: 30.63472
 --- !u!4 &336165370 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: f7cd5f2f7f57b8d40a82208acea68e53,
@@ -11076,7 +11077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f3c6dad024abbf42906ef507e950548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 500
+  money: 9000
 --- !u!4 &1107814699
 Transform:
   m_ObjectHideFlags: 0
@@ -15209,10 +15210,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 8e69911d864426f44890ff4c08cb7f7b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 8e69911d864426f44890ff4c08cb7f7b,
         type: 3}
       propertyPath: m_Name
       value: tile_cornerRound (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 8e69911d864426f44890ff4c08cb7f7b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e69911d864426f44890ff4c08cb7f7b, type: 3}

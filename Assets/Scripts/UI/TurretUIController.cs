@@ -42,6 +42,8 @@ public class TurretUIController : MonoBehaviour
         prices = new List<int> { _turret.sellCost, _turret.upgradeCost, _turret.repairCost };
         texts = buttons.Select(button => button.GetComponentInChildren<TextMeshProUGUI>(true)).ToList();
         images = buttons.Select(button => button.GetComponent<Image>()).ToList();
+        var x = transform.Find("Range"); //Find turret range circle and set size
+        x.localScale = new Vector3(_turret.fireRange * 0.2f, 1f, _turret.fireRange * 0.2f);
 
         SetButtonPriceText();
         SetStatsPanelText();
