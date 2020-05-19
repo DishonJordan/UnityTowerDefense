@@ -128,4 +128,8 @@ public class TurretUIController : MonoBehaviour
         upgradeButton.interactable = status;
         repairButton.interactable = status;
     }
+
+    public void targetingDropdown(int val){
+        _turret.targeting = val;
+    }
 }

@@ -39,6 +39,7 @@ public class Turret : MonoBehaviour, IDamageable
     private float timer;
     private BuildManager myTileBuildManager;
     private TurretUIController controller;
+    public int targeting;
 
     /* Initializations that occur when the object is instantiated */
     protected void Start()
@@ -46,6 +47,7 @@ public class Turret : MonoBehaviour, IDamageable
         timer = 0.0f;
         controller = turretUI.GetComponent<TurretUIController>();
         myTileBuildManager.SetTileToPendingColor(false);
+        targeting = 0;
     }
 
     /* Handles when the user clicks on a turret */

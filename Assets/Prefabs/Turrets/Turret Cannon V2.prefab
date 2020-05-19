@@ -201,6 +201,7 @@ MonoBehaviour:
     type: 3}
   audioSource: {fileID: 5280522357012332985}
   shootSound: {fileID: 8300000, guid: 2053077fc0142bc4ea1a07853e7f0595, type: 3}
+  targeting: 0
 --- !u!1001 &2424081976078773383
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -602,7 +603,7 @@ PrefabInstance:
     - target: {fileID: 7512705394564267497, guid: f5627463e7340c849b75c74600fc5e13,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.09
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7512705394564267497, guid: f5627463e7340c849b75c74600fc5e13,
         type: 3}

@@ -138,6 +138,7 @@ MonoBehaviour:
   nextUpgrade: {fileID: 0}
   audioSource: {fileID: 2675055074078624236}
   shootSound: {fileID: 8300000, guid: 3c48b5b0804eede44b7d7989cc841b94, type: 3}
+  targeting: 0
   firePoint2: {fileID: 7399980924487554568}
 --- !u!1 &6732482941967507739
 GameObject:
@@ -517,7 +518,7 @@ PrefabInstance:
     - target: {fileID: 7512705394564267497, guid: f5627463e7340c849b75c74600fc5e13,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.09
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7512705394564267497, guid: f5627463e7340c849b75c74600fc5e13,
         type: 3}

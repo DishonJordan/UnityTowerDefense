@@ -171,6 +171,7 @@ MonoBehaviour:
   nextUpgrade: {fileID: 0}
   audioSource: {fileID: 894145218051465952}
   shootSound: {fileID: 8300000, guid: 980e1b55775a14a4ab32a2b03c8ebba7, type: 3}
+  targeting: 0
 --- !u!1001 &1241390941553532090
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -366,7 +367,7 @@ PrefabInstance:
     - target: {fileID: 7512705394564267497, guid: f5627463e7340c849b75c74600fc5e13,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.09
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7512705394564267497, guid: f5627463e7340c849b75c74600fc5e13,
         type: 3}
