@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GreenLevel.unity
     guid: ef9f48562e29e85448f08e61fffb8bc2
+  - enabled: 1
+    path: Assets/Scenes/GreyLevel.unity
+    guid: d5c7793a74daff04cb3a19254e9524b4
   m_configObjects: {}

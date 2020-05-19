@@ -18,6 +18,8 @@ public class Enemy : MonoBehaviour, IDamageable
     private Transform targetWaypoint;
     private int waypointIndex;
     public Waypoints waypoints;
+    public float distanceToEnd;
+    public int strengthRating;
 
     private bool hasDied;
 
@@ -43,11 +45,13 @@ public class Enemy : MonoBehaviour, IDamageable
             if(distanceTraveledThisFrame >= distanceToTarget)
             {
                 transform.position = targetWaypoint.position;
+                distanceToEnd -= Vector3.Distance(transform.position, targetWaypoint.position);
                 GetNextWaypoint();
             }
             else
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, distanceTraveledThisFrame);
+                distanceToEnd -= distanceTraveledThisFrame;
             }
         }
         else{
@@ -67,6 +71,9 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             hasDied = true;
             Spawner.enemiesAlive--;
+            var x = transform.Find("Explosion").gameObject;
+            x = Instantiate(x,transform.position,transform.rotation);
+            x.SetActive(true);
             Destroy(this.gameObject);
         }
     }

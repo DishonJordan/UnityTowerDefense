@@ -36,6 +36,14 @@ public class SpawnerGUI : Editor
 
         EditorGUILayout.LabelField("Wave Properties:", EditorStyles.boldLabel);
         waves.arraySize = EditorGUILayout.IntField("Number of waves: ", waves.arraySize);
+        if(waves.arraySize != dropdown.Length){
+            // dropdown = new bool[waves.arraySize];
+            bool[] newDropdown = new bool[waves.arraySize];
+            for(int i = 0; i < Mathf.Min(waves.arraySize, dropdown.Length); i++){
+                newDropdown[i] = dropdown[i];
+            }
+            dropdown = newDropdown;
+        }
         for(int i = 0; i < waves.arraySize; i++){
             var x = waves.GetArrayElementAtIndex(i).GetEnumerator();
             x.MoveNext();

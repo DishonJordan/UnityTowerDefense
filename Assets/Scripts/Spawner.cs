@@ -63,6 +63,7 @@ public class Spawner : MonoBehaviour
                 // Inject scene dependencies into enemy
                 Enemy e = newEnemy.GetComponentInChildren<Enemy>();
                 e.waypoints = waypoints;
+                e.distanceToEnd = e.waypoints.lengthOfPath;
                 e.bank = bank;
                 e.gm = gm;
 
