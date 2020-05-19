@@ -5,6 +5,7 @@ using UnityEngine;
 public class Waypoints : MonoBehaviour
 {
     public List <Transform> waypoints;
+    public float lengthOfPath;
 
     [ContextMenu("Generate Path")]
     private void GenPath(){
@@ -39,6 +40,9 @@ public class Waypoints : MonoBehaviour
         }
 
         waypoints = newWaypoints;
+        for(int i = 1; i < waypoints.Count; i++){
+            lengthOfPath += Vector3.Distance(waypoints[i-1].position, waypoints[i].position);
+        }
     }
 
     private void OnDrawGizmosSelected()

@@ -39,12 +39,15 @@ public class Turret : MonoBehaviour, IDamageable
     private readonly float turnRate = 6f;
     private float timer;
     private BuildManager myTileBuildManager;
-
+    private TurretUIController controller;
+    public int targeting;
+    
     /* Initializations that occur when the object is instantiated */
     protected void Start()
     {
         timer = 0.0f;
         myTileBuildManager.SetTileToPendingColor(false);
+        targeting = 0;
         myTileBuildManager.taskInProgress = false;
     }
 
@@ -95,30 +98,96 @@ public class Turret : MonoBehaviour, IDamageable
                     audioSource.PlayOneShot(shootSound);
                 }
                 FireProjectile();
+                currentTarget = null;
                 timer = 0.0f;
             }
         }
     }
 
-    /* Searches through all gameobjects with the tage 'enemy' and sets the current target to the closest one within range */
+    /* Searches through all gameobjects with the tag 'enemy' and sets the current target to the closest one within range */
     private void CheckForTargets()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        float min_distance = Mathf.Infinity;
-        GameObject closestGameObjectInRange = null;
+        //first
+        if(targeting == 0){
+            float min_distanceToEnd = Mathf.Infinity;
+            GameObject closestGameObjectInRange = null;
 
-        foreach (GameObject enemy in enemies)
-        {
-            float distance = Vector3.Distance(transform.position, enemy.transform.position);
-
-            if (distance < min_distance && distance < fireRange)
+            foreach (GameObject enemy in enemies)
             {
-                min_distance = distance;
-                closestGameObjectInRange = enemy;
+                float distance = Vector3.Distance(transform.position, enemy.transform.position);
+                float curDistance = enemy.GetComponent<Enemy>().distanceToEnd;
+
+                if (curDistance < min_distanceToEnd && distance < fireRange)
+                {
+                    min_distanceToEnd = curDistance;
+                    closestGameObjectInRange = enemy;
+                }
             }
+            currentTarget = closestGameObjectInRange;
         }
-        currentTarget = closestGameObjectInRange;
+        //last
+        else if(targeting == 1){
+            float max_distanceToEnd = 0;
+            GameObject closestGameObjectInRange = null;
+
+            foreach (GameObject enemy in enemies)
+            {
+                float distance = Vector3.Distance(transform.position, enemy.transform.position);
+                float curDistance = enemy.GetComponent<Enemy>().distanceToEnd;
+
+                if (curDistance > max_distanceToEnd && distance < fireRange)
+                {
+                    max_distanceToEnd = curDistance;
+                    closestGameObjectInRange = enemy;
+                }
+            }
+            currentTarget = closestGameObjectInRange;
+        }
+        //closest
+        else if(targeting == 2){
+            float min_distance = Mathf.Infinity;
+            GameObject closestGameObjectInRange = null;
+
+            foreach (GameObject enemy in enemies)
+            {
+                float distance = Vector3.Distance(transform.position, enemy.transform.position);
+
+                if (distance < min_distance && distance < fireRange)
+                {
+                    min_distance = distance;
+                    closestGameObjectInRange = enemy;
+                }
+            }
+            currentTarget = closestGameObjectInRange;
+        }
+        //strongest
+        else if(targeting == 3){
+            float min_distanceToEnd = Mathf.Infinity;
+            int max_strength = 0;
+            GameObject closestGameObjectInRange = null;
+
+            foreach (GameObject enemy in enemies)
+            {
+                float distance = Vector3.Distance(transform.position, enemy.transform.position);
+                var x = enemy.GetComponent<Enemy>();
+
+                if(x.strengthRating > max_strength && distance < fireRange){
+                    max_strength = x.strengthRating;
+                    min_distanceToEnd = x.distanceToEnd;
+                    closestGameObjectInRange = enemy;
+                }
+                else if(x.strengthRating == max_strength && x.distanceToEnd < min_distanceToEnd && distance < fireRange){
+                    min_distanceToEnd = x.distanceToEnd;
+                    closestGameObjectInRange = enemy;
+                }
+            }
+            currentTarget = closestGameObjectInRange;
+        }
+        else{
+            Debug.Log("targeting value is out of bounds.");
+        }
     }
 
     /* Points the turret at the currentTarget */
