@@ -25,7 +25,13 @@ public class Win : MonoBehaviour
     }
     public void Continue()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if(SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            SceneManager.LoadScene("MainMenu");
+        } else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
     public void Menu()
     {
