@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Task
+public abstract class Task
 {
     public enum Type
     {
@@ -11,37 +11,139 @@ public class Task
     }
 
     public Vector3 taskLocation;
-    private Type type;
-    private MonoBehaviour script;
-    private GameObject turretToBuild;
+    protected Type type;
+    protected MonoBehaviour script;
+    protected Sprite turretIcon;
+    protected int cost;
 
-    /* Location of task, Type of task, Script to execute task, optional gameobject to be used as a parameter for task execution */
-    public Task(Vector3 loc, Type t, MonoBehaviour s, GameObject tb)
+    public Task(Type taskType, MonoBehaviour taskScript)
     {
-        taskLocation = loc;
-        type = t;
-        script = s;
-        turretToBuild = tb;
+        type = taskType;
+        script = taskScript;
+        taskLocation = taskScript.transform.position;
     }
 
-    public void PerformTask()
+    /* Runs the associated function on the script */
+    public abstract void PerformTask();
+
+    /* Gets the Name of the Task type*/
+    public abstract string GetTaskName();
+
+    /* Gets the Turret Sprite */
+    public Sprite GetIcon()
     {
-        switch (type)
-        {
-            case Type.Build:
-                ((BuildManager)script).BuildTurret(turretToBuild);
-                break;
-            case Type.Sell:
-                ((Turret)script).SellTurret();
-                break;
-            case Type.Upgrade:
-                ((Turret)script).UpgradeTurret();
-                break;
-            case Type.Repair:
-                ((Turret)script).RepairTurret();
-                break;
-            default:
-                break;
-        }
+        return turretIcon;
+    }
+
+    /* Refunds player task money and un-highlights task */
+    public abstract void CancelTask();
+}
+
+public class BuildTask : Task
+{
+
+    private GameObject turretToBuild;
+
+    public BuildTask(MonoBehaviour taskScript, GameObject taskTurretToBuild)
+        : base(Type.Build, taskScript)
+    {
+        turretToBuild = taskTurretToBuild;
+        Turret t = taskTurretToBuild.GetComponentInChildren<Turret>();
+        turretIcon = t.TurretSprite;
+        cost = t.purchaseCost;
+
+    }
+
+    public override void PerformTask()
+    {
+        ((BuildManager)script).BuildTurret(turretToBuild);
+    }
+
+    public override string GetTaskName()
+    {
+        return "Build";
+    }
+
+    public override void CancelTask()
+    {
+        ((BuildManager)script).SetTaskActive(false);
+        Bank.instance.DepositMoney(cost);
+    }
+}
+
+public class SellTask : Task
+{
+    public SellTask(MonoBehaviour taskScript)
+        : base(Type.Sell, taskScript)
+    {
+        turretIcon = ((Turret)script).TurretSprite;
+        cost = 0; // Not used by SellTask
+    }
+
+    public override void PerformTask()
+    {
+        ((Turret)script).SellTurret();
+    }
+
+    public override string GetTaskName()
+    {
+        return "Sell";
+    }
+
+    public override void CancelTask()
+    {
+        ((Turret)script).SetTaskActive(false);
+    }
+}
+
+public class UpgradeTask : Task
+{
+    public UpgradeTask(MonoBehaviour taskScript)
+        : base(Type.Upgrade, taskScript)
+    {
+        turretIcon = ((Turret)script).TurretSprite;
+        cost = ((Turret)script).upgradeCost;
+    }
+
+    public override void PerformTask()
+    {
+        ((Turret)script).UpgradeTurret();
+    }
+
+    public override string GetTaskName()
+    {
+        return "Upgrade";
+    }
+
+    public override void CancelTask()
+    {
+        ((Turret)script).SetTaskActive(false);
+        Bank.instance.DepositMoney(cost);
+    }
+}
+
+public class RepairTask : Task
+{
+    public RepairTask(MonoBehaviour taskScript)
+        : base(Type.Repair, taskScript)
+    {
+        turretIcon = ((Turret)script).TurretSprite;
+        cost = ((Turret)script).repairCost;
+    }
+
+    public override void PerformTask()
+    {
+        ((Turret)script).RepairTurret();
+    }
+
+    public override string GetTaskName()
+    {
+        return "Repair";
+    }
+
+    public override void CancelTask()
+    {
+        ((Turret)script).SetTaskActive(false);
+        Bank.instance.DepositMoney(cost);
     }
 }

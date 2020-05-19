@@ -3,7 +3,9 @@
 public class PointTowardsCamera : MonoBehaviour
 {
     public static GameObject mainCamera;
-    private readonly float turnRate = 1000f;
+
+    public float turnRate = 1000f;
+    public bool continuous = true;
 
     private void Start()
     {
@@ -14,7 +16,15 @@ public class PointTowardsCamera : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
+    {
+        if (continuous)
+        {
+            RotateTowardsCamera();
+        }
+    }
+
+    private void RotateTowardsCamera()
     {
         Vector3 direction = mainCamera.transform.position - transform.position;
         Quaternion qRotation = Quaternion.LookRotation(direction);
