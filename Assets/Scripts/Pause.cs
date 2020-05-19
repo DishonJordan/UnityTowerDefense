@@ -29,6 +29,6 @@ public class Pause : MonoBehaviour
     }
     public void Menu()
     {
-        Debug.Log("Go to Menu"); // TODO
+        SceneManager.LoadScene("MainMenu");
     }
 }
