@@ -211,6 +211,10 @@ public class Mechanic : MonoBehaviour
         if (timer > taskSpeed)
         {
             task.PerformTask();
+            if(task.GetTaskType() != Task.Type.Repair)
+            {
+                MechanicManager.instance.IncreaseXp();
+            }
             UpdateTaskUI(null, "No Task");
         }
     }
