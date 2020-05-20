@@ -251,6 +251,15 @@ public class Mechanic : MonoBehaviour
         }
     }
 
+    public void IncreaseMovementSpeed(float speed) {
+        movementSpeed += speed;
+    }
+
+    public void DecreaseTaskSpeed(float speed)
+    {
+        taskSpeed = (taskSpeed - speed < 0f) ? 0f : (taskSpeed - speed);
+    }
+
     /* Sets the animation bools */
     private void SetAnimationBools(bool move, bool idle, bool work)
     {

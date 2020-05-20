@@ -32,6 +32,8 @@ public class MechanicManager : MonoBehaviour
 
     [Header("Mechanic")]
     public GameObject mechanic;
+    public float taskDecreaseUpgradeAmount;
+    public float speedIncreaseUpgradeAmount;
 
     [Header("Task Elements")]
     public GameObject taskButton;
@@ -70,13 +72,13 @@ public class MechanicManager : MonoBehaviour
     /* On hover highlight effect */
     public void OnMouseEnter()
     {
-            GetComponent<MeshRenderer>().materials[1].color = highlightColor.color;
+        GetComponent<MeshRenderer>().materials[1].color = highlightColor.color;
     }
 
     /* Remove hover highlight effect */
     public void OnMouseExit()
     {
-            GetComponent<MeshRenderer>().materials[1].color = originalColor;
+        GetComponent<MeshRenderer>().materials[1].color = originalColor;
     }
 
     /* Gets a new task from the Queue and removes it from the Queue UI */
@@ -160,13 +162,24 @@ public class MechanicManager : MonoBehaviour
         mechanics.Add(mech);
     }
 
+    /* Increases the Movement Speed of all Mechanics */
     public void IncreaseMovementSpeed()
     {
-        Debug.Log("TODO: Increase Movement Speed Upgrade");
+        foreach (GameObject mech in mechanics)
+        {
+            Mechanic m = mech.GetComponent<Mechanic>();
+            m.IncreaseMovementSpeed(speedIncreaseUpgradeAmount);
+        }
     }
+
+    /* Increases the Movement Speed of all Mechanics */
 
     public void DecreaseTaskTime()
     {
-        Debug.Log("TODO: Decrease Task Time Upgrade");
+        foreach (GameObject mech in mechanics)
+        {
+            Mechanic m = mech.GetComponent<Mechanic>();
+            m.DecreaseTaskSpeed(taskDecreaseUpgradeAmount);
+        }
     }
 }
