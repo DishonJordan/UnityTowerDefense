@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5370198333173848950}
   - component: {fileID: 8234591208817008905}
   - component: {fileID: 4020182557522520748}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TaskTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 7757102085474737231}
   - component: {fileID: 6144533011681980308}
   - component: {fileID: 8720532941298664638}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Task Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 8116379747919004113}
   - component: {fileID: 4177879019229958233}
   - component: {fileID: 7348638753064619537}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TaskButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
