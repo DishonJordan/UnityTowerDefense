@@ -2,13 +2,7 @@
 
 public class BallistaTurret : Turret
 {
-    private GameObject arrow;
-
-    new void Start()
-    {
-        base.Start();
-        arrow = this.gameObject.transform.GetChild(0).GetChild(0).gameObject;
-    }
+    public GameObject arrow;
 
     /* Instantiates a projectile at the firepoint and sets the target of the projectile to the currentTarget */
     protected override void FireProjectile()

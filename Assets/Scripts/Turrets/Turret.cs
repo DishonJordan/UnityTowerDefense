@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Turret : MonoBehaviour, IDamageable
 {
@@ -19,8 +20,23 @@ public class Turret : MonoBehaviour, IDamageable
     public float fireRange;
     [Tooltip("The maximum health of this turret")]
     public float maxHealth;
-    [Tooltip("The current health of this turret")]
-    public float health;
+    [Tooltip("The current health of this turret"), SerializeField]
+    private float _health;
+    private float oldHealth;
+    public float health
+    {
+        get => _health;
+        set
+        {
+            _health = Mathf.Clamp(value, 0, maxHealth);
+            if(_health != oldHealth)
+            {
+                oldHealth = _health;
+                OnHealthChanged(_health);
+            }
+        }
+    }
+    public Action<float> OnHealthChanged = delegate { };
 
     [Header("UI")]
     public GameObject turretUI;
@@ -87,7 +103,7 @@ public class Turret : MonoBehaviour, IDamageable
         {
             CheckForTargets();
         }
-        else
+        else if (health > 0)
         {
             TrackTarget();
             timer += Time.deltaTime;

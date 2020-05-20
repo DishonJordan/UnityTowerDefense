@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyShooter : MonoBehaviour
 {
     private GameObject currentTarget;
+    private Turret currentTargetTurret;
     private float timer;
     public float fireRate;
     public float fireRange;
@@ -60,8 +61,13 @@ public class EnemyShooter : MonoBehaviour
 
             if (distance < min_distance && distance < fireRange)
             {
-                min_distance = distance;
-                closestGameObjectInRange = enemy;
+                Turret turret = enemy.GetComponentInChildren<Turret>();
+                if(turret && turret.health > 0)
+                {
+                    min_distance = distance;
+                    closestGameObjectInRange = enemy;
+                    currentTargetTurret = turret;
+                }
             }
         }
         currentTarget = closestGameObjectInRange;
@@ -72,8 +78,8 @@ public class EnemyShooter : MonoBehaviour
     {
         if (currentTarget != null)
         {
-            /* If the current target goes out of range */
-            if (Vector3.Distance(transform.position, currentTarget.transform.position) > fireRange)
+            /* If the current target goes out of range or has zero health */
+            if (Vector3.Distance(transform.position, currentTarget.transform.position) > fireRange || currentTargetTurret && currentTargetTurret.health <= 0)
             {
                 currentTarget = null;
                 return;
