@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2793464524571982408}
   - component: {fileID: 7288517777820084619}
   - component: {fileID: 8889316763111113126}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 95038133520812187}
   - component: {fileID: 6066066599721435463}
   - component: {fileID: 5817140738560058162}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 841710416511731662}
   - component: {fileID: 5463333062932091927}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: grey_sliderDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 933222a72e1c93d4db5fb46a570970cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 466192298454973605}
   - component: {fileID: 2741848071163409478}
   - component: {fileID: 8254023672577060716}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: UpgradeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -393,7 +393,7 @@ GameObject:
   - component: {fileID: 7153733516060899674}
   - component: {fileID: 4626181651871854208}
   - component: {fileID: 8072873310676892595}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Item Checkmark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -466,7 +466,7 @@ GameObject:
   - component: {fileID: 590486876258650970}
   - component: {fileID: 9188150568061650800}
   - component: {fileID: 5047523014647104368}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Turret Name Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -621,7 +621,7 @@ GameObject:
   - component: {fileID: 6326112610332900959}
   - component: {fileID: 1535265518048160952}
   - component: {fileID: 4471638294522598094}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Label (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -776,7 +776,7 @@ GameObject:
   - component: {fileID: 7534220573027742639}
   - component: {fileID: 2959990343864310326}
   - component: {fileID: 7449732175699561465}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Damage Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -931,7 +931,7 @@ GameObject:
   - component: {fileID: 2951062258261940023}
   - component: {fileID: 8446334304708394535}
   - component: {fileID: 2635603312727722741}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: RepairText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1086,7 +1086,7 @@ GameObject:
   - component: {fileID: 4913041607811908393}
   - component: {fileID: 70081747738031079}
   - component: {fileID: 6790306273298796017}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: UpgradeCost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1241,7 +1241,7 @@ GameObject:
   - component: {fileID: 6925780054341509103}
   - component: {fileID: 4900620966555705834}
   - component: {fileID: 8680592270812478955}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: SellCost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1397,7 +1397,7 @@ GameObject:
   - component: {fileID: 4914127557219386196}
   - component: {fileID: 8212950567903872214}
   - component: {fileID: 5963536908562733975}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Dropdown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1545,7 +1545,7 @@ GameObject:
   - component: {fileID: 6294678146487975340}
   - component: {fileID: 2985016883791840233}
   - component: {fileID: 5810276885305261742}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Viewport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1632,7 +1632,7 @@ GameObject:
   - component: {fileID: 6761442850013976450}
   - component: {fileID: 941464190445924724}
   - component: {fileID: 443395545674271399}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Range Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1788,7 +1788,7 @@ GameObject:
   - component: {fileID: 8435512176485842947}
   - component: {fileID: 1735754352802779135}
   - component: {fileID: 3886484456099743231}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: ClickableBottomPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1905,7 +1905,7 @@ GameObject:
   - component: {fileID: 4259579879849658729}
   - component: {fileID: 2419281754053628315}
   - component: {fileID: 5903829664574529634}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: ClickableTopPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2021,7 +2021,7 @@ GameObject:
   - component: {fileID: 4830774796615998686}
   - component: {fileID: 506174916529219619}
   - component: {fileID: 870572961954662927}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Stats Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2096,7 +2096,7 @@ GameObject:
   - component: {fileID: 5846653258962471510}
   - component: {fileID: 5720119451212435043}
   - component: {fileID: 5825735099175931715}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Repair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2215,7 +2215,7 @@ GameObject:
   - component: {fileID: 1862645918560023204}
   - component: {fileID: 5711551776894236151}
   - component: {fileID: 2888994963969449704}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Template
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2320,7 +2320,7 @@ GameObject:
   - component: {fileID: 8683030448778253365}
   - component: {fileID: 9167085791444808487}
   - component: {fileID: 4247731000259819009}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Speed Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2473,7 +2473,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8633723775225727837}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2511,7 +2511,7 @@ GameObject:
   - component: {fileID: 4488416612580787938}
   - component: {fileID: 991702400429150028}
   - component: {fileID: 6532037968270104652}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Health Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2668,7 +2668,7 @@ GameObject:
   - component: {fileID: 9118902115583405501}
   - component: {fileID: 5534821541174444768}
   - component: {fileID: 7547962938876206370}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2745,7 +2745,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8414217589865248955}
   - component: {fileID: 2661999014624234913}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: grey_panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2760,7 +2760,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6035802688409967180}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.2, y: -0.031, z: 0}
+  m_LocalPosition: {x: -0.3, y: -0.031, z: 0}
   m_LocalScale: {x: 20, y: 20, z: 1}
   m_Children: []
   m_Father: {fileID: 7512705395960912427}
@@ -2827,7 +2827,7 @@ GameObject:
   - component: {fileID: 5280641935562759269}
   - component: {fileID: 4281482999228452247}
   - component: {fileID: 1006888958037596418}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Item Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2980,7 +2980,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 883750571106215569}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Sliding Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3019,7 +3019,7 @@ GameObject:
   - component: {fileID: 5806117717022877794}
   - component: {fileID: 8431726726527118684}
   - component: {fileID: 1351851997651769144}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Scrollbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3142,7 +3142,7 @@ GameObject:
   - component: {fileID: 1859841573588879031}
   - component: {fileID: 917311372306510125}
   - component: {fileID: 6632770872014225855}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Upgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3259,7 +3259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7512705394557217520}
   - component: {fileID: 7512705394557217527}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: grey_crossWhite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3341,7 +3341,7 @@ GameObject:
   - component: {fileID: 7512705394564267497}
   - component: {fileID: 2235711621121998275}
   - component: {fileID: 7224165697000874630}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: TurretUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3376,8 +3376,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc813d2c3618d264e8a42eeba8577639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnRate: 1000
-  continuous: 1
 --- !u!114 &7224165697000874630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3418,7 +3416,7 @@ GameObject:
   - component: {fileID: 7512705394683218914}
   - component: {fileID: 7512705394683218915}
   - component: {fileID: 7512705394683218940}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Sell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3537,7 +3535,7 @@ GameObject:
   - component: {fileID: 7512705395848018297}
   - component: {fileID: 7512705395848018298}
   - component: {fileID: 7512705395848018299}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3639,7 +3637,7 @@ GameObject:
   - component: {fileID: 7512705395929622113}
   - component: {fileID: 7512705395929622114}
   - component: {fileID: 7512705395929622115}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3757,7 +3755,7 @@ GameObject:
   - component: {fileID: 7512705395960912424}
   - component: {fileID: 7512705395960912425}
   - component: {fileID: 7512705395960912426}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3862,7 +3860,7 @@ GameObject:
   - component: {fileID: 5609262030460509465}
   - component: {fileID: 5806660418850407972}
   - component: {fileID: 4747793988414031818}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: SellText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4016,7 +4014,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3030185350189834746}
   - component: {fileID: 8056097916273510748}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4103,7 +4101,7 @@ GameObject:
   - component: {fileID: 6033188295060158024}
   - component: {fileID: 1211633504942137006}
   - component: {fileID: 6212672276845747389}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Item Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4177,7 +4175,7 @@ GameObject:
   - component: {fileID: 8144850220715202686}
   - component: {fileID: 8411687369605271969}
   - component: {fileID: 5322529401816474407}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4270,7 +4268,7 @@ GameObject:
   - component: {fileID: 6344792133245058562}
   - component: {fileID: 5620038948846919210}
   - component: {fileID: 6920631131224048885}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: RepairCost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4425,7 +4423,7 @@ GameObject:
   - component: {fileID: 4078112313759753645}
   - component: {fileID: 1685104188296063637}
   - component: {fileID: 3667770743748884339}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
