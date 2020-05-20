@@ -22,9 +22,6 @@ public class Mechanic : MonoBehaviour
 
     public GameObject taskUI;
 
-    [SerializeField]
-    private Transform xpPopup;
-
     [HideInInspector]
     private Task task;
 
@@ -53,7 +50,6 @@ public class Mechanic : MonoBehaviour
 
         taskButton = taskUI.transform.GetChild(0).GetChild(1).gameObject;
         UpdateTaskUI(null, "No Task");
-        Instantiate(xpPopup, Vector3.zero, Quaternion.identity);
     }
 
     private void Update()
