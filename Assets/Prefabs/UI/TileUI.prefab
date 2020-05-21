@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8287773255554755561}
   - component: {fileID: 4079913365723930847}
   - component: {fileID: 9041547053150126645}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 1202534300033925324}
   - component: {fileID: 1202534300033925325}
   - component: {fileID: 1202534300033925330}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1202534300421338823}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TileUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +288,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1202534300428378590}
   - component: {fileID: 1202534300428378585}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: grey_crossWhite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,8 +345,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1203688257
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 0e8a09cb7ee7e8447a4add424ffc7c41, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 1202534300489492950}
   - component: {fileID: 1202534300489492944}
   - component: {fileID: 1202534300489492945}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -444,7 +444,7 @@ GameObject:
   - component: {fileID: 1202534301016633943}
   - component: {fileID: 1202534301016633940}
   - component: {fileID: 1202534301016633941}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -467,7 +467,7 @@ RectTransform:
   - {fileID: 1251249447217079809}
   - {fileID: 270984983431214472}
   m_Father: {fileID: 1202534301172158725}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -547,7 +547,7 @@ GameObject:
   - component: {fileID: 1202534301172158726}
   - component: {fileID: 1202534301172158727}
   - component: {fileID: 1202534301172158724}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -567,9 +567,9 @@ RectTransform:
   m_Children:
   - {fileID: 1978735776171860849}
   - {fileID: 8035122932798421626}
+  - {fileID: 1202534301016633946}
   - {fileID: 880296509826741141}
   - {fileID: 8312629486228229344}
-  - {fileID: 1202534301016633946}
   - {fileID: 1202534301203459410}
   m_Father: {fileID: 1202534300421338823}
   m_RootOrder: 0
@@ -597,7 +597,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
+  m_SortingLayerID: -1203688257
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &1202534301172158727
@@ -651,7 +651,7 @@ GameObject:
   - component: {fileID: 1202534301203459407}
   - component: {fileID: 1202534301203459404}
   - component: {fileID: 1202534301203459405}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -768,7 +768,7 @@ GameObject:
   - component: {fileID: 6153806623450364422}
   - component: {fileID: 4742024064512486978}
   - component: {fileID: 5272773341300916227}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Price
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -923,7 +923,7 @@ GameObject:
   - component: {fileID: 633170773704851639}
   - component: {fileID: 6515803481915731577}
   - component: {fileID: 6815906101263845089}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -995,7 +995,7 @@ GameObject:
   m_Component:
   - component: {fileID: 880296509826741141}
   - component: {fileID: 6630264762722797199}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: grey_panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1014,7 +1014,7 @@ Transform:
   m_LocalScale: {x: 20, y: 20, z: 1}
   m_Children: []
   m_Father: {fileID: 1202534301172158725}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6630264762722797199
 SpriteRenderer:
@@ -1054,7 +1054,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4005256ca2df1b14586afe2c57b028d2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1077,7 +1077,7 @@ GameObject:
   - component: {fileID: 8442412828533695156}
   - component: {fileID: 395821376035839456}
   - component: {fileID: 9170798777674879928}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1151,7 +1151,7 @@ GameObject:
   - component: {fileID: 2345303997467274080}
   - component: {fileID: 3982536854217925651}
   - component: {fileID: 496695529662717440}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Panel (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1278,7 +1278,7 @@ GameObject:
   - component: {fileID: 3503575645617976374}
   - component: {fileID: 5997832412453177125}
   - component: {fileID: 6329056496684333265}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Price
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1433,7 +1433,7 @@ GameObject:
   - component: {fileID: 3078852881879529855}
   - component: {fileID: 1751174094542971791}
   - component: {fileID: 7861050839305407179}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1506,7 +1506,7 @@ GameObject:
   - component: {fileID: 2313676386246900674}
   - component: {fileID: 6753411078731403722}
   - component: {fileID: 3440511638284219269}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Price
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1662,7 +1662,7 @@ GameObject:
   - component: {fileID: 4421147291027483878}
   - component: {fileID: 1071010461513164451}
   - component: {fileID: 8689330820842135359}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Button (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1780,7 +1780,7 @@ GameObject:
   - component: {fileID: 3005996170932851954}
   - component: {fileID: 6540468143836742493}
   - component: {fileID: 2921752346735977248}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Price
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1936,7 +1936,7 @@ GameObject:
   - component: {fileID: 401262503822555182}
   - component: {fileID: 6899796410595206270}
   - component: {fileID: 6161632972336845212}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Button (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2055,7 +2055,7 @@ GameObject:
   - component: {fileID: 7928339661310298232}
   - component: {fileID: 7315363717743083527}
   - component: {fileID: 2341063083336873287}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Button (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2172,7 +2172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8312629486228229344}
   - component: {fileID: 3684955127808597817}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: grey_sliderDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2191,7 +2191,7 @@ Transform:
   m_LocalScale: {x: 20, y: 20, z: 1}
   m_Children: []
   m_Father: {fileID: 1202534301172158725}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3684955127808597817
 SpriteRenderer:
@@ -2231,7 +2231,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 933222a72e1c93d4db5fb46a570970cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
