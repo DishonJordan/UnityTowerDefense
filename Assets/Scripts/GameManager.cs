@@ -52,7 +52,8 @@ public class GameManager : MonoBehaviour
                 return;
             }
         }
-        wave++;
+        wave++;     
+        Spawner.wavesSurvived++;
         BeginNextWave();
     }
 
