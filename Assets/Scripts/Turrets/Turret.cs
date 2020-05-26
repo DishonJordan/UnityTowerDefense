@@ -46,6 +46,7 @@ public class Turret : MonoBehaviour, IDamageable
     public GameObject turretProjectile;
     public Transform firePoint;
     public GameObject nextUpgrade;
+    public GameObject muzzleFlash;
 
     [Header("Sounds")]
     public AudioSource audioSource;
@@ -236,6 +237,9 @@ public class Turret : MonoBehaviour, IDamageable
             Projectile p = projectile.GetComponentInChildren<Projectile>();
 
             p.SetTarget(currentTarget);
+            GameObject flash = Instantiate(muzzleFlash, firePoint.position, firePoint.rotation);
+
+            flash.transform.SetParent(this.transform);
         }
     }
 
