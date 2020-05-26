@@ -33,6 +33,13 @@ public class MechanicManager : MonoBehaviour
     [Header("Mechanic")]
     public GameObject mechanic;
 
+    [Header("Upgrade Elements")]
+    public GameObject upgradeButtonPanel;
+    public float taskDecreaseUpgradeAmount;
+    public float speedIncreaseUpgradeAmount;
+    public Slider xpBar;
+    public int currentUpgradeTreshold;
+
     [Header("Task Elements")]
     public GameObject taskButton;
     public GameObject taskPanel;
@@ -46,6 +53,7 @@ public class MechanicManager : MonoBehaviour
     private Color originalColor;
     private List<GameObject> mechanics;
     private readonly float spawnRadius = 0.175f;
+    private int upgradesRemaining;
 
     private void Start()
     {
@@ -55,6 +63,11 @@ public class MechanicManager : MonoBehaviour
 
         spawnLocation = transform.GetChild(3).gameObject;
         originalColor = GetComponent<MeshRenderer>().materials[1].color;
+
+        xpBar.maxValue = currentUpgradeTreshold;
+        xpBar.value = 0;
+        upgradesRemaining = 0;
+        SetUpgradesActive(false);
 
         SpawnMechanic();
     }
@@ -70,13 +83,13 @@ public class MechanicManager : MonoBehaviour
     /* On hover highlight effect */
     public void OnMouseEnter()
     {
-            GetComponent<MeshRenderer>().materials[1].color = highlightColor.color;
+        GetComponent<MeshRenderer>().materials[1].color = highlightColor.color;
     }
 
     /* Remove hover highlight effect */
     public void OnMouseExit()
     {
-            GetComponent<MeshRenderer>().materials[1].color = originalColor;
+        GetComponent<MeshRenderer>().materials[1].color = originalColor;
     }
 
     /* Gets a new task from the Queue and removes it from the Queue UI */
@@ -158,15 +171,64 @@ public class MechanicManager : MonoBehaviour
             new Vector3(Random.Range(-spawnRadius, spawnRadius), 0, Random.Range(-spawnRadius, spawnRadius)),
             spawnLocation.transform.rotation);
         mechanics.Add(mech);
+
+        upgradesRemaining = (upgradesRemaining - 1 < 0)? 0 : upgradesRemaining - 1;
+        if (upgradesRemaining == 0)
+        {
+            SetUpgradesActive(false);
+        }
     }
 
+    /* Increases the Movement Speed of all Mechanics */
     public void IncreaseMovementSpeed()
     {
-        Debug.Log("TODO: Increase Movement Speed Upgrade");
+        foreach (GameObject mech in mechanics)
+        {
+            Mechanic m = mech.GetComponent<Mechanic>();
+            m.IncreaseMovementSpeed(speedIncreaseUpgradeAmount);
+        }
+
+        upgradesRemaining--;
+        if (upgradesRemaining == 0)
+        {
+            SetUpgradesActive(false);
+        }
     }
 
+    /* Increases the Movement Speed of all Mechanics */
     public void DecreaseTaskTime()
     {
-        Debug.Log("TODO: Decrease Task Time Upgrade");
+        foreach (GameObject mech in mechanics)
+        {
+            Mechanic m = mech.GetComponent<Mechanic>();
+            m.DecreaseTaskSpeed(taskDecreaseUpgradeAmount);
+        }
+
+        upgradesRemaining--;
+        if (upgradesRemaining == 0) {
+            SetUpgradesActive(false);
+        }
+    }
+
+    /* Increases the Xp and adjust slider */
+    public void IncreaseXp() {
+        xpBar.value++;
+
+        if (xpBar.value == currentUpgradeTreshold) {
+            currentUpgradeTreshold *= 2;
+            xpBar.maxValue = currentUpgradeTreshold;
+            xpBar.value = 0;
+            upgradesRemaining++;
+            SetUpgradesActive(true);
+        }
+    }
+
+    /* Enable or Disable the Upgrade Buttons */
+    public void SetUpgradesActive(bool b) {
+        Button[] buttons = upgradeButtonPanel.GetComponentsInChildren<Button>();
+
+        foreach (Button button in buttons) {
+            button.interactable = b;
+        }
     }
 }

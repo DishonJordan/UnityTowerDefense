@@ -35,6 +35,11 @@ public abstract class Task
         return turretIcon;
     }
 
+    /* Gets the Task Type */
+    public Type GetTaskType() {
+        return type;
+    }
+
     /* Refunds player task money and un-highlights task */
     public abstract void CancelTask();
 }
