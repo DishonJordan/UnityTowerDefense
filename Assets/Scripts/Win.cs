@@ -6,9 +6,12 @@ using UnityEngine.SceneManagement;
 public class Win : MonoBehaviour
 {
     public Text wave;
-
+    private Spawner spawner;
+    private Object[] spawners;
     void OnEnable()
     {
+        spawners = GameObject.FindObjectsOfType(typeof(Spawner));
+        spawner = (Spawner) spawners[0];
        StartCoroutine(AnimateText());
     }
     IEnumerator AnimateText()
@@ -16,7 +19,7 @@ public class Win : MonoBehaviour
         wave.text = "0";
         int round = 0;
         yield return new WaitForSeconds(.7f);
-        while(round < Spawner.wavesSurvived)
+        while(round < spawner.wavesSurvived)
         {
             round++;
             wave.text = round.ToString();
