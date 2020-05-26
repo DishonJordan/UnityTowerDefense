@@ -5,10 +5,11 @@ public class WaveText : MonoBehaviour
 {
     public Text text;
     private Spawner spawner;
-
+    private Object[] spawners;
     private void Start()
     {
-        spawner = FindObjectOfType<Spawner>();
+        spawners = GameObject.FindObjectsOfType(typeof(Spawner));
+        spawner = (Spawner) spawners[0];
         if(spawner == null)
         {
             Debug.LogError("WaveText could not find Spawner!");
@@ -20,7 +21,7 @@ public class WaveText : MonoBehaviour
         if(spawner != null)
         {
             int waveCount = spawner.waves.Count;
-            text.text = Mathf.Clamp(spawner.waveIndex + 1, 1, waveCount).ToString() + " / " + waveCount.ToString();
+            text.text = Mathf.Clamp(spawner.waveIndex , 0, waveCount).ToString() + " / " + waveCount.ToString();
         }
         else
         {

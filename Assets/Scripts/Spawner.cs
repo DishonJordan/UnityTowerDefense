@@ -20,16 +20,18 @@ public class Spawner : MonoBehaviour
     public bool waveEnded;
     private float timer;
     private float currentDelay;
-
     //[Header("Enemy dependencies")]
     public Waypoints waypoints;
     public Bank bank;
     public GameManager gm;
 
     public int waveIndex;
-    public static int wavesSurvived;
+    public int wavesSurvived;
     public static int enemiesAlive;
     private int enemyIndex;
+    public float delayBetweenWaves;
+    public float waveTimer; // timer to countdown secs until next wave
+    public bool spawningWave; // used to disable nextwave caller while spawning 
 
     private void Awake()
     {
@@ -44,6 +46,10 @@ public class Spawner : MonoBehaviour
     private void Start(){
         wavesSurvived = 0;
         enemiesAlive = 0;
+        waveEnded = true;
+        delayBetweenWaves = 0;
+        waveTimer = 0;
+        spawningWave = false;
     }
 
     private void Update()
@@ -71,17 +77,31 @@ public class Spawner : MonoBehaviour
                 enemyIndex++;
                 enemiesAlive++;
                 timer = 0;
+                spawningWave = true;
             }
+        } 
+        if  (waveTimer <= delayBetweenWaves && !spawningWave && wavesSurvived > 0) 
+        {
+            waveTimer += Time.deltaTime;
         }
         timer += Time.deltaTime;
     }
 
-    public void BeginWave(int waveNumber){
+    public void BeginWave(int waveNumber, bool earlyCall){
         waveIndex = waveNumber - 1;
         if(waveIndex < waves.Count){
             waveEnded = false;
             enemyIndex = 0;
-            currentDelay = waves[waveIndex].waveDelay;
+            if(earlyCall)
+            {
+                currentDelay = 0;
+                delayBetweenWaves = 0;
+                waveTimer = 0;
+            } else 
+            {
+                currentDelay = waves[waveIndex].waveDelay;
+                delayBetweenWaves = currentDelay;
+            }
             timer = 0;
         }
     }
@@ -89,6 +109,8 @@ public class Spawner : MonoBehaviour
     private void EndWave(){
         waveEnded = true;
         wavesSurvived++;
+        spawningWave = false;
+        waveTimer = 0;
         gm.WaveEnded();
     }
 }
