@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour, IDamageable
     public int strengthRating;
     public bool canSpawnOnDeath;
     public GameObject DeathSpawn;
+    [SerializeField]
+    private int numberToSpawn;
 
     private bool hasDied;
 
@@ -100,8 +102,12 @@ public class Enemy : MonoBehaviour, IDamageable
             Debug.LogError("No enemy gameobject for spawning attached to this gameobject.");
             return;
         }
+        if(numberToSpawn <= 0){
+            Debug.LogError("Number of enemies to spawn on death is too low.");
+            return;
+        }
 
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < numberToSpawn; i++){
             GameObject newEnemy = Instantiate(DeathSpawn, transform.position + new Vector3(Random.Range(-0.3f,0.3f),0,Random.Range(-0.3f,0.3f)), transform.rotation);
             Enemy e = newEnemy.GetComponentInChildren<Enemy>();
             e.waypoints = waypoints;
