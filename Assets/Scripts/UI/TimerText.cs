@@ -10,9 +10,11 @@ public class TimerText : MonoBehaviour
     private Button CallWaveEarlyButton;
     private Spawner spawner;
     private Object[] spawners;
+    private GameObject NextWavePanel;
     void Awake () {
          CallWaveEarlyButton =  GameObject.Find ("CallWaveEarlyButton").GetComponent<Button>();
          nextWaveText = GameObject.Find ("NextWave").GetComponent<Text> ();
+         NextWavePanel = GameObject.Find ("NextWavePanel");
      }
     void Start()
     {
@@ -22,8 +24,6 @@ public class TimerText : MonoBehaviour
     }
     void Update()
     {
-        
-
         if (spawner.wavesSurvived == 0)
         {
             waveTimerText.enabled = false;
@@ -41,6 +41,14 @@ public class TimerText : MonoBehaviour
         {
             waveTimerText.text = ((int) (spawner.delayBetweenWaves - spawner.waveTimer)).ToString();
             CallWaveEarlyButton.interactable = true;
+        }
+        
+        if( spawner.wavesSurvived == spawner.waves.Count)
+        {
+            NextWavePanel.SetActive(false);
+        } else 
+        {
+            NextWavePanel.SetActive(true);
         }
     }
 }
