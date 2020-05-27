@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
         wave = 1;
         spawners = GameObject.FindObjectsOfType(typeof(Spawner));
         BeginNextWave();
+        Turret.turretUIActive = false;
     }
 
     public int Health
