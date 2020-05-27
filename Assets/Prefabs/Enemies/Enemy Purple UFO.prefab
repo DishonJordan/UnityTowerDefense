@@ -20,6 +20,10 @@ MonoBehaviour:
   waypoints: {fileID: 0}
   distanceToEnd: 0
   strengthRating: 0
+  canSpawnOnDeath: 1
+  DeathSpawn: {fileID: 6083536873277876409, guid: b632eadc259dc4045a8b966bdf0542ae,
+    type: 3}
+  numberToSpawn: 4
 --- !u!1001 &189688570710503950
 PrefabInstance:
   m_ObjectHideFlags: 0
