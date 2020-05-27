@@ -1305,6 +1305,7 @@ MonoBehaviour:
   movementSpeed: 3
   taskSpeed: 2
   taskUI: {fileID: 7889882356536192887}
+  xpPopup: {fileID: 0}
 --- !u!95 &8296172668915787356
 Animator:
   serializedVersion: 3

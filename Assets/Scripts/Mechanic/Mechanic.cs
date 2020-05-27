@@ -50,7 +50,6 @@ public class Mechanic : MonoBehaviour
 
         taskButton = taskUI.transform.GetChild(0).GetChild(1).gameObject;
         UpdateTaskUI(null, "No Task");
-
     }
 
     private void Update()
@@ -211,6 +210,10 @@ public class Mechanic : MonoBehaviour
         if (timer > taskSpeed)
         {
             task.PerformTask();
+            if(task.GetTaskType() != Task.Type.Repair)
+            {
+                MechanicManager.instance.IncreaseXp();
+            }
             UpdateTaskUI(null, "No Task");
         }
     }
@@ -249,6 +252,15 @@ public class Mechanic : MonoBehaviour
             Color c = taskButton.transform.GetChild(1).GetComponentInChildren<Image>().color;
             taskButton.transform.GetChild(1).GetComponentInChildren<Image>().color = new Color(c.r, c.b, c.g, 0);
         }
+    }
+
+    public void IncreaseMovementSpeed(float speed) {
+        movementSpeed += speed;
+    }
+
+    public void DecreaseTaskSpeed(float speed)
+    {
+        taskSpeed = (taskSpeed - speed < 0f) ? 0f : (taskSpeed - speed);
     }
 
     /* Sets the animation bools */
