@@ -130,11 +130,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2982552775616013751}
     m_Modifications:
+    - target: {fileID: 1350596045690735946, guid: 07f26a565695bc64386026a7653fb050,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734092854902868432, guid: 07f26a565695bc64386026a7653fb050,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3473980388289248812, guid: 07f26a565695bc64386026a7653fb050,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4191116830838501397, guid: 07f26a565695bc64386026a7653fb050,
         type: 3}
       propertyPath: enemy
       value: 
       objectReference: {fileID: 768678253856422778}
+    - target: {fileID: 5195388080905947754, guid: 07f26a565695bc64386026a7653fb050,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204733695013096886, guid: 07f26a565695bc64386026a7653fb050,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8331363173303955154, guid: 07f26a565695bc64386026a7653fb050,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -204,6 +229,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8554769349712191991, guid: 07f26a565695bc64386026a7653fb050,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8554769351670908473, guid: 07f26a565695bc64386026a7653fb050,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07f26a565695bc64386026a7653fb050, type: 3}

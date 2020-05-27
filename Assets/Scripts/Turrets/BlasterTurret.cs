@@ -18,6 +18,11 @@ public class BlasterTurret : Turret
             Projectile p = projectile.GetComponent<Projectile>();
             p.SetTarget(currentTarget);
 
+            GameObject flash = (firePointSelector) ? Instantiate(muzzleFlash, firePoint.position, firePoint.rotation) :
+                Instantiate(muzzleFlash, firePoint2.position, firePoint2.rotation);
+
+            flash.transform.SetParent(this.transform);
+
             firePointSelector = !firePointSelector;
         }
     }

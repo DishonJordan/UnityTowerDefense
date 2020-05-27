@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
         gameIsOver = false;
         wave = 1;
         spawners = GameObject.FindObjectsOfType(typeof(Spawner));
+        Turret.turretUIActive = false;
     }
 
     public int Health
@@ -57,7 +58,7 @@ public class GameManager : MonoBehaviour
                 return;
             }
         }
-        wave++;
+        wave++;     
         BeginNextWave();
     }
 
