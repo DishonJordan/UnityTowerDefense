@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1433907584875213941}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.045, y: 0.1624, z: 0.1811}
+  m_LocalPosition: {x: -0.045, y: 0.1642, z: 0.1811}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6324799865663043031}
@@ -231,12 +231,10 @@ MonoBehaviour:
   _health: 100
   turretUI: {fileID: 7156241007744603314}
   TurretSprite: {fileID: 21300000, guid: 46c46d28c3d45cb4098af8b28588994c, type: 3}
-  turretProjectile: {fileID: 6209989988573652962, guid: 72cfe88a6dc605b40891e84bfb1ae8c6,
+  turretProjectile: {fileID: 7466829905744824705, guid: 63af93614d62a4648b3f3964741f7edb,
     type: 3}
   firePoint: {fileID: 566460001971440034}
   nextUpgrade: {fileID: 1675918432926733551, guid: 98a4f39507447cc41998ceedde7d3145,
-    type: 3}
-  muzzleFlash: {fileID: 2588840541798051345, guid: 7d1d7a00b4f6c89418ead395c7baebbf,
     type: 3}
   audioSource: {fileID: 2760474761733614329}
   shootSound: {fileID: 8300000, guid: 48f4d5b9404c3c2419dcbe9f9cb01e3c, type: 3}
@@ -4936,7 +4934,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3611792229091370004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.045, y: 0.163, z: 0.1811}
+  m_LocalPosition: {x: 0.0417, y: 0.1642, z: 0.1811}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6324799865663043031}
