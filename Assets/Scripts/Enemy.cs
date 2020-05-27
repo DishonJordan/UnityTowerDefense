@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour, IDamageable
             hasDied = true;
             Spawner.enemiesAlive--;
 
-            if(canSpawnOnDeath){
+            if(canSpawnOnDeath && health <= 0){
                 SpawnOnDeath();
             }
 
