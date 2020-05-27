@@ -10106,7 +10106,7 @@ MonoBehaviour:
   panBorderThickness: 1
   scrollSpeed: 1
   minHeight: 5
-  maxHeight: 15
+  maxHeight: 6
   maxLeft: 1
   maxRight: 10
   maxForward: 3
