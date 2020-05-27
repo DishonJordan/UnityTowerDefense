@@ -88,6 +88,7 @@ public class Spawner : MonoBehaviour
 
     private void EndWave(){
         waveEnded = true;
+        wavesSurvived++;
         gm.WaveEnded();
     }
 }

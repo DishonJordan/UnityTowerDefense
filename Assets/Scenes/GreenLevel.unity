@@ -2771,13 +2771,13 @@ MonoBehaviour:
   - {fileID: 2251657060077033380, guid: b0a670e31db5a0e4f9c69691edd979c2, type: 3}
   - {fileID: 6083536873277876409, guid: b632eadc259dc4045a8b966bdf0542ae, type: 3}
   - {fileID: 2967336627788032440, guid: 12d1c44f26890aa478283b20d2a958ec, type: 3}
-  - {fileID: 9029617528785186514, guid: 7b9a4dc142f108f44a304d245a435a4a, type: 3}
+  - {fileID: 8613617212349986208, guid: ece76762cd57c9045876c3c589cf5548, type: 3}
   - {fileID: 8613617212349986208, guid: ece76762cd57c9045876c3c589cf5548, type: 3}
   waves:
   - wave:
-    - {x: 2, y: 1}
     - {x: 1, y: 1}
-    - {x: 2, y: 1}
+    - {x: 1, y: 1}
+    - {x: 1, y: 1}
     - {x: 1, y: 1}
     - {x: 1, y: 1}
     - {x: 1, y: 1}

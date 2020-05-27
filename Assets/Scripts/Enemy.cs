@@ -20,10 +20,6 @@ public class Enemy : MonoBehaviour, IDamageable
     public Waypoints waypoints;
     public float distanceToEnd;
     public int strengthRating;
-    public bool canSpawnOnDeath;
-    public GameObject DeathSpawn;
-    [SerializeField]
-    private int numberToSpawn;
 
     private bool hasDied;
 
@@ -75,11 +71,6 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             hasDied = true;
             Spawner.enemiesAlive--;
-
-            if(canSpawnOnDeath && health <= 0){
-                SpawnOnDeath();
-            }
-
             var x = transform.Find("Explosion").gameObject;
             x = Instantiate(x,transform.position,transform.rotation);
             x.SetActive(true);
@@ -94,30 +85,6 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             bank.DepositMoney(money);
             Die();
-        }
-    }
-    
-    private void SpawnOnDeath(){
-        if(DeathSpawn == null){
-            Debug.LogError("No enemy gameobject for spawning attached to this gameobject.");
-            return;
-        }
-        if(numberToSpawn <= 0){
-            Debug.LogError("Number of enemies to spawn on death is too low.");
-            return;
-        }
-
-        for(int i = 0; i < numberToSpawn; i++){
-            GameObject newEnemy = Instantiate(DeathSpawn, transform.position + new Vector3(Random.Range(-0.3f,0.3f),0,Random.Range(-0.3f,0.3f)), transform.rotation);
-            Enemy e = newEnemy.GetComponentInChildren<Enemy>();
-            e.waypoints = waypoints;
-            e.distanceToEnd = distanceToEnd;
-            e.bank = bank;
-            e.gm = gm;
-            Waypoints w  = new Waypoints();
-            w.waypoints = waypoints.waypoints.GetRange(waypointIndex, waypoints.waypoints.Count - waypointIndex);
-            e.waypoints = w;
-            Spawner.enemiesAlive++;
         }
     }
 }

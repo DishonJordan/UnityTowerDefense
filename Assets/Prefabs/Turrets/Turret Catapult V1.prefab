@@ -173,8 +173,6 @@ MonoBehaviour:
   firePoint: {fileID: 6326121456786717764}
   nextUpgrade: {fileID: 2507021454263837709, guid: ecf242ae665acdd4c81d683fa496c47a,
     type: 3}
-  muzzleFlash: {fileID: 779497174963154141, guid: 1ee55d9c7d971b04aa075323103d8fe3,
-    type: 3}
   audioSource: {fileID: 2726566639848253561}
   shootSound: {fileID: 8300000, guid: c30d7e49be7c37d4f9955c860418bd04, type: 3}
   targeting: 0

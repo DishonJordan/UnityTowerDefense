@@ -103,8 +103,6 @@ MonoBehaviour:
   health: 100
   speed: 1
   waypoints: {fileID: 0}
-  distanceToEnd: 0
-  strengthRating: 0
 --- !u!1001 &614188025294709035
 PrefabInstance:
   m_ObjectHideFlags: 0
