@@ -2634,16 +2634,24 @@ MonoBehaviour:
   - {fileID: 8613617212349986208, guid: ece76762cd57c9045876c3c589cf5548, type: 3}
   waves:
   - wave:
-    - {x: 2, y: 1}
+    - {x: 0, y: 1}
     - {x: 1, y: 1}
     - {x: 2, y: 1}
     - {x: 1, y: 1}
-    - {x: 1, y: 1}
-    - {x: 1, y: 1}
-    - {x: 1, y: 1}
-    - {x: 1, y: 1}
-    - {x: 1, y: 1}
-    - {x: 1, y: 1}
+    waveDelay: 5
+  - wave: []
+    waveDelay: 0
+  - wave: []
+    waveDelay: 0
+  - wave: []
+    waveDelay: 0
+  - wave: []
+    waveDelay: 0
+  - wave: []
+    waveDelay: 0
+  - wave: []
+    waveDelay: 0
+  - wave: []
     waveDelay: 0
   - wave: []
     waveDelay: 0
