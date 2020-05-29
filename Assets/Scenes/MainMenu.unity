@@ -711,7 +711,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 568e9752921d8eb4090a519695d37cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstLevelIndex: 1
 --- !u!114 &230926695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2378,7 +2377,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 568e9752921d8eb4090a519695d37cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstLevelIndex: 1
 --- !u!114 &1173346184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2605,10 +2603,10 @@ MonoBehaviour:
     sceneId: 1
     thumbnail: {fileID: 21300000, guid: 8fdbfc731967c584a818faf96f476b79, type: 3}
   - title: Beach Resort
-    sceneId: 1
-    thumbnail: {fileID: 21300000, guid: 9703335117c377f42b35a78774e0adcd, type: 3}
-  - title: Snowy Peaks
     sceneId: 2
+    thumbnail: {fileID: 21300000, guid: 201654513824d2b4d9b6258970638664, type: 3}
+  - title: Snowy Peaks
+    sceneId: 3
     thumbnail: {fileID: 21300000, guid: b44821fd7981b1b4a9504514d364914a, type: 3}
 --- !u!1 &1191215867
 GameObject:

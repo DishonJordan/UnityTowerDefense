@@ -22,7 +22,7 @@ public class SliderMixerSync : MonoBehaviour
 
     private void OnEnable()
     {
-        float mixerParamVal;
+        float mixerParamVal = 0;
         Assert.IsTrue(mixer.GetFloat(mixerParam, out mixerParamVal));
         float t = Mathf.Clamp01(Mathf.InverseLerp(minVol, maxVol, mixerParamVal));
         slider.value = t;

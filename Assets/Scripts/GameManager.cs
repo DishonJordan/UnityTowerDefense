@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
         gameIsOver = false;
         wave = 1;
         spawners = GameObject.FindObjectsOfType(typeof(Spawner));
-        BeginNextWave();
         Turret.turretUIActive = false;
     }
 
@@ -42,7 +41,13 @@ public class GameManager : MonoBehaviour
     private void BeginNextWave(){
         foreach(Object x in spawners){
             Spawner y = (Spawner)x;
-            y.BeginWave(wave);
+            y.BeginWave(wave, false); // false implies wave not being called early
+        }
+    }
+    public void CallNextWaveEarly(){
+        foreach(Object x in spawners){
+            Spawner y = (Spawner)x;
+            y.BeginWave(wave, true); // true implies wave being called early
         }
     }
 
@@ -54,7 +59,6 @@ public class GameManager : MonoBehaviour
             }
         }
         wave++;     
-        Spawner.wavesSurvived++;
         BeginNextWave();
     }
 
