@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GreyLevel.unity
     guid: d5c7793a74daff04cb3a19254e9524b4
+  - enabled: 1
+    path: Assets/Scenes/RiverLevel.unity
+    guid: 20fba93e959b9f64d843cca38b85e408
   m_configObjects: {}
