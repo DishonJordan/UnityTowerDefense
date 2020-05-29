@@ -12879,9 +12879,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c9130a0b9031b47a4b635367f88d1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverUI: {fileID: 0}
-  winUI: {fileID: 0}
-  baseHealth: 3
+  gameOverUI: {fileID: 1614856417}
+  winUI: {fileID: 314461891}
+  baseHealth: 5
   wave: 0
 --- !u!4 &991437656
 Transform:
@@ -21824,7 +21824,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 991437655}
         m_MethodName: CallNextWaveEarly
         m_Mode: 1
         m_Arguments:
