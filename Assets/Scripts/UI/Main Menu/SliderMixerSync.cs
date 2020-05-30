@@ -9,8 +9,6 @@ using UnityEngine.UI;
 public class SliderMixerSync : MonoBehaviour
 {
     private Slider slider;
-    private const float maxVol = 0;
-    private const float minVol = -80.0f;
     public AudioMixer mixer;
     public string mixerParam;
 
@@ -24,7 +22,7 @@ public class SliderMixerSync : MonoBehaviour
     {
         float mixerParamVal = 0;
         Assert.IsTrue(mixer.GetFloat(mixerParam, out mixerParamVal));
-        float t = Mathf.Clamp01(Mathf.InverseLerp(minVol, maxVol, mixerParamVal));
+        float t = Mathf.Pow(10, mixerParamVal / 20);
         slider.value = t;
     }
 
@@ -32,7 +30,7 @@ public class SliderMixerSync : MonoBehaviour
     private void OnSliderChanged(float val)
     {
         float t = slider.value;
-        float mixerParamVal = Mathf.Lerp(minVol, maxVol, t);
+        float mixerParamVal = Mathf.Log10(t) * 20;
         Assert.IsTrue(mixer.SetFloat(mixerParam, mixerParamVal));
     }
 }
