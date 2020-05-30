@@ -28,7 +28,7 @@ public class Win : MonoBehaviour
     }
     public void Continue()
     {
-        if(SceneManager.GetActiveScene().buildIndex == 3)
+        if (SceneManager.GetActiveScene().buildIndex == 4)
         {
             SceneManager.LoadScene("MainMenu");
         } else

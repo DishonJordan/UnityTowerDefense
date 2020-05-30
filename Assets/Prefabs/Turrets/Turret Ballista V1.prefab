@@ -9711,7 +9711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turretName: Ballista Turret V1
-  purchaseCost: 200
+  purchaseCost: 350
   sellCost: 100
   repairCost: 45
   upgradeCost: 125
@@ -9726,6 +9726,7 @@ MonoBehaviour:
   firePoint: {fileID: 6522241146926549628}
   nextUpgrade: {fileID: 9195162511604485781, guid: d1cb5bbdf4945f64c9e8b2950dbb0570,
     type: 3}
+  muzzleFlash: {fileID: 0}
   audioSource: {fileID: 269231529204947832}
   shootSound: {fileID: 8300000, guid: 980e1b55775a14a4ab32a2b03c8ebba7, type: 3}
   targeting: 0
