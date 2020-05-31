@@ -40,6 +40,7 @@ public class Waypoints : MonoBehaviour
         }
 
         waypoints = newWaypoints;
+        lengthOfPath = 0;
         for(int i = 1; i < waypoints.Count; i++){
             lengthOfPath += Vector3.Distance(waypoints[i-1].position, waypoints[i].position);
         }
