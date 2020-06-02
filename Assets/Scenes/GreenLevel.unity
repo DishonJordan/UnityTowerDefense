@@ -2875,7 +2875,7 @@ GameObject:
   m_Component:
   - component: {fileID: 213602410}
   m_Layer: 0
-  m_Name: Waypoint 45
+  m_Name: Waypoint 44
   m_TagString: Untagged
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -3219,7 +3219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 248521725}
   m_Layer: 0
-  m_Name: Waypoint 51
+  m_Name: Waypoint 49
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3773,7 +3773,7 @@ MonoBehaviour:
   - {fileID: 1640357704}
   - {fileID: 475187009}
   - {fileID: 694432309}
-  lengthOfPath: 30.63472
+  lengthOfPath: 30.619726
 --- !u!4 &336165370 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: f7cd5f2f7f57b8d40a82208acea68e53,
@@ -5832,7 +5832,7 @@ GameObject:
   m_Component:
   - component: {fileID: 475187009}
   m_Layer: 0
-  m_Name: Waypoint 53
+  m_Name: Waypoint 51
   m_TagString: Untagged
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -7594,7 +7594,7 @@ GameObject:
   m_Component:
   - component: {fileID: 697905922}
   m_Layer: 0
-  m_Name: Waypoint 49
+  m_Name: Waypoint 48
   m_TagString: Untagged
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -8436,7 +8436,7 @@ GameObject:
   m_Component:
   - component: {fileID: 760521466}
   m_Layer: 0
-  m_Name: Waypoint 44
+  m_Name: Waypoint 43
   m_TagString: Untagged
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -17013,7 +17013,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1620853591}
   m_Layer: 0
-  m_Name: Waypoint 48
+  m_Name: Waypoint 47
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17260,7 +17260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1640357704}
   m_Layer: 0
-  m_Name: Waypoint 52
+  m_Name: Waypoint 50
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18457,7 +18457,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1710088327}
   m_Layer: 0
-  m_Name: Waypoint 46
+  m_Name: Waypoint 45
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20138,7 +20138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1863610728}
   m_Layer: 0
-  m_Name: Waypoint 47
+  m_Name: Waypoint 46
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22415,7 +22415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2141472416}
   m_Layer: 0
-  m_Name: Waypoint 43
+  m_Name: Waypoint 42
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
